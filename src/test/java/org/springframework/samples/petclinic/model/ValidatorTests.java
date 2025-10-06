@@ -10,6 +10,7 @@ import jakarta.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.samples.petclinic.common.Person;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
