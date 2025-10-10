@@ -1,104 +1,57 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.petclinic.owners.domain;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.samples.petclinic.catalog.domain.PetType;
-import org.springframework.samples.petclinic.common.NamedEntity;
-import org.springframework.samples.petclinic.visits.domain.Visit;
-
-import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.*;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+
+import org.springframework.samples.petclinic.common.Identifiable;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Simple business object representing a pet.
- *
- * @author Ken Krebs
- * @author Juergen Hoeller
- * @author Sam Brannen
  */
 @Entity
 @Table(name = "pets")
-public class Pet extends NamedEntity {
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Pet implements Identifiable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "name", nullable = false)
+    @NotBlank
+    private String name;
 
     @Column(name = "birth_date", columnDefinition = "DATE")
     private LocalDate birthDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "type_id")
-    private PetType type;
+    @Column(name = "type_id", nullable = false)
+    private Integer typeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
-    private Set<Visit> visits;
-
-    public LocalDate getBirthDate() {
-        return this.birthDate;
+    @Override
+    public String toString() {
+        return this.name;
     }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public PetType getType() {
-        return this.type;
-    }
-
-    public void setType(PetType type) {
-        this.type = type;
-    }
-
-    public Owner getOwner() {
-        return this.owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
-
-    protected Set<Visit> getVisitsInternal() {
-        if (this.visits == null) {
-            this.visits = new HashSet<>();
-        }
-        return this.visits;
-    }
-
-    protected void setVisitsInternal(Set<Visit> visits) {
-        this.visits = visits;
-    }
-
-    public List<Visit> getVisits() {
-        List<Visit> sortedVisits = new ArrayList<>(getVisitsInternal());
-        PropertyComparator.sort(sortedVisits, new MutableSortDefinition("date", false, false));
-        return Collections.unmodifiableList(sortedVisits);
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = new HashSet<>(visits);
-    }
-
-    public void addVisit(Visit visit) {
-        getVisitsInternal().add(visit);
-        visit.setPet(this);
-    }
-
 }
+

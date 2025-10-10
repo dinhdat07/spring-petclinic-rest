@@ -15,12 +15,20 @@
  */
 package org.springframework.samples.petclinic.visits.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
-import org.springframework.samples.petclinic.common.BaseEntity;
-import org.springframework.samples.petclinic.owners.domain.Pet;
+import org.springframework.samples.petclinic.common.Identifiable;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Simple JavaBean domain object representing a visit.
@@ -29,7 +37,14 @@ import org.springframework.samples.petclinic.owners.domain.Pet;
  */
 @Entity
 @Table(name = "visits")
-public class Visit extends BaseEntity {
+@Getter
+@Setter
+@EqualsAndHashCode(of = "id")
+public class Visit implements Identifiable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     /**
      * Holds value of property date.
@@ -44,12 +59,8 @@ public class Visit extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    /**
-     * Holds value of property pet.
-     */
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+    @Column(name = "pet_id", nullable = false)
+    private Integer petId;
 
 
     /**
@@ -59,59 +70,5 @@ public class Visit extends BaseEntity {
         this.date = LocalDate.now();
     }
 
-
-    /**
-     * Getter for property date.
-     *
-     * @return Value of property date.
-     */
-    public LocalDate getDate() {
-        return this.date;
-    }
-
-    /**
-     * Setter for property date.
-     *
-     * @param date New value of property date.
-     */
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    /**
-     * Getter for property description.
-     *
-     * @return Value of property description.
-     */
-    public String getDescription() {
-        return this.description;
-    }
-
-    /**
-     * Setter for property description.
-     *
-     * @param description New value of property description.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * Getter for property pet.
-     *
-     * @return Value of property pet.
-     */
-    public Pet getPet() {
-        return this.pet;
-    }
-
-    /**
-     * Setter for property pet.
-     *
-     * @param pet New value of property pet.
-     */
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
 
 }

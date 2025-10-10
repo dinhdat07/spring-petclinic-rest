@@ -1,68 +1,54 @@
-/*
- * Copyright 2016-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.springframework.samples.petclinic.vets.web;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.catalog.domain.Specialty;
-import org.springframework.samples.petclinic.catalog.mapper.SpecialtyMapper;
+import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
+import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
 import org.springframework.samples.petclinic.rest.api.VetsApi;
+import org.springframework.samples.petclinic.rest.dto.SpecialtyDto;
 import org.springframework.samples.petclinic.rest.dto.VetDto;
 import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 import org.springframework.samples.petclinic.vets.mapper.VetMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
- * @author Vitaliy Fedoriv
+ * REST controller for vets.
  */
-
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api")
 public class VetRestController implements VetsApi {
 
     private final VetService vetService;
-    private final SpecialtyService specialtyService;
+    private final SpecialtiesFacade specialtiesFacade;
     private final VetMapper vetMapper;
-    private final SpecialtyMapper specialtyMapper;
 
     public VetRestController(VetService vetService,
-                             SpecialtyService specialtyService,
-                             VetMapper vetMapper,
-                             SpecialtyMapper specialtyMapper) {
+                             SpecialtiesFacade specialtiesFacade,
+                             VetMapper vetMapper) {
         this.vetService = vetService;
-        this.specialtyService = specialtyService;
+        this.specialtiesFacade = specialtiesFacade;
         this.vetMapper = vetMapper;
-        this.specialtyMapper = specialtyMapper;
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
     public ResponseEntity<List<VetDto>> listVets() {
-        List<VetDto> vets = new ArrayList<>(vetMapper.toVetDtos(this.vetService.findAll()));
+        List<VetDto> vets = this.vetService.findAll().stream()
+            .map(this::toVetDto)
+            .collect(Collectors.toList());
         if (vets.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -71,12 +57,11 @@ public class VetRestController implements VetsApi {
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
-    public ResponseEntity<VetDto> getVet(Integer vetId)  {
-        Vet vet = this.vetService.findById(vetId);
-        if (vet == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(vetMapper.toVetDto(vet), HttpStatus.OK);
+    public ResponseEntity<VetDto> getVet(Integer vetId) {
+        return this.vetService.findById(vetId)
+            .map(this::toVetDto)
+            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
@@ -84,45 +69,69 @@ public class VetRestController implements VetsApi {
     public ResponseEntity<VetDto> addVet(VetDto vetDto) {
         HttpHeaders headers = new HttpHeaders();
         Vet vet = vetMapper.toVet(vetDto);
-        if(vet.getNrOfSpecialties() > 0){
-            List<Specialty> vetSpecialities = this.specialtyService.findByNameIn(vet.getSpecialties().stream().map(Specialty::getName).collect(Collectors.toSet()));
-            vet.setSpecialties(vetSpecialities);
-        }
+        vet.setSpecialtyIds(extractSpecialtyIds(vetDto));
         this.vetService.save(vet);
-        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/vets/{id}").buildAndExpand(vet.getId()).toUri());
-        return new ResponseEntity<>(vetMapper.toVetDto(vet), headers, HttpStatus.CREATED);
+        VetDto response = toVetDto(vet);
+        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/vets/{id}")
+            .buildAndExpand(vet.getId()).toUri());
+        return new ResponseEntity<>(response, headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
-    public ResponseEntity<VetDto> updateVet(Integer vetId,VetDto vetDto)  {
-        Vet currentVet = this.vetService.findById(vetId);
-        if (currentVet == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        currentVet.setFirstName(vetDto.getFirstName());
-        currentVet.setLastName(vetDto.getLastName());
-        currentVet.clearSpecialties();
-        for (Specialty spec : specialtyMapper.toSpecialtys(vetDto.getSpecialties())) {
-            currentVet.addSpecialty(spec);
-        }
-        if(currentVet.getNrOfSpecialties() > 0){
-            List<Specialty> vetSpecialities = this.specialtyService.findByNameIn(currentVet.getSpecialties().stream().map(Specialty::getName).collect(Collectors.toSet()));
-            currentVet.setSpecialties(vetSpecialities);
-        }
-        this.vetService.save(currentVet);
-        return new ResponseEntity<>(vetMapper.toVetDto(currentVet), HttpStatus.NO_CONTENT);
+    public ResponseEntity<VetDto> updateVet(Integer vetId, VetDto vetDto) {
+        return this.vetService.findById(vetId)
+            .map(existing -> {
+                existing.setFirstName(vetDto.getFirstName());
+                existing.setLastName(vetDto.getLastName());
+                existing.setSpecialtyIds(extractSpecialtyIds(vetDto));
+                this.vetService.save(existing);
+                return new ResponseEntity<>(toVetDto(existing), HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Transactional
     @Override
     public ResponseEntity<VetDto> deleteVet(Integer vetId) {
-        Vet vet = this.vetService.findById(vetId);
-        if (vet == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return this.vetService.findById(vetId)
+            .map(existing -> {
+                this.vetService.delete(existing);
+                return new ResponseEntity<VetDto>(HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    private VetDto toVetDto(Vet vet) {
+        VetDto dto = vetMapper.toVetDto(vet);
+        dto.setId(vet.getId());
+        dto.setSpecialties(resolveSpecialties(vet.getSpecialtyIds()));
+        return dto;
+    }
+
+    private List<SpecialtyDto> resolveSpecialties(Set<Integer> specialtyIds) {
+        if (specialtyIds == null || specialtyIds.isEmpty()) {
+            return List.of();
         }
-        this.vetService.delete(vet);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return specialtiesFacade.findByIds(specialtyIds).stream()
+            .map(this::toSpecialtyDto)
+            .collect(Collectors.toList());
+    }
+
+    private Set<Integer> extractSpecialtyIds(VetDto vetDto) {
+        if (vetDto.getSpecialties() == null) {
+            return Set.of();
+        }
+        return vetDto.getSpecialties().stream()
+            .map(SpecialtyDto::getId)
+            .collect(Collectors.toSet());
+    }
+
+    private SpecialtyDto toSpecialtyDto(SpecialtyView view) {
+        SpecialtyDto dto = new SpecialtyDto();
+        dto.setId(view.id());
+        dto.setName(view.name());
+        return dto;
     }
 }

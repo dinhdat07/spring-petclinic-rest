@@ -1,29 +1,27 @@
 package org.springframework.samples.petclinic.visits.app;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.context.annotation.Profile;
-import org.springframework.samples.petclinic.common.EntityFinder;
 import org.springframework.samples.petclinic.visits.domain.Visit;
-import org.springframework.samples.petclinic.visits.infra.VisitRepository;
+import org.springframework.samples.petclinic.visits.infra.jpa.VisitJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Profile({"jdbc", "jpa", "spring-data-jpa"})
 @Transactional(readOnly = true)
 public class VisitServiceImpl implements VisitService {
 
-    private final VisitRepository visitRepository;
+    private final VisitJpaRepository visitRepository;
 
-    public VisitServiceImpl(VisitRepository visitRepository) {
+    public VisitServiceImpl(VisitJpaRepository visitRepository) {
         this.visitRepository = visitRepository;
     }
 
     @Override
-    public Visit findById(int visitId) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> visitRepository.findById(visitId));
+    public Optional<Visit> findById(int visitId) throws DataAccessException {
+        return visitRepository.findById(visitId);
     }
 
     @Override
@@ -48,3 +46,4 @@ public class VisitServiceImpl implements VisitService {
         visitRepository.delete(visit);
     }
 }
+

@@ -16,6 +16,9 @@
 
 package org.springframework.samples.petclinic.catalog.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +29,12 @@ import org.springframework.samples.petclinic.rest.api.PettypesApi;
 import org.springframework.samples.petclinic.rest.dto.PetTypeDto;
 import org.springframework.samples.petclinic.rest.dto.PetTypeFieldsDto;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
@@ -41,7 +43,6 @@ public class PetTypeRestController implements PettypesApi {
 
     private final PetTypeService petTypeService;
     private final PetTypeMapper petTypeMapper;
-
 
     public PetTypeRestController(PetTypeService petTypeService, PetTypeMapper petTypeMapper) {
         this.petTypeService = petTypeService;
@@ -61,11 +62,10 @@ public class PetTypeRestController implements PettypesApi {
     @PreAuthorize("hasAnyRole(@roles.OWNER_ADMIN, @roles.VET_ADMIN)")
     @Override
     public ResponseEntity<PetTypeDto> getPetType(Integer petTypeId) {
-        PetType petType = this.petTypeService.findById(petTypeId);
-        if (petType == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(petTypeMapper.toPetTypeDto(petType), HttpStatus.OK);
+        return this.petTypeService.findById(petTypeId)
+            .map(petTypeMapper::toPetTypeDto)
+            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
@@ -74,32 +74,33 @@ public class PetTypeRestController implements PettypesApi {
         HttpHeaders headers = new HttpHeaders();
         final PetType type = petTypeMapper.toPetType(petTypeFieldsDto);
         this.petTypeService.save(type);
-        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/pettypes/{id}").buildAndExpand(type.getId()).toUri());
+        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/pettypes/{id}")
+            .buildAndExpand(type.getId()).toUri());
         return new ResponseEntity<>(petTypeMapper.toPetTypeDto(type), headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
     public ResponseEntity<PetTypeDto> updatePetType(Integer petTypeId, PetTypeDto petTypeDto) {
-        PetType currentPetType = this.petTypeService.findById(petTypeId);
-        if (currentPetType == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        currentPetType.setName(petTypeDto.getName());
-        this.petTypeService.save(currentPetType);
-        return new ResponseEntity<>(petTypeMapper.toPetTypeDto(currentPetType), HttpStatus.NO_CONTENT);
+        return this.petTypeService.findById(petTypeId)
+            .map(current -> {
+                current.setName(petTypeDto.getName());
+                this.petTypeService.save(current);
+                return new ResponseEntity<>(petTypeMapper.toPetTypeDto(current), HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Transactional
     @Override
     public ResponseEntity<PetTypeDto> deletePetType(Integer petTypeId) {
-        PetType petType = this.petTypeService.findById(petTypeId);
-        if (petType == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        this.petTypeService.delete(petType);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return this.petTypeService.findById(petTypeId)
+            .map(existing -> {
+                this.petTypeService.delete(existing);
+                return new ResponseEntity<PetTypeDto>(HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
 }
+

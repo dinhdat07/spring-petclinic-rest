@@ -1,32 +1,30 @@
-package org.springframework.samples.petclinic.service.pet;
+package org.springframework.samples.petclinic.owners.app.pet;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.context.annotation.Profile;
-import org.springframework.samples.petclinic.catalog.domain.PetType;
-import org.springframework.samples.petclinic.common.EntityFinder;
+import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.domain.Pet;
-import org.springframework.samples.petclinic.owners.infra.PetRepository;
+import org.springframework.samples.petclinic.owners.infra.jpa.PetJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Profile({"jdbc", "jpa", "spring-data-jpa"})
 @Transactional(readOnly = true)
 public class PetServiceImpl implements PetService {
 
-    private final PetRepository petRepository;
-    private final PetTypeService petTypeService;
+    private final PetJpaRepository petRepository;
+    private final PetTypesFacade petTypesFacade;
 
-    public PetServiceImpl(PetRepository petRepository, PetTypeService petTypeService) {
+    public PetServiceImpl(PetJpaRepository petRepository, PetTypesFacade petTypesFacade) {
         this.petRepository = petRepository;
-        this.petTypeService = petTypeService;
+        this.petTypesFacade = petTypesFacade;
     }
 
     @Override
-    public Pet findById(int id) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> petRepository.findById(id));
+    public Optional<Pet> findById(int id) throws DataAccessException {
+        return petRepository.findById(id);
     }
 
     @Override
@@ -37,12 +35,11 @@ public class PetServiceImpl implements PetService {
     @Override
     @Transactional
     public void save(Pet pet) throws DataAccessException {
-        if (pet.getType() != null && pet.getType().getId() != null) {
-            PetType resolved = petTypeService.findById(pet.getType().getId());
-            if (resolved != null) {
-                pet.setType(resolved);
-            }
+        if (pet.getTypeId() == null) {
+            throw new IllegalArgumentException("Pet type id must be provided");
         }
+        petTypesFacade.findById(pet.getTypeId())
+            .orElseThrow(() -> new IllegalArgumentException("Unknown pet type id: " + pet.getTypeId()));
         petRepository.save(pet);
     }
 
@@ -52,3 +49,5 @@ public class PetServiceImpl implements PetService {
         petRepository.delete(pet);
     }
 }
+
+

@@ -15,17 +15,33 @@
  */
 package org.springframework.samples.petclinic.owners.domain;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.core.style.ToStringCreator;
-import org.springframework.samples.petclinic.common.Person;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-import java.util.*;
+import org.springframework.core.style.ToStringCreator;
+import org.springframework.samples.petclinic.common.Identifiable;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Simple JavaBean domain object representing an owner.
@@ -37,47 +53,40 @@ import java.util.*;
  */
 @Entity
 @Table(name = "owners")
-public class Owner extends Person {
-    @Column(name = "address")
-    @NotEmpty
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Owner implements Identifiable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "first_name", nullable = false)
+    @NotBlank
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    @NotBlank
+    private String lastName;
+
+    @Column(name = "address", nullable = false)
+    @NotBlank
     private String address;
 
-    @Column(name = "city")
-    @NotEmpty
+    @Column(name = "city", nullable = false)
+    @NotBlank
     private String city;
 
-    @Column(name = "telephone")
-    @NotEmpty
+    @Column(name = "telephone", nullable = false)
+    @NotBlank
     @Digits(fraction = 0, integer = 10)
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String telephone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
     private Set<Pet> pets;
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getTelephone() {
-        return this.telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
 
     protected Set<Pet> getPetsInternal() {
         if (this.pets == null) {
@@ -92,7 +101,7 @@ public class Owner extends Person {
 
     public List<Pet> getPets() {
         List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
-        PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
+        sortedPets.sort(Comparator.comparing(Pet::getName, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
         return Collections.unmodifiableList(sortedPets);
     }
 
@@ -142,14 +151,14 @@ public class Owner extends Person {
     @Override
     public String toString() {
         return new ToStringCreator(this)
-
-            .append("id", this.getId())
+            .append("id", this.id)
             .append("new", this.isNew())
-            .append("lastName", this.getLastName())
-            .append("firstName", this.getFirstName())
+            .append("lastName", this.lastName)
+            .append("firstName", this.firstName)
             .append("address", this.address)
             .append("city", this.city)
             .append("telephone", this.telephone)
             .toString();
     }
 }
+

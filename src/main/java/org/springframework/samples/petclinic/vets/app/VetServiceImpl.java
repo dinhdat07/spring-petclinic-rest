@@ -1,29 +1,27 @@
 package org.springframework.samples.petclinic.vets.app;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.context.annotation.Profile;
-import org.springframework.samples.petclinic.common.EntityFinder;
 import org.springframework.samples.petclinic.vets.domain.Vet;
-import org.springframework.samples.petclinic.vets.infra.VetRepository;
+import org.springframework.samples.petclinic.vets.infra.jpa.VetJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Profile({"jdbc", "jpa", "spring-data-jpa"})
 @Transactional(readOnly = true)
 public class VetServiceImpl implements VetService {
 
-    private final VetRepository vetRepository;
+    private final VetJpaRepository vetRepository;
 
-    public VetServiceImpl(VetRepository vetRepository) {
+    public VetServiceImpl(VetJpaRepository vetRepository) {
         this.vetRepository = vetRepository;
     }
 
     @Override
-    public Vet findById(int id) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> vetRepository.findById(id));
+    public Optional<Vet> findById(int id) throws DataAccessException {
+        return vetRepository.findById(id);
     }
 
     @Override
@@ -43,3 +41,4 @@ public class VetServiceImpl implements VetService {
         vetRepository.delete(vet);
     }
 }
+

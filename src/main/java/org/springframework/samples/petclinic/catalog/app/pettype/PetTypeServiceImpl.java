@@ -1,32 +1,27 @@
 package org.springframework.samples.petclinic.catalog.app.pettype;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.context.annotation.Profile;
 import org.springframework.samples.petclinic.catalog.domain.PetType;
-import org.springframework.samples.petclinic.catalog.infra.PetTypeRepository;
-import org.springframework.samples.petclinic.common.EntityFinder;
-import org.springframework.samples.petclinic.owners.infra.PetRepository;
+import org.springframework.samples.petclinic.catalog.infra.jpa.PetTypeJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Profile({"jdbc", "jpa", "spring-data-jpa"})
 @Transactional(readOnly = true)
 public class PetTypeServiceImpl implements PetTypeService {
 
-    private final PetTypeRepository petTypeRepository;
-    private final PetRepository petRepository;
+    private final PetTypeJpaRepository petTypeRepository;
 
-    public PetTypeServiceImpl(PetTypeRepository petTypeRepository, PetRepository petRepository) {
+    public PetTypeServiceImpl(PetTypeJpaRepository petTypeRepository) {
         this.petTypeRepository = petTypeRepository;
-        this.petRepository = petRepository;
     }
 
     @Override
-    public PetType findById(int id) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> petTypeRepository.findById(id));
+    public Optional<PetType> findById(int id) throws DataAccessException {
+        return petTypeRepository.findById(id);
     }
 
     @Override
@@ -34,10 +29,6 @@ public class PetTypeServiceImpl implements PetTypeService {
         return petTypeRepository.findAll();
     }
 
-    @Override
-    public Collection<PetType> findTypesForPets() throws DataAccessException {
-        return petRepository.findPetTypes();
-    }
 
     @Override
     @Transactional
@@ -51,3 +42,4 @@ public class PetTypeServiceImpl implements PetTypeService {
         petTypeRepository.delete(petType);
     }
 }
+

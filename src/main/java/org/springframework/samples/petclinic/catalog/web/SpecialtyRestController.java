@@ -16,6 +16,9 @@
 
 package org.springframework.samples.petclinic.catalog.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +28,12 @@ import org.springframework.samples.petclinic.catalog.mapper.SpecialtyMapper;
 import org.springframework.samples.petclinic.rest.api.SpecialtiesApi;
 import org.springframework.samples.petclinic.rest.dto.SpecialtyDto;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * @author Vitaliy Fedoriv
- */
 
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
@@ -65,11 +63,10 @@ public class SpecialtyRestController implements SpecialtiesApi {
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
     public ResponseEntity<SpecialtyDto> getSpecialty(Integer specialtyId) {
-        Specialty specialty = this.specialtyService.findById(specialtyId);
-        if (specialty == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(specialtyMapper.toSpecialtyDto(specialty), HttpStatus.OK);
+        return this.specialtyService.findById(specialtyId)
+            .map(specialtyMapper::toSpecialtyDto)
+            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
@@ -78,32 +75,33 @@ public class SpecialtyRestController implements SpecialtiesApi {
         HttpHeaders headers = new HttpHeaders();
         Specialty specialty = specialtyMapper.toSpecialty(specialtyDto);
         this.specialtyService.save(specialty);
-        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/specialties/{id}").buildAndExpand(specialty.getId()).toUri());
+        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/specialties/{id}")
+            .buildAndExpand(specialty.getId()).toUri());
         return new ResponseEntity<>(specialtyMapper.toSpecialtyDto(specialty), headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
     public ResponseEntity<SpecialtyDto> updateSpecialty(Integer specialtyId, SpecialtyDto specialtyDto) {
-        Specialty currentSpecialty = this.specialtyService.findById(specialtyId);
-        if (currentSpecialty == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        currentSpecialty.setName(specialtyDto.getName());
-        this.specialtyService.save(currentSpecialty);
-        return new ResponseEntity<>(specialtyMapper.toSpecialtyDto(currentSpecialty), HttpStatus.NO_CONTENT);
+        return this.specialtyService.findById(specialtyId)
+            .map(current -> {
+                current.setName(specialtyDto.getName());
+                this.specialtyService.save(current);
+                return new ResponseEntity<>(specialtyMapper.toSpecialtyDto(current), HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Transactional
     @Override
     public ResponseEntity<SpecialtyDto> deleteSpecialty(Integer specialtyId) {
-        Specialty specialty = this.specialtyService.findById(specialtyId);
-        if (specialty == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        this.specialtyService.delete(specialty);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return this.specialtyService.findById(specialtyId)
+            .map(existing -> {
+                this.specialtyService.delete(existing);
+                return new ResponseEntity<SpecialtyDto>(HttpStatus.NO_CONTENT);
+            })
+            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-
 }
+

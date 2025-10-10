@@ -2,30 +2,28 @@ package org.springframework.samples.petclinic.catalog.app.specialty;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.context.annotation.Profile;
 import org.springframework.samples.petclinic.catalog.domain.Specialty;
-import org.springframework.samples.petclinic.catalog.infra.SpecialtyRepository;
-import org.springframework.samples.petclinic.common.EntityFinder;
+import org.springframework.samples.petclinic.catalog.infra.jpa.SpecialtyJpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Profile({"jdbc", "jpa", "spring-data-jpa"})
 @Transactional(readOnly = true)
 public class SpecialtyServiceImpl implements SpecialtyService {
 
-    private final SpecialtyRepository specialtyRepository;
+    private final SpecialtyJpaRepository specialtyRepository;
 
-    public SpecialtyServiceImpl(SpecialtyRepository specialtyRepository) {
+    public SpecialtyServiceImpl(SpecialtyJpaRepository specialtyRepository) {
         this.specialtyRepository = specialtyRepository;
     }
 
     @Override
-    public Specialty findById(int id) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> specialtyRepository.findById(id));
+    public Optional<Specialty> findById(int id) throws DataAccessException {
+        return specialtyRepository.findById(id);
     }
 
     @Override
@@ -47,6 +45,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
     @Override
     public List<Specialty> findByNameIn(Set<String> names) throws DataAccessException {
-        return EntityFinder.findOrNull(() -> specialtyRepository.findSpecialtiesByNameIn(names));
+        return specialtyRepository.findByNameIn(names);
     }
 }
+
