@@ -15,7 +15,6 @@
  */
 package org.springframework.samples.petclinic.catalog.domain;
 
-import org.springframework.samples.petclinic.vets.domain.Vet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,7 +32,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Models a {@link Vet Vet's} specialty (for example, dentistry).
+ * Models a vet specialty (for example, dentistry).
  *
  * @author Juergen Hoeller
  */
@@ -59,3 +58,4 @@ public class Specialty implements Identifiable {
     }
 
 }
+

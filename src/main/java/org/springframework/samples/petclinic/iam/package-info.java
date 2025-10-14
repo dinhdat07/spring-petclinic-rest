@@ -1,4 +1,4 @@
 @ApplicationModule
-package org.springframework.samples.petclinic.owners;
+package org.springframework.samples.petclinic.iam;
 
 import org.springframework.modulith.ApplicationModule;

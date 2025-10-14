@@ -10,13 +10,12 @@ import jakarta.validation.Validator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.samples.petclinic.common.Person;
+import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
- * @author Michael Isvy
- *         Simple test to make sure that Bean Validation is working
- *         (useful when upgrading to a new version of Hibernate Validator/ Bean Validation)
+ * Simple test to make sure that Bean Validation is working
+ * (useful when upgrading to a new version of Hibernate Validator/ Bean Validation)
  */
 class ValidatorTests {
 
@@ -30,17 +29,20 @@ class ValidatorTests {
     void shouldNotValidateWhenFirstNameEmpty() {
 
         LocaleContextHolder.setLocale(Locale.ENGLISH);
-        Person person = new Person();
-        person.setFirstName("");
-        person.setLastName("smith");
+        Owner owner = new Owner();
+        owner.setFirstName("");
+        owner.setLastName("Smith");
+        owner.setAddress("110 W. Liberty St.");
+        owner.setCity("Madison");
+        owner.setTelephone("6085551023");
 
         Validator validator = createValidator();
-        Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
+        Set<ConstraintViolation<Owner>> constraintViolations = validator.validate(owner);
 
-        assertThat(constraintViolations.size()).isEqualTo(1);
-        ConstraintViolation<Person> violation = constraintViolations.iterator().next();
+        assertThat(constraintViolations).hasSize(1);
+        ConstraintViolation<Owner> violation = constraintViolations.iterator().next();
         assertThat(violation.getPropertyPath().toString()).isEqualTo("firstName");
-        assertThat(violation.getMessage()).isEqualTo("must not be empty");
+        assertThat(violation.getMessage()).isEqualTo("must not be blank");
     }
 
 }

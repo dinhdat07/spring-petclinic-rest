@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
 import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
@@ -36,6 +37,9 @@ public class SpecialtiesFacadeImpl implements SpecialtiesFacade {
 
     @Override
     public List<SpecialtyView> findByNames(Set<String> names) {
+        if (names == null || names.isEmpty()) {
+            return List.of();
+        }
         return specialtyRepository.findByNameIn(names).stream()
             .map(this::toView)
             .toList();
@@ -43,7 +47,10 @@ public class SpecialtiesFacadeImpl implements SpecialtiesFacade {
 
     @Override
     public List<SpecialtyView> findByIds(Set<Integer> ids) {
-        return specialtyRepository.findAllById(ids).stream()
+        if (ids == null || ids.isEmpty()) {
+            return List.of();
+        }
+        return StreamSupport.stream(specialtyRepository.findAllById(ids).spliterator(), false)
             .map(this::toView)
             .toList();
     }
@@ -52,4 +59,3 @@ public class SpecialtiesFacadeImpl implements SpecialtiesFacade {
         return new SpecialtyView(specialty.getId(), specialty.getName());
     }
 }
-
