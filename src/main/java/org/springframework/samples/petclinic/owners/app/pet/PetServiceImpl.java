@@ -3,6 +3,9 @@ package org.springframework.samples.petclinic.owners.app.pet;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.domain.Pet;
@@ -23,31 +26,39 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
+    @Cacheable(value = "pets", key = "#id")
     public Optional<Pet> findById(int id) throws DataAccessException {
         return petRepository.findById(id);
     }
 
     @Override
+    @Cacheable(value = "pets", key = "'all'", sync = true)
     public Collection<Pet> findAll() throws DataAccessException {
         return petRepository.findAll();
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "pets", key = "#pet.id"),
+            @CacheEvict(value = "pets", key = "'all'")
+    })
     @Transactional
     public void save(Pet pet) throws DataAccessException {
         if (pet.getTypeId() == null) {
             throw new IllegalArgumentException("Pet type id must be provided");
         }
         petTypesFacade.findById(pet.getTypeId())
-            .orElseThrow(() -> new IllegalArgumentException("Unknown pet type id: " + pet.getTypeId()));
+                .orElseThrow(() -> new IllegalArgumentException("Unknown pet type id: " + pet.getTypeId()));
         petRepository.save(pet);
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "pets", key = "#pet.id"),
+            @CacheEvict(value = "pets", key = "'all'")
+    })
     @Transactional
     public void delete(Pet pet) throws DataAccessException {
         petRepository.delete(pet);
     }
 }
-
-
