@@ -8,39 +8,27 @@ import org.springframework.samples.petclinic.visits.api.VisitUpdateCommand;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.samples.petclinic.visits.domain.Visit;
+import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class VisitsFacadeImpl implements VisitsFacade {
 
     private final VisitService visitService;
-
-    public VisitsFacadeImpl(VisitService visitService) {
-        this.visitService = visitService;
-    }
-
-    @Override
-    @Transactional
-    public VisitView createVisit(VisitCreateCommand command) {
-        Visit visit = new Visit();
-        visit.setPetId(command.petId());
-        visit.setDescription(command.description());
-        if (command.date() != null) {
-            visit.setDate(command.date());
-        }
-        visitService.save(visit);
-        return toView(visit);
-    }
+    private final VisitMapper visitMapper;
 
     @Override
     public Optional<VisitView> findById(int visitId) {
-        return visitService.findById(visitId).map(this::toView);
+        return visitService.findById(visitId).map(visitMapper::toView);
     }
 
     @Override
-    public Collection<VisitView> findByPetId(int petId) {
+    public Collection<VisitView> findByPetId(Integer petId) {
         return visitService.findByPetId(petId).stream()
             .map(this::toView)
             .toList();
@@ -53,38 +41,6 @@ public class VisitsFacadeImpl implements VisitsFacade {
             .toList();
     }
 
-    @Override
-    @Transactional
-    public Optional<VisitView> updateVisit(int visitId, VisitUpdateCommand command) {
-        return visitService.findById(visitId)
-            .map(existing -> {
-                if (command.date() != null) {
-                    existing.setDate(command.date());
-                }
-                existing.setDescription(command.description());
-                visitService.save(existing);
-                return toView(existing);
-            });
-    }
 
-    @Override
-    @Transactional
-    public boolean deleteVisit(int visitId) {
-        return visitService.findById(visitId)
-            .map(existing -> {
-                visitService.delete(existing);
-                return true;
-            })
-            .orElse(false);
-    }
-
-    private VisitView toView(Visit visit) {
-        return new VisitView(
-            visit.getId(),
-            visit.getPetId(),
-            visit.getDate(),
-            visit.getDescription()
-        );
-    }
 }
 

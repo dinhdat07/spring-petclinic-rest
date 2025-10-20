@@ -16,98 +16,99 @@
 
 package org.springframework.samples.petclinic.visits.web;
 
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.rest.api.VisitsApi;
-import org.springframework.samples.petclinic.rest.dto.VisitDto;
-import org.springframework.samples.petclinic.rest.dto.VisitFieldsDto;
-import org.springframework.samples.petclinic.visits.api.VisitCreateCommand;
-import org.springframework.samples.petclinic.visits.api.VisitUpdateCommand;
-import org.springframework.samples.petclinic.visits.api.VisitView;
-import org.springframework.samples.petclinic.visits.api.VisitsFacade;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import jakarta.transaction.Transactional;
-import java.util.ArrayList;
+import java.net.URI;
 import java.util.List;
 
-/**
- * @author Vitaliy Fedoriv
- */
+import jakarta.annotation.Nullable;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
+import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.samples.petclinic.platform.web.WebPageables;
+import org.springframework.samples.petclinic.rest.api.VisitsApi;
+import org.springframework.samples.petclinic.rest.dto.PageVisitDto;
+import org.springframework.samples.petclinic.rest.dto.VisitDto;
+import org.springframework.samples.petclinic.rest.dto.VisitFieldsDto;
+
+import org.springframework.samples.petclinic.visits.api.VisitCommand;
+import org.springframework.samples.petclinic.visits.api.VisitView;
+import org.springframework.samples.petclinic.visits.api.VisitsFacade;
+import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
 
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api")
+@RequiredArgsConstructor
 public class VisitRestController implements VisitsApi {
 
-    private final VisitsFacade visitsFacade;
+  private final VisitsFacade visits;     
+  private final VisitMapper visitMapper; 
 
-    public VisitRestController(VisitsFacade visitsFacade) {
-        this.visitsFacade = visitsFacade;
-    }
+  @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+  @Override
+  public ResponseEntity<PageVisitDto> listVisits(
+      @Min(0) @Valid Integer page,
+      @Min(1) @Max(100) @Valid Integer size,
+      @Valid @Nullable List<String> sort,
+      @Valid @Nullable Integer petId
+  ) {
+    Pageable pageable = WebPageables.pageable(page, size, sort, Sort.by(Sort.Order.desc("date")));
+    Page<VisitView> pageView = (petId == null)
+        ? visits.findAll(pageable)
+        : visits.findByPetId(petId, pageable);
 
+    Page<VisitDto> pageDto = pageView.map(visitMapper::toDto);
+    return ResponseEntity.ok(PageDtos.visit(pageDto));
+  }
 
-    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @Override
-    public ResponseEntity<List<VisitDto>> listVisits() {
-        List<VisitDto> visits = new ArrayList<>(
-            visitsFacade.findAll().stream().map(this::toDto).toList());
-        if (visits.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(visits, HttpStatus.OK);
-    }
+  @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+  @Override
+  public ResponseEntity<VisitDto> getVisit(Integer visitId) {
+    return visits.findById(visitId)
+        .map(visitMapper::toDto)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+  }
 
-    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @Override
-    public ResponseEntity<VisitDto> getVisit( Integer visitId) {
-        return this.visitsFacade.findById(visitId)
-            .map(this::toDto)
-            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+  @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+  @Override
+  public ResponseEntity<VisitDto> addVisit(VisitDto visitDto) {
+    VisitView created = visits.create(new VisitCommand.Create(
+        visitDto.getPetId(),
+        visitDto.getDescription(),
+        visitDto.getDate() 
+    ));
 
-    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @Override
-    public ResponseEntity<VisitDto> addVisit(VisitDto visitDto) {
-        HttpHeaders headers = new HttpHeaders();
-        VisitView created = visitsFacade.createVisit(
-            new VisitCreateCommand(visitDto.getPetId(), visitDto.getDate(), visitDto.getDescription()));
-        VisitDto responseBody = toDto(created);
-        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/visits/{id}")
-            .buildAndExpand(created.id()).toUri());
-        return new ResponseEntity<>(responseBody, headers, HttpStatus.CREATED);
-    }
+    URI location = URI.create("/api/visits/" + created.id());
+    return ResponseEntity.created(location).body(visitMapper.toDto(created));
+  }
 
-    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @Override
-    public ResponseEntity<VisitDto> updateVisit(Integer visitId, VisitFieldsDto visitDto) {
-        return this.visitsFacade.updateVisit(visitId,
-                new VisitUpdateCommand(visitDto.getDate(), visitDto.getDescription()))
-            .map(updated -> new ResponseEntity<>(toDto(updated), HttpStatus.NO_CONTENT))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+  @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+  @Override
+  public ResponseEntity<VisitDto> updateVisit(Integer visitId, VisitFieldsDto visitDto) {
+    boolean updated = visits.update(visitId, new VisitCommand.Update(
+        visitDto.getDescription(),
+        visitDto.getDate()
+    )).isPresent();
 
-    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @Transactional
-    @Override
-    public ResponseEntity<VisitDto> deleteVisit(Integer visitId) {
-        boolean deleted = this.visitsFacade.deleteVisit(visitId);
-        if (!deleted) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+    if (!updated) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    return ResponseEntity.noContent().build(); // 204, không trả body
+  }
 
-    private VisitDto toDto(VisitView view) {
-        VisitDto dto = new VisitDto();
-        dto.setId(view.id());
-        dto.setPetId(view.petId());
-        dto.setDate(view.date());
-        dto.setDescription(view.description());
-        return dto;
-    }
+  @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+  @Override
+  public ResponseEntity<VisitDto> deleteVisit(Integer visitId) {
+    boolean deleted = visits.delete(visitId);
+    if (!deleted) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    return ResponseEntity.noContent().build(); // 204
+  }
 }

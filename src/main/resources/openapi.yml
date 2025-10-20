@@ -967,32 +967,49 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail'
   /visits:
     get:
-      tags:
-        - visit
+      tags: [visit]
       operationId: listVisits
       summary: Lists visits
-      description: Returns an array of visit .
+      description: Returns a paged list of visits.
+      parameters:
+        - in: query
+          name: page
+          description: Zero-based page index.
+          schema: { type: integer, minimum: 0, default: 0 }
+        - in: query
+          name: size
+          description: Page size (items per page).
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+        - in: query
+          name: sort
+          description: Sort fields, e.g. `visitDate,desc`. Repeatable.
+          schema:
+            type: array
+            items: { type: string, example: "visitDate,desc" }
+          style: form
+          explode: true
+        - in: query
+          name: petId
+          required: false
+          description: Filter visits by pet id
+          schema: { type: integer, format: int32 }
       responses:
         200:
           description: visits found and returned.
           headers:
             ETag:
               description: An ID for this version of the response.
-              schema:
-                type: string
+              schema: { type: string }
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Visit'
+                $ref: '#/components/schemas/PageVisit'
         304:
           description: Not modified.
           headers:
             ETag:
               description: An ID for this version of the response.
-              schema:
-                type: string
+              schema: { type: string }
         500:
           description: Server error.
           content:
@@ -1469,38 +1486,39 @@ paths:
                 $ref: '#/components/schemas/ProblemDetail'
   /vets:
     get:
-      tags:
-        - vet
+      tags: [vet]
       operationId: listVets
-      summary: Lists vets
-      description: Returns an array of vets.
+      summary: Lists vets (paged)
+      description: Returns a paged list of vets.
+      parameters:
+        - in: query
+          name: page
+          description: Zero-based page index.
+          schema: { type: integer, minimum: 0, default: 0 }
+        - in: query
+          name: size
+          description: Page size (1..100).
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+        - in: query
+          name: sort
+          description: Sort fields, e.g. `lastName,asc`. Repeatable.
+          schema: { type: array, items: { type: string } }
+          style: form
+          explode: true
       responses:
-        200:
-          description: Vets found and returned.
-          headers:
-            ETag:
-              description: An ID for this version of the response.
-              schema:
-                type: string
+        '200':
+          description: Paged vets returned.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Vet'
-        304:
-          description: Not modified.
-          headers:
-            ETag:
-              description: An ID for this version of the response.
-              schema:
-                type: string
-        500:
+                $ref: '#/components/schemas/PageVet'
+        '500':
           description: Server error.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProblemDetail'
+
 
     post:
       tags:
@@ -2165,3 +2183,53 @@ components:
           example: admin
       required:
         - name
+    PageVisit:
+      title: Paged Visit result
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Visit'
+        page:
+          type: integer
+          description: Zero-based page index
+          example: 0
+        size:
+          type: integer
+          description: Page size
+          example: 20
+        totalElements:
+          type: integer
+          format: int64
+          description: Total number of items
+          example: 123
+        totalPages:
+          type: integer
+          description: Total number of pages
+          example: 7
+        sort:
+          type: array
+          items:
+            type: string
+            example: "visitDate,desc"
+      required:
+        - content
+        - page
+        - size
+        - totalElements
+        - totalPages
+    PageVet:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: '#/components/schemas/Vet' }
+        page:          { type: integer, format: int32, minimum: 0 }
+        size:          { type: integer, format: int32, minimum: 1 }
+        totalElements: { type: integer, format: int64, minimum: 0 }  
+        totalPages:    { type: integer, format: int32, minimum: 0 }
+        sort:
+          type: array
+          items: { type: string }
+      required: [content, page, size, totalElements, totalPages]

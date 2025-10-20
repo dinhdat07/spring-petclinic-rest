@@ -51,6 +51,18 @@
 
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.modulith</groupId>
+                <artifactId>spring-modulith-bom</artifactId>
+                <version>1.3.1</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <!-- Spring Boot Dependencies all inherit from the spring-boot-starter-parent -->
         <dependency>
@@ -90,20 +102,11 @@
         <!-- Modulith dependencies -->
         <dependency>
             <groupId>org.springframework.modulith</groupId>
-            <artifactId>spring-modulith-bom</artifactId>
-            <version>1.2.2</version>
-            <scope>import</scope>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-api</artifactId>
-            <version>1.2.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.modulith</groupId>
             <artifactId>spring-modulith-starter-test</artifactId>
-            <version>1.2.2</version>
             <scope>test</scope>
         </dependency>
 
@@ -136,11 +139,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
-            <version>3.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -382,46 +380,43 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <!-- RELEASE_VERSION -->
                 <version>${maven.openapi-generator-plugin.version}</version>
-                <!-- /RELEASE_VERSION -->
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                            <generatorName>spring</generatorName>
-                            <library>spring-boot</library>
+                    <id>generate-openapi</id>
+                    <phase>generate-sources</phase> <!-- thêm dòng này -->
+                    <goals><goal>generate</goal></goals>
+                    <configuration>
+                        <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                        <generatorName>spring</generatorName>
+                        <library>spring-boot</library>
 
-                            <!-- Only enabling model andopenapi-generator-maven-plugin API generation -->
-                            <modelNameSuffix>Dto</modelNameSuffix>
-                            <apiPackage>org.springframework.samples.petclinic.rest.api</apiPackage>
-                            <generateModels>true</generateModels>
-                            <modelPackage>org.springframework.samples.petclinic.rest.dto</modelPackage>
-                            <!--
-                            <generateSupportingFiles>true</generateSupportingFiles>
-                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                            -->
-                            <generateApis>true</generateApis>
-                            <configOptions>
-                                <!-- RestController implementation is provided by Petclinic developers -->
-                                <interfaceOnly>true</interfaceOnly>
-                                <!-- Activating Java 8 features -->
-                                <performBeanValidation>true</performBeanValidation>
-                                <dateLibrary>java8</dateLibrary>
-                                <useSpringBoot3>true</useSpringBoot3>
-                                <openApiNullable>false</openApiNullable>
-                                <!-- override the default library to jersey2 -->
-                                <serializationLibrary>jackson</serializationLibrary>
-                                <!-- switch documentation provider to springdoc -->
-                                <documentationProvider>springdoc</documentationProvider>
-                            </configOptions>
-                        </configuration>
+                        <modelNameSuffix>Dto</modelNameSuffix>
+                        <apiPackage>org.springframework.samples.petclinic.rest.api</apiPackage>
+                        <modelPackage>org.springframework.samples.petclinic.rest.dto</modelPackage>
+
+                        <generateModels>true</generateModels>
+                        <generateApis>true</generateApis>
+
+                        <!-- Nên thêm để khỏi lệ thuộc ApiUtil trong default methods -->
+                        <configOptions>
+                        <interfaceOnly>true</interfaceOnly>
+                        <skipDefaultInterface>true</skipDefaultInterface> <!-- thêm dòng này -->
+                        <performBeanValidation>true</performBeanValidation>
+                        <dateLibrary>java8</dateLibrary>
+                        <useSpringBoot3>true</useSpringBoot3>
+                        <openApiNullable>false</openApiNullable>
+                        <serializationLibrary>jackson</serializationLibrary>
+                        <documentationProvider>springdoc</documentationProvider>
+                        </configOptions>
+
+                        <!-- Khớp với build-helper -->
+                        <output>${project.build.directory}/generated-sources/openapi</output> <!-- khuyến nghị thêm -->
+                    </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>

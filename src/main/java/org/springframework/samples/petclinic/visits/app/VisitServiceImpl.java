@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.samples.petclinic.visits.domain.Visit;
 import org.springframework.samples.petclinic.visits.infra.jpa.VisitJpaRepository;
 import org.springframework.stereotype.Service;
@@ -25,13 +27,13 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public Collection<Visit> findAll() throws DataAccessException {
-        return visitRepository.findAll();
+    public Page<Visit> findAll(Pageable pageable) throws DataAccessException {
+        return visitRepository.findAll(pageable);
     }
 
     @Override
-    public Collection<Visit> findByPetId(int petId) {
-        return visitRepository.findByPetId(petId);
+    public Page<Visit> findByPetId(Integer petId, Pageable pageable) {
+        return visitRepository.findByPetId(petId, pageable);
     }
 
     @Override

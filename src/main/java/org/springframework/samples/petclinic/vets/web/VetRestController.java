@@ -4,14 +4,21 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
 import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
+import org.springframework.samples.petclinic.platform.web.WebPageables;
 import org.springframework.samples.petclinic.rest.api.VetsApi;
+import org.springframework.samples.petclinic.rest.dto.PageVetDto;
 import org.springframework.samples.petclinic.rest.dto.SpecialtyDto;
 import org.springframework.samples.petclinic.rest.dto.VetDto;
+import org.springframework.samples.petclinic.vets.api.VetView;
 import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 import org.springframework.samples.petclinic.vets.mapper.VetMapper;
@@ -22,6 +29,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 /**
  * REST controller for vets.
@@ -45,15 +55,21 @@ public class VetRestController implements VetsApi {
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
-    public ResponseEntity<List<VetDto>> listVets() {
-        List<VetDto> vets = this.vetService.findAll().stream()
-            .map(this::toVetDto)
-            .collect(Collectors.toList());
-        if (vets.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<PageVetDto> listVets(
+        @Min(0) @Valid Integer page,
+        @Min(1) @Max(100) @Valid Integer size,
+        @Valid @Nullable List<String> sort
+        ) {
+            Pageable pageable = WebPageables.pageable(
+                page, size, sort,
+                Sort.by("lastName").ascending().and(Sort.by("firstName").ascending())
+            );
+
+            Page<VetView> pageView = facade.list(pageable);
+            Page<VetDto>  pageDto  = pageView.map(mapper::toDto);
+
+            return ResponseEntity.ok(PageDtos.vet(pageDto));
         }
-        return new ResponseEntity<>(vets, HttpStatus.OK);
-    }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override

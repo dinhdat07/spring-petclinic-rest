@@ -1,24 +1,22 @@
+// src/main/java/org/springframework/samples/petclinic/vets/mapper/VetMapper.java
 package org.springframework.samples.petclinic.vets.mapper;
 
-import java.util.Collection;
-
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
+import org.springframework.samples.petclinic.vets.api.VetView;
 import org.springframework.samples.petclinic.rest.dto.VetDto;
-import org.springframework.samples.petclinic.rest.dto.VetFieldsDto;
-import org.springframework.samples.petclinic.vets.domain.Vet;
+import org.springframework.samples.petclinic.rest.dto.SpecialtyDto;
 
-@Mapper
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Mapper(componentModel = "spring")
 public interface VetMapper {
-
-    @Mapping(target = "specialtyIds", ignore = true)
-    Vet toVet(VetDto vetDto);
-
-    @Mapping(target = "specialtyIds", ignore = true)
-    Vet toVet(VetFieldsDto vetFieldsDto);
-
-    @Mapping(target = "specialties", ignore = true)
-    VetDto toVetDto(Vet vet);
-
-    Collection<VetDto> toVetDtos(Collection<Vet> vets);
+    VetDto toDto(VetView view);
+    
+    SpecialtyDto toDto(VetView.SpecialtyRef ref);
+    
+    default Set<Integer> toSpecialtyIds(VetDto dto) {
+        if (dto.getSpecialties() == null) return Set.of();
+        return dto.getSpecialties().stream().map(SpecialtyDto::getId).collect(Collectors.toSet());
+    }
 }
