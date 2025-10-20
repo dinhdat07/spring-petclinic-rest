@@ -11,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.samples.petclinic.visits.api.VisitView;
-import org.springframework.samples.petclinic.visits.api.VisitsFacade;
+import org.springframework.samples.petclinic.visits.app.VisitService;
+import org.springframework.samples.petclinic.visits.domain.Visit;
+import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = VisitRestController.class)
@@ -23,11 +24,14 @@ class VisitRestControllerWebTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private VisitsFacade visitsFacade;
+    private VisitService visitService;
+
+    @MockBean
+    private VisitMapper visitMapper;
 
     @Test
     void listVisitsReturnsNotFoundWhenEmpty() throws Exception {
-        given(visitsFacade.findAll()).willReturn(List.of());
+        given(visitService.findAll()).willReturn(List.of());
 
         mockMvc.perform(get("/api/visits"))
             .andExpect(status().isNotFound());
@@ -35,7 +39,7 @@ class VisitRestControllerWebTest {
 
     @Test
     void listVisitsReturnsData() throws Exception {
-        given(visitsFacade.findAll()).willReturn(List.of(new VisitView(1, 10, null, "Checkup")));
+        given(visitService.findAll()).willReturn(List.of(new Visit(1, null, "Checkup", 10)));
 
         mockMvc.perform(get("/api/visits"))
             .andExpect(status().isOk());

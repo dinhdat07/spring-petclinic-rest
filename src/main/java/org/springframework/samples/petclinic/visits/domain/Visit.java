@@ -24,8 +24,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
-import org.springframework.samples.petclinic.common.Identifiable;
-
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,7 +39,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-public class Visit implements Identifiable {
+@AllArgsConstructor
+public class Visit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

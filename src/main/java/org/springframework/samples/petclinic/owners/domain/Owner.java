@@ -36,7 +36,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 import org.springframework.core.style.ToStringCreator;
-import org.springframework.samples.petclinic.common.Identifiable;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -57,7 +56,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Owner implements Identifiable {
+public class Owner {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,7 +132,7 @@ public class Owner implements Identifiable {
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
         for (Pet pet : getPetsInternal()) {
-            if (!ignoreNew || !pet.isNew()) {
+            if (!ignoreNew || !(pet.getId() == null)) {
                 String compName = pet.getName();
                 compName = compName.toLowerCase();
                 if (compName.equals(name)) {
@@ -152,7 +151,7 @@ public class Owner implements Identifiable {
     public String toString() {
         return new ToStringCreator(this)
             .append("id", this.id)
-            .append("new", this.isNew())
+            .append("new", (this.getId() == null))
             .append("lastName", this.lastName)
             .append("firstName", this.firstName)
             .append("address", this.address)

@@ -15,9 +15,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-
-import org.springframework.samples.petclinic.common.Identifiable;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +29,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Vet implements Identifiable {
+public class Vet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
