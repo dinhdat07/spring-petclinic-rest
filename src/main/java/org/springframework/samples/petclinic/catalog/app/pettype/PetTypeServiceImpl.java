@@ -3,6 +3,9 @@ package org.springframework.samples.petclinic.catalog.app.pettype;
 import java.util.Collection;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.catalog.domain.PetType;
 import org.springframework.samples.petclinic.catalog.infra.jpa.PetTypeJpaRepository;
@@ -20,17 +23,22 @@ public class PetTypeServiceImpl implements PetTypeService {
     }
 
     @Override
+    @Cacheable(value = "petTypes", key = "#id")
     public Optional<PetType> findById(int id) throws DataAccessException {
         return petTypeRepository.findById(id);
     }
 
     @Override
+    @Cacheable(value = "petTypes", key = "'all'", sync = true)
     public Collection<PetType> findAll() throws DataAccessException {
         return petTypeRepository.findAll();
     }
 
-
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "petTypes", key = "#pettype.id"),
+            @CacheEvict(value = "petTypes", key = "'all'")
+    })
     @Transactional
     public void save(PetType petType) throws DataAccessException {
         petTypeRepository.save(petType);
@@ -38,8 +46,11 @@ public class PetTypeServiceImpl implements PetTypeService {
 
     @Override
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = "petTypes", key = "#pettype.id"),
+            @CacheEvict(value = "petTypes", key = "'all'")
+    })
     public void delete(PetType petType) throws DataAccessException {
         petTypeRepository.delete(petType);
     }
 }
-

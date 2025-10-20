@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.catalog.domain.Specialty;
 import org.springframework.samples.petclinic.catalog.infra.jpa.SpecialtyJpaRepository;
@@ -22,22 +25,32 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Override
+    @Cacheable(value = "specialties", key = "#id")
     public Optional<Specialty> findById(int id) throws DataAccessException {
         return specialtyRepository.findById(id);
     }
 
     @Override
+    @Cacheable(value = "specialties", key = "'all'", sync = true)
     public Collection<Specialty> findAll() throws DataAccessException {
         return specialtyRepository.findAll();
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "specialties", key = "#specialty.id"),
+            @CacheEvict(value = "specialties", key = "'all'")
+    })
     @Transactional
     public void save(Specialty specialty) throws DataAccessException {
         specialtyRepository.save(specialty);
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = "specialties", key = "#specialty.id"),
+            @CacheEvict(value = "specialties", key = "'all'")
+    })
     @Transactional
     public void delete(Specialty specialty) throws DataAccessException {
         specialtyRepository.delete(specialty);
@@ -48,4 +61,3 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return specialtyRepository.findByNameIn(names);
     }
 }
-
