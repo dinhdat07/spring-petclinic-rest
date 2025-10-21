@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * Map User/Role & UserDto/RoleDto using mapstruct
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)

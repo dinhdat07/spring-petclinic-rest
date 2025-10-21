@@ -8,7 +8,7 @@ import org.springframework.samples.petclinic.rest.dto.VetDto;
 import org.springframework.samples.petclinic.rest.dto.VetFieldsDto;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface VetMapper {
 
     @Mapping(target = "specialtyIds", ignore = true)
