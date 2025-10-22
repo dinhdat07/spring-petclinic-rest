@@ -1953,17 +1953,12 @@ components:
           type: string
           format: date
           example: '2010-09-07'
-        typeId:
-          title: Pet type ID
-          description: Identifier of the pet type.
-          type: integer
-          format: int32
-          minimum: 0
-          example: 2
+        type:
+          $ref: '#/components/schemas/PetType'
       required:
         - name
         - birthDate
-        - typeId
+        - type
     Pet:
       title: Pet
       description: A pet.
@@ -1987,9 +1982,17 @@ components:
               minimum: 0
               example: 1
               readOnly: true
+            visits:
+              title: Visits
+              description: Vet visit bookings for this pet.
+              type: array
+              items:
+                $ref: '#/components/schemas/Visit'
+              readOnly: true
           required:
             - id
-            - typeId
+            - type
+            - visits
     VetFields:
       title: VetFields
       description: Editable fields of a veterinarian.
@@ -2011,17 +2014,16 @@ components:
           maxLength: 30
           pattern: "^[\\p{L}]+([ '-][\\p{L}]+){0,2}\\.?$"
           example: 'Carter'
-        specialtyIds:
-          title: Specialty IDs
-          description: Identifiers of the vet's specialties.
+        specialties:
+          title: Specialties
+          description: The specialties of the vet.
           type: array
           items:
-            type: integer
-            format: int32
+            $ref: '#/components/schemas/Specialty'
       required:
         - firstName
         - lastName
-        - specialtyIds
+        - specialties
     Vet:
       title: Vet
       description: A veterinarian.
@@ -2041,7 +2043,7 @@ components:
         - id
         - firstName
         - lastName
-        - specialtyIds
+        - specialties
     VisitFields:
       title: Visit fields
       description: Editable fields of a vet visit.
@@ -2060,16 +2062,8 @@ components:
           minLength: 1
           maxLength: 255
           example: 'rabies shot'
-        petId:
-          title: Pet ID
-          description: Identifier of the visited pet.
-          type: integer
-          format: int32
-          minimum: 0
-          example: 5
       required:
         - description
-        - petId
     Visit:
       title: Visit
       description: A booking for a vet visit.
@@ -2085,8 +2079,16 @@ components:
               minimum: 0
               example: 1
               readOnly: true
+            petId:
+              title: Pet ID
+              description: The ID of the pet.
+              type: integer
+              format: int32
+              minimum: 0
+              example: 1
           required:
             - id
+            - petId
     PetTypeFields:
       title: PetType fields
       description: Editable fields of a pet type.
@@ -2163,5 +2165,6 @@ components:
           example: admin
       required:
         - name
+
 
 
