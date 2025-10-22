@@ -7,8 +7,9 @@ import org.mapstruct.Mapping;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.rest.dto.PetDto;
 import org.springframework.samples.petclinic.rest.dto.PetFieldsDto;
+import org.springframework.stereotype.Service;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PetMapper {
 
     @Mapping(source = "owner.id", target = "ownerId")
