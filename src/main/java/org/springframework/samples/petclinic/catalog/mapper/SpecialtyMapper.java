@@ -9,7 +9,7 @@ import java.util.Collection;
 /**
  * Map Specialty & SpecialtyDto using mapstruct
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface SpecialtyMapper {
     Specialty toSpecialty(SpecialtyDto specialtyDto);
 

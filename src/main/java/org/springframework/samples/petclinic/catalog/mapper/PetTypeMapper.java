@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Map PetType & PetTypeDto using mapstruct
  */
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PetTypeMapper {
 
     PetType toPetType(PetTypeDto petTypeDto);
@@ -21,6 +21,7 @@ public interface PetTypeMapper {
     PetType toPetType(PetTypeFieldsDto petTypeFieldsDto);
 
     PetTypeDto toPetTypeDto(PetType petType);
+
     PetTypeFieldsDto toPetTypeFieldsDto(PetType petType);
 
     List<PetTypeDto> toPetTypeDtos(Collection<PetType> petTypes);
