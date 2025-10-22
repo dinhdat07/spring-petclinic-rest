@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.samples.petclinic.config;
+package org.springframework.samples.petclinic.platform.config;
 
 
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.config;
+package org.springframework.samples.petclinic.platform.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;

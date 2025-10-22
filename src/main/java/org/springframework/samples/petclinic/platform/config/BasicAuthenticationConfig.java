@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.security;
+package org.springframework.samples.petclinic.platform.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
