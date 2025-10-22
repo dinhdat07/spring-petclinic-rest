@@ -1,36 +1,33 @@
 package org.springframework.samples.petclinic.authentication.web;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.authentication.domain.LoginDTO;
-import org.springframework.samples.petclinic.authentication.domain.ResponseLoginDTO;
-import org.springframework.samples.petclinic.authentication.util.SecurityUtil;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
+import org.springframework.samples.petclinic.authentication.api.AuthenticationFacade;
+import org.springframework.samples.petclinic.authentication.api.LoginCommand;
+import org.springframework.samples.petclinic.authentication.api.TokenView;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class AuthenticationController {
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
-    private final SecurityUtil securityUtil;
+import lombok.RequiredArgsConstructor;
 
-    public AuthenticationController(AuthenticationManagerBuilder authenticationManagerBuilder,
-            SecurityUtil securityUtil) {
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-        this.securityUtil = securityUtil;
-    }
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
+public class AuthenticationController {
+
+    private final AuthenticationFacade authenticationFacade;
 
     @PostMapping("/login")
-    public ResponseEntity<ResponseLoginDTO> login(@RequestBody LoginDTO loginDto) {
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                loginDto.getUsername(), loginDto.getPassword());
-        // xác thực người dùng => cần viết hàm loadUserByUsername
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        String access_token = this.securityUtil.createToken(authentication);
-        ResponseLoginDTO res = new ResponseLoginDTO();
-        res.setAccess_token(access_token);
-        return ResponseEntity.ok().body(res);
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        TokenView token = authenticationFacade.authenticate(new LoginCommand(request.username(), request.password()));
+        return ResponseEntity.ok(new LoginResponse(token.accessToken()));
     }
+
+    public record LoginRequest(@NotBlank String username, @NotBlank String password) {}
+
+    public record LoginResponse(String accessToken) {}
 }

@@ -1,4 +1,4 @@
-package org.springframework.samples.petclinic.platform.config;
+package org.springframework.samples.petclinic.platform.props;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
