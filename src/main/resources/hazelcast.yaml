@@ -1,0 +1,13 @@
+hazelcast:
+  cluster-name: petclinic-rate-limit
+  network:
+    join:
+      multicast:
+        enabled: true
+  map:
+    rateLimitVisits:
+      time-to-live-seconds: 300
+    rateLimitOwners:
+      time-to-live-seconds: 300
+    rateLimitApi:
+      time-to-live-seconds: 300

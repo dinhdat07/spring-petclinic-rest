@@ -6,7 +6,6 @@ import org.springframework.samples.petclinic.authentication.api.TokenView;
 import org.springframework.samples.petclinic.authentication.util.SecurityUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,9 +19,9 @@ public class AuthenticationFacadeImpl implements AuthenticationFacade {
     private final AuthenticationManager authenticationManager;
     private final SecurityUtil securityUtil;
 
-    public AuthenticationFacadeImpl(AuthenticationManagerBuilder authenticationManagerBuilder,
+    public AuthenticationFacadeImpl(AuthenticationManager authenticationManager,
                                     SecurityUtil securityUtil) {
-        this.authenticationManager = authenticationManagerBuilder.getObject();
+        this.authenticationManager = authenticationManager;
         this.securityUtil = securityUtil;
     }
 

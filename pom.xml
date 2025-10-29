@@ -18,6 +18,13 @@
         <!-- lookup parent from Maven repository -->
     </parent>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <properties>
 
         <!-- Third-party libraries -->
@@ -34,6 +41,7 @@
         <maven.jxr-plugin.version>3.6.0</maven.jxr-plugin.version>
         <maven.license-plugin.version>2.7.0</maven.license-plugin.version>
         <maven.openapi-generator-plugin.version>7.16.0</maven.openapi-generator-plugin.version>
+        <maven.antrun-plugin.version>3.1.0</maven.antrun-plugin.version>
         <maven.project-info-reports-plugin.version>3.9.0</maven.project-info-reports-plugin.version>
         <maven.rat-plugin.version>0.16.1</maven.rat-plugin.version>
         <maven.refactor-first-plugin.version>0.7.1</maven.refactor-first-plugin.version>
@@ -61,10 +69,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -130,18 +134,30 @@
 
         <!-- Rate limiting -->
         <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j_jdk17-hazelcast</artifactId>
+            <version>8.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-spring</artifactId>
+            <version>5.4.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
             <artifactId>bucket4j-spring-boot-starter</artifactId>
-            <version>0.12.4</version>
-            </dependency>
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.27.2</version>
+            <version>0.13.0</version>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
         <!-- Data stores and supporting libs -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -166,7 +182,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
-            <version>3.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -419,7 +434,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/owners</output>
-                            <apiPackage>org.springframework.samples.petclinic.owners.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.owners.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.owners.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -447,7 +462,9 @@
                             </typeMappings>
                             <importMappings>
                                 <ProblemDetail>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetail>
+                                <ProblemDetailDto>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetailDto>
                                 <ValidationMessage>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessage>
+                                <ValidationMessageDto>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessageDto>
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
@@ -461,7 +478,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/catalog</output>
-                            <apiPackage>org.springframework.samples.petclinic.catalog.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.catalog.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.catalog.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -487,7 +504,9 @@
                             </typeMappings>
                             <importMappings>
                                 <ProblemDetail>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetail>
+                                <ProblemDetailDto>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetailDto>
                                 <ValidationMessage>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessage>
+                                <ValidationMessageDto>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessageDto>
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
@@ -501,7 +520,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/vets</output>
-                            <apiPackage>org.springframework.samples.petclinic.vets.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.vets.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.vets.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -527,7 +546,9 @@
                             </typeMappings>
                             <importMappings>
                                 <ProblemDetail>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetail>
+                                <ProblemDetailDto>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetailDto>
                                 <ValidationMessage>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessage>
+                                <ValidationMessageDto>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessageDto>
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
@@ -541,7 +562,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/iam</output>
-                            <apiPackage>org.springframework.samples.petclinic.iam.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.iam.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.iam.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -567,7 +588,9 @@
                             </typeMappings>
                             <importMappings>
                                 <ProblemDetail>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetail>
+                                <ProblemDetailDto>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetailDto>
                                 <ValidationMessage>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessage>
+                                <ValidationMessageDto>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessageDto>
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
@@ -581,7 +604,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/visits</output>
-                            <apiPackage>org.springframework.samples.petclinic.visits.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.visits.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.visits.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -607,7 +630,9 @@
                             </typeMappings>
                             <importMappings>
                                 <ProblemDetail>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetail>
+                                <ProblemDetailDto>org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto</ProblemDetailDto>
                                 <ValidationMessage>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessage>
+                                <ValidationMessageDto>org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto</ValidationMessageDto>
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
@@ -621,7 +646,7 @@
                     <generatorName>spring</generatorName>
                     <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/platform</output>
-                            <apiPackage>org.springframework.samples.petclinic.platform.web.api</apiPackage>
+                            <apiPackage>org.springframework.samples.petclinic.platform.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.platform.web.dto</modelPackage>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <generateSupportingFiles>true</generateSupportingFiles>
@@ -645,7 +670,36 @@
                         </configuration>
             </execution>
         </executions>
-    </plugin>
+        </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven.antrun-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>fix-generated-error-imports</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <replaceregexp match="import org.springframework.samples.petclinic\.[^.]+\.web\.dto\.ProblemDetailDto;" replace="import org.springframework.samples.petclinic.platform.web.dto.ProblemDetailDto;" flags="g">
+                                    <fileset dir="${project.build.directory}/generated-sources/openapi">
+                                        <include name="**/*.java"/>
+                                    </fileset>
+                                </replaceregexp>
+                                <replaceregexp match="import org.springframework.samples.petclinic\.[^.]+\.web\.dto\.ValidationMessageDto;" replace="import org.springframework.samples.petclinic.platform.web.dto.ValidationMessageDto;" flags="g">
+                                    <fileset dir="${project.build.directory}/generated-sources/openapi">
+                                        <include name="**/*.java"/>
+                                    </fileset>
+                                </replaceregexp>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
