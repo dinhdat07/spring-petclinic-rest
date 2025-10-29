@@ -9,7 +9,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -17,11 +16,12 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.samples.petclinic.catalog.app.pettype.PetTypeService;
 import org.springframework.samples.petclinic.catalog.domain.PetType;
 import org.springframework.samples.petclinic.catalog.mapper.PetTypeMapperImpl;
+import org.springframework.samples.petclinic.platform.props.Roles;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = PetTypeRestController.class)
-@AutoConfigureMockMvc(addFilters = false)
-@Import(PetTypeMapperImpl.class)
+@Import({PetTypeMapperImpl.class, Roles.class})
 class PetTypeRestControllerWebTest {
 
     @Autowired
@@ -44,6 +44,7 @@ class PetTypeRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void listPetTypesReturnsNotFoundWhenEmpty() throws Exception {
         petTypeServiceStub.setPetTypes(List.of());
 
@@ -52,6 +53,7 @@ class PetTypeRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void listPetTypesReturnsData() throws Exception {
         PetType petType = new PetType();
         petType.setId(1);
@@ -64,6 +66,7 @@ class PetTypeRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void getPetTypeReturnsNotFoundWhenMissing() throws Exception {
         petTypeServiceStub.setFindById(Optional.empty());
 

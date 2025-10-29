@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
 import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
@@ -19,6 +18,7 @@ import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 import org.springframework.samples.petclinic.vets.mapper.VetMapperImpl;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = VetRestController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -28,10 +28,10 @@ class VetRestControllerWebTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private VetService vetService;
 
-    @MockBean
+    @MockitoBean
     private SpecialtiesFacade specialtiesFacade;
 
     @Test

@@ -9,9 +9,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.samples.petclinic.catalog.api.PetTypeView;
 import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
@@ -21,31 +19,34 @@ import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.owners.mapper.OwnerMapperImpl;
 import org.springframework.samples.petclinic.owners.mapper.PetMapperImpl;
+import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = OwnerRestController.class)
-@AutoConfigureMockMvc(addFilters = false)
-@Import({OwnerMapperImpl.class, PetMapperImpl.class})
+@Import({OwnerMapperImpl.class, PetMapperImpl.class, Roles.class})
 class OwnerRestControllerWebTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private OwnerService ownerService;
 
-    @MockBean
+    @MockitoBean
     private PetService petService;
 
-    @MockBean
+    @MockitoBean
     private VisitsFacade visitsFacade;
 
-    @MockBean
+    @MockitoBean
     private PetTypesFacade petTypesFacade;
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void listOwnersReturnsNotFoundWhenEmpty() throws Exception {
         given(ownerService.findAll()).willReturn(List.of());
 
@@ -54,6 +55,7 @@ class OwnerRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void listOwnersReturnsData() throws Exception {
         Owner owner = new Owner();
         owner.setId(1);
@@ -79,6 +81,7 @@ class OwnerRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void getOwnersPetReturnsNotFoundForMissingOwner() throws Exception {
         given(ownerService.findById(1)).willReturn(Optional.empty());
 

@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.iam.app.UserService;
 import org.springframework.samples.petclinic.iam.mapper.UserMapperImpl;
-import org.springframework.samples.petclinic.rest.dto.RoleDto;
-import org.springframework.samples.petclinic.rest.dto.UserDto;
+import org.springframework.samples.petclinic.iam.web.dto.RoleDto;
+import org.springframework.samples.petclinic.iam.web.dto.UserDto;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = UserRestController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -26,7 +26,7 @@ class UserRestControllerWebTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private UserService userService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();

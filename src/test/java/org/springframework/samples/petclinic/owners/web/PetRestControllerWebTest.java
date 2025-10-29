@@ -9,38 +9,43 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.samples.petclinic.catalog.api.PetTypeView;
 import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
+import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
 import org.springframework.samples.petclinic.owners.app.pet.PetService;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.owners.mapper.PetMapperImpl;
+import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = PetRestController.class)
-@AutoConfigureMockMvc(addFilters = false)
-@Import(PetMapperImpl.class)
+@Import({PetMapperImpl.class, Roles.class})
 class PetRestControllerWebTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private PetService petService;
 
-    @MockBean
+    @MockitoBean
+    private OwnerService ownerService;
+
+    @MockitoBean
     private PetTypesFacade petTypesFacade;
 
-    @MockBean
+    @MockitoBean
     private VisitsFacade visitsFacade;
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void getPetReturnsNotFoundWhenMissing() throws Exception {
         given(petService.findById(1)).willReturn(Optional.empty());
 
@@ -49,6 +54,7 @@ class PetRestControllerWebTest {
     }
 
     @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
     void getPetReturnsData() throws Exception {
         Owner owner = new Owner();
         owner.setId(5);
