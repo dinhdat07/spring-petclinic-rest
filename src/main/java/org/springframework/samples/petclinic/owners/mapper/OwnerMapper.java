@@ -3,8 +3,8 @@ package org.springframework.samples.petclinic.owners.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.samples.petclinic.owners.domain.Owner;
-import org.springframework.samples.petclinic.rest.dto.OwnerDto;
-import org.springframework.samples.petclinic.rest.dto.OwnerFieldsDto;
+import org.springframework.samples.petclinic.owners.web.dto.OwnerDto;
+import org.springframework.samples.petclinic.owners.web.dto.OwnerFieldsDto;
 
 import java.util.Collection;
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
  */
 @Mapper(uses = PetMapper.class)
 public interface OwnerMapper {
-
     OwnerDto toOwnerDto(Owner owner);
 
     Owner toOwner(OwnerDto ownerDto);

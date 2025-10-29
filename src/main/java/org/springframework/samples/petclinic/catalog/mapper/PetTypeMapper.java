@@ -3,9 +3,8 @@ package org.springframework.samples.petclinic.catalog.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.samples.petclinic.catalog.domain.PetType;
-import org.springframework.samples.petclinic.rest.dto.PetTypeDto;
-import org.springframework.samples.petclinic.rest.dto.PetTypeFieldsDto;
-
+import org.springframework.samples.petclinic.catalog.web.dto.PetTypeDto;
+import org.springframework.samples.petclinic.catalog.web.dto.PetTypeFieldsDto;
 import java.util.Collection;
 import java.util.List;
 

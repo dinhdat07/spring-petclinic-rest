@@ -19,11 +19,11 @@ package org.springframework.samples.petclinic.iam.web;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.iam.api.UserApi;
 import org.springframework.samples.petclinic.iam.app.UserService;
 import org.springframework.samples.petclinic.iam.domain.User;
 import org.springframework.samples.petclinic.iam.mapper.UserMapper;
-import org.springframework.samples.petclinic.rest.api.UsersApi;
-import org.springframework.samples.petclinic.rest.dto.UserDto;
+import org.springframework.samples.petclinic.iam.web.dto.UserDto;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api")
-public class UserRestController implements UsersApi {
+public class UserRestController implements UserApi {
 
     private final UserService userService;
     private final UserMapper userMapper;

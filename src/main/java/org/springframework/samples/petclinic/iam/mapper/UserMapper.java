@@ -2,11 +2,10 @@ package org.springframework.samples.petclinic.iam.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.samples.petclinic.iam.api.UserAuthView;
 import org.springframework.samples.petclinic.iam.domain.Role;
 import org.springframework.samples.petclinic.iam.domain.User;
-import org.springframework.samples.petclinic.rest.dto.RoleDto;
-import org.springframework.samples.petclinic.rest.dto.UserDto;
+import org.springframework.samples.petclinic.iam.web.dto.RoleDto;
+import org.springframework.samples.petclinic.iam.web.dto.UserDto;
 
 import java.util.Collection;
 

@@ -3,12 +3,15 @@ package org.springframework.samples.petclinic.visits.web;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.rest.api.VisitsApi;
-import org.springframework.samples.petclinic.rest.dto.VisitDto;
-import org.springframework.samples.petclinic.rest.dto.VisitFieldsDto;
+import org.springframework.samples.petclinic.owners.domain.Pet;
+import org.springframework.samples.petclinic.visits.api.VisitApi;
+import org.springframework.samples.petclinic.visits.api.VisitCreateCommand;
+import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.app.VisitService;
 import org.springframework.samples.petclinic.visits.domain.Visit;
 import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
+import org.springframework.samples.petclinic.visits.web.dto.VisitDto;
+import org.springframework.samples.petclinic.visits.web.dto.VisitFieldsDto;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,7 +27,7 @@ import java.util.Optional;
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api")
 @RequiredArgsConstructor
-public class VisitRestController implements VisitsApi {
+public class VisitRestController implements VisitApi {
 
     private final VisitService visitService;
 
@@ -34,7 +37,7 @@ public class VisitRestController implements VisitsApi {
     @Override
     public ResponseEntity<List<VisitDto>> listVisits() {
         List<VisitDto> visits = new ArrayList<>(
-            visitService.findAll().stream().map(visitMapper::toDto).toList()
+            visitService.findAll().stream().map(visitMapper::toVisitDto).toList()
         );
         if (visits.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -46,7 +49,7 @@ public class VisitRestController implements VisitsApi {
     @Override
     public ResponseEntity<VisitDto> getVisit(Integer visitId) {
         return visitService.findById(visitId)
-            .map(visitMapper::toDto)
+            .map(visitMapper::toVisitDto)
             .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -67,7 +70,7 @@ public class VisitRestController implements VisitsApi {
         visitService.save(visit);
 
         // build response
-        VisitDto responseBody = visitMapper.toDto(visit);
+        VisitDto responseBody = visitMapper.toVisitDto(visit);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
             UriComponentsBuilder.newInstance()
@@ -88,7 +91,7 @@ public class VisitRestController implements VisitsApi {
             }
             existing.setDescription(visitDto.getDescription());
             visitService.save(existing);
-            return visitMapper.toDto(existing);
+            return visitMapper.toVisitDto(existing);
         });
 
         return updated
@@ -101,10 +104,30 @@ public class VisitRestController implements VisitsApi {
     @Override
     public ResponseEntity<VisitDto> deleteVisit(Integer visitId) {
         return visitService.findById(visitId)
-            .map(existing -> {
-                visitService.delete(existing);
-                return new ResponseEntity<VisitDto>(HttpStatus.NO_CONTENT);
-            })
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(existing -> {
+                    visitService.delete(existing);
+                    return new ResponseEntity<VisitDto>(HttpStatus.NO_CONTENT);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @Override
+    public ResponseEntity<VisitDto> addVisitToOwner(Integer ownerId, Integer petId, VisitFieldsDto visitFieldsDto) {
+        HttpHeaders headers = new HttpHeaders();
+
+        Visit visit = new Visit();
+        visit.setPetId(visitFieldsDto.getPetId());
+        visit.setDescription(visitFieldsDto.getDescription());
+        visit.setDate(visitFieldsDto.getDate());
+
+        visitService.save(visit);
+
+        VisitDto visitDto = visitMapper.toVisitDto(visit);
+        headers.setLocation(UriComponentsBuilder.newInstance().path("/api/visits/{id}")
+            .buildAndExpand(visit.getId()).toUri());
+        return new ResponseEntity<>(visitDto, headers, HttpStatus.CREATED);
+    }
+
+
 }
