@@ -9,11 +9,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
+import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
 import org.springframework.samples.petclinic.vets.api.VetApi;
 import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 import org.springframework.samples.petclinic.vets.mapper.VetMapper;
 import org.springframework.samples.petclinic.vets.web.dto.VetDto;
+import org.springframework.samples.petclinic.vets.web.dto.VetDetailsDto;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -102,11 +104,18 @@ public class VetRestController implements VetApi {
     }
 
     private VetDto toVetDto(Vet vet) {
-        VetDto dto = vetMapper.toVetDto(vet);
-        dto.setId(vet.getId());
+        VetDto base = vetMapper.toVetDto(vet);
+        base.setId(vet.getId());
         Set<Integer> specialtyIds = vet.getSpecialtyIds();
-        dto.setSpecialtyIds(specialtyIds.stream().collect(Collectors.toList()));
-        return dto;
+        base.setSpecialtyIds(specialtyIds.stream().collect(Collectors.toList()));
+
+        VetDetailsDto detailed = new VetDetailsDto(base);
+        if (!specialtyIds.isEmpty()) {
+            List<SpecialtyView> specialties = specialtiesFacade.findByIds(specialtyIds);
+            detailed.setSpecialties(specialties);
+        }
+
+        return detailed;
     }
 
 }

@@ -3,10 +3,11 @@ package org.springframework.samples.petclinic.visits.web;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.owners.domain.Pet;
+import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
+import org.springframework.samples.petclinic.owners.api.OwnersFacade;
+import org.springframework.samples.petclinic.owners.api.PetView;
+import org.springframework.samples.petclinic.owners.api.PetsFacade;
 import org.springframework.samples.petclinic.visits.api.VisitApi;
-import org.springframework.samples.petclinic.visits.api.VisitCreateCommand;
-import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.app.VisitService;
 import org.springframework.samples.petclinic.visits.domain.Visit;
 import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
@@ -28,6 +29,11 @@ import java.util.Optional;
 @RequestMapping("api")
 @RequiredArgsConstructor
 public class VisitRestController implements VisitApi {
+    private final PetsFacade petsFacade;
+
+    private final OwnersFacade ownersFacade;
+
+    private final PetTypesFacade petTypesFacade;
 
     private final VisitService visitService;
 
@@ -37,7 +43,7 @@ public class VisitRestController implements VisitApi {
     @Override
     public ResponseEntity<List<VisitDto>> listVisits() {
         List<VisitDto> visits = new ArrayList<>(
-            visitService.findAll().stream().map(visitMapper::toVisitDto).toList()
+            visitService.findAll().stream().map(this::toDetailsDto).toList()
         );
         if (visits.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -48,9 +54,10 @@ public class VisitRestController implements VisitApi {
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
     @Override
     public ResponseEntity<VisitDto> getVisit(Integer visitId) {
-        return visitService.findById(visitId)
-            .map(visitMapper::toVisitDto)
-            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+        Optional<VisitDto> dto = visitService.findById(visitId).map(this::toDetailsDto);
+
+        return dto
+            .map(d -> new ResponseEntity<>(d, HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -70,7 +77,7 @@ public class VisitRestController implements VisitApi {
         visitService.save(visit);
 
         // build response
-        VisitDto responseBody = visitMapper.toVisitDto(visit);
+        VisitDto responseBody = this.toDetailsDto(visit);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
             UriComponentsBuilder.newInstance()
@@ -91,7 +98,7 @@ public class VisitRestController implements VisitApi {
             }
             existing.setDescription(visitDto.getDescription());
             visitService.save(existing);
-            return visitMapper.toVisitDto(existing);
+            return this.toDetailsDto(existing);
         });
 
         return updated
@@ -123,10 +130,32 @@ public class VisitRestController implements VisitApi {
 
         visitService.save(visit);
 
-        VisitDto visitDto = visitMapper.toVisitDto(visit);
+        VisitDto visitDto = this.toDetailsDto(visit);
         headers.setLocation(UriComponentsBuilder.newInstance().path("/api/visits/{id}")
-            .buildAndExpand(visit.getId()).toUri());
+                .buildAndExpand(visit.getId()).toUri());
         return new ResponseEntity<>(visitDto, headers, HttpStatus.CREATED);
+    }
+    
+    private VisitDetailsDto toDetailsDto(Visit visit) {
+        VisitDto base = visitMapper.toVisitDto(visit);
+        VisitDetailsDto details = new VisitDetailsDto(base);
+
+        Optional<PetView> petOpt = petsFacade.findById(visit.getPetId());
+        petOpt.ifPresent(pet -> {
+            details.setPet(pet);
+
+            if (pet.ownerId() != null) {
+                ownersFacade.findById(pet.ownerId())
+                            .ifPresent(details::setOwner);
+            }
+
+            if (pet.typeId() != null) {
+                petTypesFacade.findById(pet.typeId())
+                            .ifPresent(details::setPetType);
+            }
+        });
+
+        return details;
     }
 
 

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.catalog.api.PetTypeView;
 import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.api.PetApi;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
@@ -16,6 +15,7 @@ import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.owners.mapper.PetMapper;
 import org.springframework.samples.petclinic.owners.web.dto.PetDto;
+import org.springframework.samples.petclinic.owners.web.dto.PetDetailsDto;
 import org.springframework.samples.petclinic.owners.web.dto.PetFieldsDto;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
@@ -46,7 +46,7 @@ public class PetRestController implements PetApi {
     @Override
     public ResponseEntity<PetDto> getPet(Integer petId) {
         return this.petService.findById(petId)
-            .map(petMapper::toPetDto)
+            .map(this::toDetailedPetDto)
             .map(body -> new ResponseEntity<>(body, HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -55,7 +55,7 @@ public class PetRestController implements PetApi {
     @Override
     public ResponseEntity<List<PetDto>> listPets() {
         List<PetDto> pets = this.petService.findAll().stream()
-            .map(petMapper::toPetDto)
+            .map(this::toDetailedPetDto)
             .collect(Collectors.toList());
         if (pets.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -70,7 +70,7 @@ public class PetRestController implements PetApi {
                 .map(pet -> {
                     pet = petMapper.toPet(petDto);
                     petService.save(pet);
-                return new ResponseEntity<>(petMapper.toPetDto(pet), HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(toDetailedPetDto(pet), HttpStatus.NO_CONTENT);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -97,7 +97,7 @@ public class PetRestController implements PetApi {
         pet.setOwner(owner);
         
         petService.save(pet);
-        PetDto petDto = petMapper.toPetDto(pet);
+        PetDto petDto = toDetailedPetDto(pet);
         headers.setLocation(UriComponentsBuilder.newInstance().path("/api/pets/{id}")
                 .buildAndExpand(pet.getId()).toUri());
         return new ResponseEntity<>(petDto, headers, HttpStatus.CREATED);
@@ -108,7 +108,7 @@ public class PetRestController implements PetApi {
     public ResponseEntity<PetDto> getOwnersPet(Integer ownerId, Integer petId) {
         return ownerService.findById(ownerId)
             .map(o -> o.getPet(petId))
-            .map(pet -> new ResponseEntity<>(petMapper.toPetDto(pet), HttpStatus.OK))
+            .map(pet -> new ResponseEntity<>(toDetailedPetDto(pet), HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -128,4 +128,19 @@ public class PetRestController implements PetApi {
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    private PetDto toDetailedPetDto(Pet pet) {
+        PetDto base = petMapper.toPetDto(pet);
+        PetDetailsDto detailed = new PetDetailsDto(base);
+
+        if (pet != null && pet.getId() != null) {
+            List<VisitView> visits = visitsFacade.findByPetId(pet.getId()).stream().toList();
+            detailed.setVisits(visits);
+        }
+
+        if (base.getTypeId() != null) {
+            petTypesFacade.findById(base.getTypeId()).ifPresent(detailed::setType);
+        }
+
+        return detailed;
+    }
 }
