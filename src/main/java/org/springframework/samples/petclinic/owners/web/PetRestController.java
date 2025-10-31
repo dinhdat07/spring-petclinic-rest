@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.api.PetApi;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
 import org.springframework.samples.petclinic.owners.app.pet.PetService;
@@ -15,10 +14,7 @@ import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.owners.mapper.PetMapper;
 import org.springframework.samples.petclinic.owners.web.dto.PetDto;
-import org.springframework.samples.petclinic.owners.web.dto.PetDetailsDto;
 import org.springframework.samples.petclinic.owners.web.dto.PetFieldsDto;
-import org.springframework.samples.petclinic.visits.api.VisitView;
-import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,14 +35,13 @@ public class PetRestController implements PetApi {
     private final OwnerService ownerService;
     private final PetService petService;
     private final PetMapper petMapper;
-    private final PetTypesFacade petTypesFacade;
-    private final VisitsFacade visitsFacade;
+    private final PetDetailsAssembler petDetailsAssembler;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
     @Override
     public ResponseEntity<PetDto> getPet(Integer petId) {
         return this.petService.findById(petId)
-            .map(this::toDetailedPetDto)
+            .map(petDetailsAssembler::toDetailedDto)
             .map(body -> new ResponseEntity<>(body, HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -55,7 +50,7 @@ public class PetRestController implements PetApi {
     @Override
     public ResponseEntity<List<PetDto>> listPets() {
         List<PetDto> pets = this.petService.findAll().stream()
-            .map(this::toDetailedPetDto)
+            .map(petDetailsAssembler::toDetailedDto)
             .collect(Collectors.toList());
         if (pets.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -70,7 +65,7 @@ public class PetRestController implements PetApi {
                 .map(pet -> {
                     pet = petMapper.toPet(petDto);
                     petService.save(pet);
-                return new ResponseEntity<>(toDetailedPetDto(pet), HttpStatus.NO_CONTENT);
+                return new ResponseEntity<>(petDetailsAssembler.toDetailedDto(pet), HttpStatus.NO_CONTENT);
             })
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -97,7 +92,7 @@ public class PetRestController implements PetApi {
         pet.setOwner(owner);
         
         petService.save(pet);
-        PetDto petDto = toDetailedPetDto(pet);
+        PetDto petDto = petDetailsAssembler.toDetailedDto(pet);
         headers.setLocation(UriComponentsBuilder.newInstance().path("/api/pets/{id}")
                 .buildAndExpand(pet.getId()).toUri());
         return new ResponseEntity<>(petDto, headers, HttpStatus.CREATED);
@@ -108,7 +103,7 @@ public class PetRestController implements PetApi {
     public ResponseEntity<PetDto> getOwnersPet(Integer ownerId, Integer petId) {
         return ownerService.findById(ownerId)
             .map(o -> o.getPet(petId))
-            .map(pet -> new ResponseEntity<>(toDetailedPetDto(pet), HttpStatus.OK))
+            .map(pet -> new ResponseEntity<>(petDetailsAssembler.toDetailedDto(pet), HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -128,19 +123,4 @@ public class PetRestController implements PetApi {
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    private PetDto toDetailedPetDto(Pet pet) {
-        PetDto base = petMapper.toPetDto(pet);
-        PetDetailsDto detailed = new PetDetailsDto(base);
-
-        if (pet != null && pet.getId() != null) {
-            List<VisitView> visits = visitsFacade.findByPetId(pet.getId()).stream().toList();
-            detailed.setVisits(visits);
-        }
-
-        if (base.getTypeId() != null) {
-            petTypesFacade.findById(base.getTypeId()).ifPresent(detailed::setType);
-        }
-
-        return detailed;
-    }
 }

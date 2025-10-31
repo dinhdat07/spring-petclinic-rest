@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.owners.web;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -24,9 +25,10 @@ import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.samples.petclinic.owners.web.PetDetailsAssembler;
 
 @WebMvcTest(controllers = PetRestController.class)
-@Import({PetMapperImpl.class, Roles.class})
+@Import({PetMapperImpl.class, PetDetailsAssembler.class, Roles.class})
 class PetRestControllerWebTest {
 
     @Autowired
@@ -70,6 +72,17 @@ class PetRestControllerWebTest {
         given(visitsFacade.findByPetId(1)).willReturn(List.of(new VisitView(100, 1, null, "Checkup")));
 
         mockMvc.perform(get("/api/pets/1"))
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.type.name").value("dog"))
+            .andExpect(jsonPath("$.visits[0].description").value("Checkup"));
+    }
+
+    @Test
+    @WithMockUser(roles = "OWNER_ADMIN")
+    void getOwnersPetReturnsNotFoundWhenOwnerMissing() throws Exception {
+        given(ownerService.findById(1)).willReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/owners/1/pets/1"))
+            .andExpect(status().isNotFound());
     }
 }

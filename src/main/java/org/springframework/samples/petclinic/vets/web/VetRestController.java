@@ -14,6 +14,7 @@ import org.springframework.samples.petclinic.vets.api.VetApi;
 import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
 import org.springframework.samples.petclinic.vets.mapper.VetMapper;
+import org.springframework.samples.petclinic.vets.web.dto.SpecialtyDto;
 import org.springframework.samples.petclinic.vets.web.dto.VetDto;
 import org.springframework.samples.petclinic.vets.web.dto.VetDetailsDto;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -111,13 +112,22 @@ public class VetRestController implements VetApi {
 
         VetDetailsDto detailed = new VetDetailsDto(base);
         if (!specialtyIds.isEmpty()) {
-            List<SpecialtyView> specialties = specialtiesFacade.findByIds(specialtyIds);
+            List<SpecialtyDto> specialties = specialtiesFacade.findByIds(specialtyIds).stream()
+                .map(this::toSpecialtyDto)
+                .collect(Collectors.toList());
             detailed.setSpecialties(specialties);
         }
 
         return detailed;
     }
 
+    private SpecialtyDto toSpecialtyDto(SpecialtyView view) {
+        SpecialtyDto dto = new SpecialtyDto();
+        dto.setId(view.id());
+        dto.setName(view.name());
+        return dto;
+    }
 }
+
 
 

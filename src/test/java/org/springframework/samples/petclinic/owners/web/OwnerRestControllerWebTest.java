@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.owners.web;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -14,7 +15,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.samples.petclinic.catalog.api.PetTypeView;
 import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
-import org.springframework.samples.petclinic.owners.app.pet.PetService;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.owners.mapper.OwnerMapperImpl;
@@ -25,9 +25,10 @@ import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.samples.petclinic.owners.web.PetDetailsAssembler;
 
 @WebMvcTest(controllers = OwnerRestController.class)
-@Import({OwnerMapperImpl.class, PetMapperImpl.class, Roles.class})
+@Import({OwnerMapperImpl.class, PetMapperImpl.class, PetDetailsAssembler.class, Roles.class})
 class OwnerRestControllerWebTest {
 
     @Autowired
@@ -35,9 +36,6 @@ class OwnerRestControllerWebTest {
 
     @MockitoBean
     private OwnerService ownerService;
-
-    @MockitoBean
-    private PetService petService;
 
     @MockitoBean
     private VisitsFacade visitsFacade;
@@ -77,15 +75,9 @@ class OwnerRestControllerWebTest {
         given(petTypesFacade.findById(2)).willReturn(Optional.of(new PetTypeView(2, "dog")));
 
         mockMvc.perform(get("/api/owners"))
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].pets[0].type.name").value("dog"))
+            .andExpect(jsonPath("$[0].pets[0].visits[0].description").value("Checkup"));
     }
 
-    @Test
-    @WithMockUser(roles = "OWNER_ADMIN")
-    void getOwnersPetReturnsNotFoundForMissingOwner() throws Exception {
-        given(ownerService.findById(1)).willReturn(Optional.empty());
-
-        mockMvc.perform(get("/api/owners/1/pets/1"))
-            .andExpect(status().isNotFound());
-    }
 }

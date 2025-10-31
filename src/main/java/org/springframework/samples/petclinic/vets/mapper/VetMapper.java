@@ -21,6 +21,7 @@ public interface VetMapper {
     Vet toVet(VetFieldsDto vetFieldsDto);
 
     @Mapping(target = "specialtyIds", ignore = true)
+    @Mapping(target = "specialties", ignore = true)
     VetDto toVetDto(Vet vet);
 
     Collection<VetDto> toVetDtos(Collection<Vet> vets);

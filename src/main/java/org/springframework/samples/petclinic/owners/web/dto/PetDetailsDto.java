@@ -3,8 +3,6 @@ package org.springframework.samples.petclinic.owners.web.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.springframework.samples.petclinic.catalog.api.PetTypeView;
-import org.springframework.samples.petclinic.visits.api.VisitView;
 
 /**
  * Extends {@link PetDto} with denormalised data fetched from other modules.
@@ -12,10 +10,10 @@ import org.springframework.samples.petclinic.visits.api.VisitView;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PetDetailsDto extends PetDto {
 
-    private PetTypeView type;
+    private PetTypeDto type;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<VisitView> visits = List.of();
+    private List<VisitDto> visits = List.of();
 
     public PetDetailsDto() {
         super();
@@ -33,21 +31,20 @@ public class PetDetailsDto extends PetDto {
     }
 
     @JsonProperty("type")
-    public PetTypeView getType() {
+    public PetTypeDto getType() {
         return type;
     }
 
-    public void setType(PetTypeView type) {
+    public void setType(PetTypeDto type) {
         this.type = type;
     }
 
     @JsonProperty("visits")
-    public List<VisitView> getVisits() {
+    public List<VisitDto> getVisits() {
         return visits;
     }
 
-    public void setVisits(List<VisitView> visits) {
+    public void setVisits(List<VisitDto> visits) {
         this.visits = visits == null ? List.of() : List.copyOf(visits);
     }
 }
-
