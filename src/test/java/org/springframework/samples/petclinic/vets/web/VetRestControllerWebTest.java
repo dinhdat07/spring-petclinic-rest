@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.vets.web;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -54,6 +55,7 @@ class VetRestControllerWebTest {
         given(specialtiesFacade.findByIds(Set.of(10))).willReturn(List.of(new SpecialtyView(10, "radiology")));
 
         mockMvc.perform(get("/api/vets"))
-            .andExpect(status().isOk());
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].specialties[0].name").value("radiology"));
     }
 }

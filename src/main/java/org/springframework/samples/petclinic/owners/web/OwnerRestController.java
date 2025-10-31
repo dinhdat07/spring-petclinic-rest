@@ -27,7 +27,6 @@ import org.springframework.samples.petclinic.owners.api.OwnerApi;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.mapper.OwnerMapper;
-import org.springframework.samples.petclinic.owners.mapper.PetMapper;
 import org.springframework.samples.petclinic.owners.web.dto.OwnerDto;
 import org.springframework.samples.petclinic.owners.web.dto.OwnerFieldsDto;
 import org.springframework.samples.petclinic.owners.web.dto.PetDto;
@@ -51,7 +50,7 @@ public class OwnerRestController implements OwnerApi {
 
     private final OwnerService ownerService;
     private final OwnerMapper ownerMapper;
-    private final PetMapper petMapper;
+    private final PetDetailsAssembler petDetailsAssembler;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
     @Override
@@ -65,7 +64,7 @@ public class OwnerRestController implements OwnerApi {
         }
 
         List<OwnerDto> ownerDtos = owners.stream()
-            .map(ownerMapper::toOwnerDto)
+            .map(this::toOwnerDetailsDto)
             .collect(Collectors.toList());
         return new ResponseEntity<>(ownerDtos, HttpStatus.OK);
     }
@@ -74,7 +73,7 @@ public class OwnerRestController implements OwnerApi {
     @Override
     public ResponseEntity<OwnerDto> getOwner(Integer ownerId) {
         return this.ownerService.findById(ownerId)
-            .map(ownerMapper::toOwnerDto)
+            .map(this::toOwnerDetailsDto)
             .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -85,7 +84,7 @@ public class OwnerRestController implements OwnerApi {
         HttpHeaders headers = new HttpHeaders();
         Owner owner = ownerMapper.toOwner(ownerFieldsDto);
         this.ownerService.save(owner);
-        OwnerDto ownerDto = ownerMapper.toOwnerDto(owner);
+        OwnerDto ownerDto = toOwnerDetailsDto(owner);
         headers.setLocation(UriComponentsBuilder.newInstance()
             .path("/api/owners/{id}").buildAndExpand(owner.getId()).toUri());
         return new ResponseEntity<>(ownerDto, headers, HttpStatus.CREATED);
@@ -115,5 +114,12 @@ public class OwnerRestController implements OwnerApi {
             .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    private OwnerDto toOwnerDetailsDto(Owner owner) {
+        OwnerDto dto = ownerMapper.toOwnerDto(owner);
+        dto.setPets(petDetailsAssembler.toDetailedDtos(owner.getPets()));
+        return dto;
+    }
+
 }
+
 

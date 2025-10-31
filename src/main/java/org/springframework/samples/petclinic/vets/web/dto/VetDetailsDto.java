@@ -3,7 +3,6 @@ package org.springframework.samples.petclinic.vets.web.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
 
 /**
  * Extends {@link VetDto} with resolved specialty details.
@@ -12,7 +11,7 @@ import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
 public class VetDetailsDto extends VetDto {
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private List<SpecialtyView> specialties = List.of();
+    private List<SpecialtyDto> specialties = List.of();
 
     public VetDetailsDto() {
         super();
@@ -29,12 +28,11 @@ public class VetDetailsDto extends VetDto {
     }
 
     @JsonProperty("specialties")
-    public List<SpecialtyView> getSpecialties() {
+    public List<SpecialtyDto> getSpecialties() {
         return specialties;
     }
 
-    public void setSpecialties(List<SpecialtyView> specialties) {
+    public void setSpecialties(List<SpecialtyDto> specialties) {
         this.specialties = specialties == null ? List.of() : List.copyOf(specialties);
     }
 }
-

@@ -1987,6 +1987,17 @@ components:
               minimum: 0
               example: 1
               readOnly: true
+            type:
+              allOf:
+                - $ref: '#/components/schemas/PetType'
+              description: Resolved pet type details.
+              readOnly: true
+            visits:
+              type: array
+              description: Recorded vet visits for this pet.
+              items:
+                $ref: '#/components/schemas/Visit'
+              readOnly: true
           required:
             - id
             - typeId
@@ -2036,6 +2047,12 @@ components:
               format: int32
               minimum: 0
               example: 1
+              readOnly: true
+            specialties:
+              type: array
+              description: Detailed specialties assigned to the vet.
+              items:
+                $ref: '#/components/schemas/Specialty'
               readOnly: true
       required:
         - id

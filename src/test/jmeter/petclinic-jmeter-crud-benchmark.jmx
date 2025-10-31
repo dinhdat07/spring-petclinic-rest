@@ -112,7 +112,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;name&quot;:&quot;Buddy&quot;,&quot;birthDate&quot;:&quot;2022-06-15&quot;,&quot;type&quot;:{&quot;id&quot;:1,&quot;name&quot;:&quot;dog&quot;}}</stringProp>
+                <stringProp name="Argument.value">{&quot;name&quot;:&quot;Buddy&quot;,&quot;birthDate&quot;:&quot;2022-06-15&quot;,&quot;typeId&quot;:2}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -170,7 +170,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&quot;name&quot;:&quot;Buddy Updated&quot;,&quot;birthDate&quot;:&quot;2022-06-20&quot;,&quot;type&quot;:{&quot;id&quot;:1,&quot;name&quot;:&quot;dog&quot;}}</stringProp>
+                <stringProp name="Argument.value">{&quot;name&quot;:&quot;Buddy Updated&quot;,&quot;birthDate&quot;:&quot;2022-06-20&quot;,&quot;typeId&quot;:2}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -186,7 +186,17 @@
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
         </HTTPSamplerProxy>
-        <hashTree/>
+        <hashTree>
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="Pet response includes type" enabled="true">
+            <stringProp name="JSON_PATH">$.type.name</stringProp>
+            <stringProp name="EXPECTED_VALUE">dog</stringProp>
+            <boolProp name="JSONVALIDATION">false</boolProp>
+            <boolProp name="EXPECT_NULL">false</boolProp>
+            <boolProp name="INVERT">false</boolProp>
+            <boolProp name="ISREGEX">false</boolProp>
+          </JSONPathAssertion>
+          <hashTree/>
+        </hashTree>
 
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Delete Pet" enabled="true">
           <stringProp name="HTTPSampler.path">/petclinic/api/pets/${pet_id}</stringProp>
@@ -252,3 +262,5 @@
     </hashTree>
   </hashTree>
 </jmeterTestPlan>
+
+
