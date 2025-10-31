@@ -95,9 +95,17 @@ public class JwtSecurityConfiguration {
             .csrf(AbstractHttpConfigurer::disable)
             .cors(Customizer.withDefaults())
             .authorizeHttpRequests(
-                (authz) -> authz
-                            .requestMatchers( "/","/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**","/login").permitAll()
-                            .anyRequest().authenticated())
+                authz -> authz
+                    .requestMatchers(
+                        "/",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-resources/**",
+                        "/webjars/**",
+                        "/login",
+                        "/api/auth/**")
+                    .permitAll()
+                    .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
             .formLogin(form -> form.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
