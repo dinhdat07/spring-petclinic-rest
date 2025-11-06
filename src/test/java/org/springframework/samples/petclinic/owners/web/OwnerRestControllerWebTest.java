@@ -17,8 +17,7 @@ import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
-import org.springframework.samples.petclinic.owners.mapper.OwnerMapperImpl;
-import org.springframework.samples.petclinic.owners.mapper.PetMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
@@ -28,7 +27,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.samples.petclinic.owners.web.PetDetailsAssembler;
 
 @WebMvcTest(controllers = OwnerRestController.class)
-@Import({OwnerMapperImpl.class, PetMapperImpl.class, PetDetailsAssembler.class, Roles.class})
+@Import({MapStructTestConfiguration.class, PetDetailsAssembler.class, Roles.class})
 class OwnerRestControllerWebTest {
 
     @Autowired
