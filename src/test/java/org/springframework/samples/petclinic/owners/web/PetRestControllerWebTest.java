@@ -21,6 +21,7 @@ import org.springframework.samples.petclinic.owners.domain.Pet;
 import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.samples.petclinic.visits.api.VisitView;
+import org.springframework.samples.petclinic.visits.api.VisitStatus;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -69,7 +70,7 @@ class PetRestControllerWebTest {
 
         given(petService.findById(1)).willReturn(Optional.of(pet));
         given(petTypesFacade.findById(2)).willReturn(Optional.of(new PetTypeView(2, "dog")));
-        given(visitsFacade.findByPetId(1)).willReturn(List.of(new VisitView(100, 1, null, "Checkup")));
+        given(visitsFacade.findByPetId(1)).willReturn(List.of(new VisitView(100, 1, null, "Checkup", VisitStatus.SCHEDULED, null)));
 
         mockMvc.perform(get("/api/pets/1"))
             .andExpect(status().isOk())

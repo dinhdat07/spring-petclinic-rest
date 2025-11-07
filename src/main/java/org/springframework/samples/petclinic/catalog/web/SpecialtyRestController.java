@@ -49,7 +49,7 @@ public class SpecialtyRestController implements SpecialtyApi {
         this.specialtyMapper = specialtyMapper;
     }
 
-    @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @PreAuthorize("hasAnyRole(@roles.VET_ADMIN, @roles.VET)")
     @Override
     public ResponseEntity<List<SpecialtyDto>> listSpecialties() {
         List<SpecialtyDto> specialties = new ArrayList<>();
@@ -60,7 +60,7 @@ public class SpecialtyRestController implements SpecialtyApi {
         return new ResponseEntity<>(specialties, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @PreAuthorize("hasAnyRole(@roles.VET_ADMIN, @roles.VET)")
     @Override
     public ResponseEntity<SpecialtyDto> getSpecialty(Integer specialtyId) {
         return this.specialtyService.findById(specialtyId)

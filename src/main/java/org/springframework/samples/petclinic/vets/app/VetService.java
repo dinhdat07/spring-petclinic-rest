@@ -12,6 +12,8 @@ public interface VetService {
 
     Collection<Vet> findAll() throws DataAccessException;
 
+    Optional<Vet> findByUsername(String username) throws DataAccessException;
+
     void save(Vet vet) throws DataAccessException;
 
     void delete(Vet vet) throws DataAccessException;

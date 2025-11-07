@@ -19,6 +19,10 @@ public class VisitDetailsDto extends VisitDto {
     private OwnerView owner;
 
     private PetTypeView petType;
+
+    private String status;
+
+    private Integer vetId;
     
     public VisitDetailsDto() {
         super();
@@ -31,7 +35,7 @@ public class VisitDetailsDto extends VisitDto {
             this.setDescription(source.getDescription());
             this.setPetId(getPetId());
             this.setDate(source.getDate());
-        }   
+        }
     }
     @JsonProperty("pet")
     public PetView getPet() {
@@ -60,6 +64,24 @@ public class VisitDetailsDto extends VisitDto {
 
     public void setPetType(PetTypeView petType) {
         this.petType = petType;
+    }
+
+    @JsonProperty("status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @JsonProperty("vetId")
+    public Integer getVetId() {
+        return vetId;
+    }
+
+    public void setVetId(Integer vetId) {
+        this.vetId = vetId;
     }
 
 

@@ -87,6 +87,12 @@ API documentation (OAS 3.1) is accessible at: [http://localhost:9966/petclinic/v
 | **POST** | `/api/visits` | Add a new visit |
 | **PUT** | `/api/visits/{visitId}` | Update a visit |
 | **DELETE** | `/api/visits/{visitId}` | Delete a visit |
+| **Appointments** |  |  |
+| **GET** | `/api/appointments` | Retrieve all appointments (admin) |
+| **GET** | `/api/appointments/{appointmentId}` | Get appointment details by ID |
+| **POST** | `/api/appointments` | Create an appointment for any owner/pet |
+| **PUT** | `/api/appointments/{appointmentId}` | Update appointment schedule/status |
+| **DELETE** | `/api/appointments/{appointmentId}` | Delete or cancel an appointment |
 | **Users** |  |  |
 | **POST** | `/api/users` | Create a new user |
 
@@ -231,12 +237,38 @@ This will secure all APIs and in order to access them, basic authentication is r
 Apart from authentication, APIs also require authorization. This is done via roles that a user can have.
 The existing roles are listed below with the corresponding permissions 
 
-* `OWNER_ADMIN` -> `OwnerController`, `PetController`, `PetTypeController` (`getAllPetTypes` and `getPetType`), `VisitController`
+* `OWNER_ADMIN` -> `OwnerController`, `PetController`, `PetTypeController` (`getAllPetTypes` and `getPetType`), `VisitController`, `AppointmentController`
 * `VET_ADMIN`   -> `PetTypeController`, `SpecialityController`, `VetController`
 * `ADMIN`       -> `UserController`
+* `OWNER`       -> self-service endpoints under `/api/me/**` (profile, own pets & visit history, appointment scheduling/cancellation) and read-only access to `PetTypeController`
+* `VET`         -> vet self-service endpoints under `/api/vets/me/**` (profile, assigned appointments, visit completion) and read-only access to `PetTypeController`/`SpecialtyController`
 
-There is an existing user with the username `admin` and password `admin` that has access to all APIs.
- In order to add a new user, please make `POST /api/users` request with the following payload:
+There are three default users:
+
+* `admin` / `admin` – full access with all administrative roles
+* `owner` / `owner` – standard pet owner with self-service permissions
+* `vet` / `vet` – veterinarian account with vet self-service permissions
+
+Owners can also sign themselves up by calling the registration endpoint:
+
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "jdoe",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "address": "742 Evergreen Terrace",
+  "city": "Springfield",
+  "telephone": "6085554321"
+}
+```
+
+Upon successful registration the new owner can authenticate via `/api/auth/login` and interact with the self-service API surface.
+
+In order to add a new user, please make `POST /api/users` request with the following payload:
 
 ```json
 {
@@ -248,6 +280,33 @@ There is an existing user with the username `admin` and password `admin` that ha
     ]
 }
 ```
+
+### Owner self-service API
+
+When authenticated with the `OWNER` role the following endpoints become available:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/api/me/profile` | Retrieve the logged-in owner's profile, pets, and visit history |
+| `GET`  | `/api/me/appointments` | List scheduled appointments for the current owner |
+| `POST` | `/api/me/appointments` | Schedule a new appointment for one of your pets |
+| `DELETE` | `/api/me/appointments/{appointmentId}` | Cancel a pending or eligible appointment |
+| `GET`  | `/api/me/pets/{petId}/visits` | List visit history for a specific owned pet |
+
+> Note: Appointments can be cancelled while they are pending or, if already confirmed, at least 24 hours before the scheduled start time.
+
+### Vet self-service API
+
+When authenticated with the `VET` role the following endpoints become available:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/api/vets/me/profile` | Retrieve the logged-in vet profile and specialties |
+| `GET`  | `/api/vets/me/appointments` | List appointments assigned to the vet |
+| `POST` | `/api/vets/me/appointments/{appointmentId}/confirm` | Confirm an assigned appointment |
+| `POST` | `/api/vets/me/visits/{visitId}/complete` | Mark a visit as completed (and claim it if unassigned) |
+
+Vets also have read-only access to the `PetTypeController` and `SpecialtyController` so they can review pet types and specialty catalogs.
 
 ## Working with Petclinic in Eclipse/STS
 

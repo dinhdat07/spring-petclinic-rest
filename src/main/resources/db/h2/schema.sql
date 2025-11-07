@@ -1,7 +1,10 @@
 CREATE TABLE IF NOT EXISTS vets (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL
+  last_name VARCHAR(30) NOT NULL,
+  username VARCHAR(20),
+  CONSTRAINT fk_vet_user FOREIGN KEY (username) REFERENCES users(username),
+  CONSTRAINT uq_vet_username UNIQUE (username)
 );
 
 CREATE INDEX idx_vets_last_name ON vets(last_name);
@@ -34,7 +37,10 @@ CREATE TABLE IF NOT EXISTS owners (
   last_name VARCHAR(30) NOT NULL,
   address VARCHAR(255) NOT NULL,
   city VARCHAR(80) NOT NULL,
-  telephone VARCHAR(20) NOT NULL
+  telephone VARCHAR(20) NOT NULL,
+  username VARCHAR(20),
+  CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users(username),
+  CONSTRAINT uq_owner_username UNIQUE (username)
 );
 
 CREATE INDEX idx_owners_last_name ON owners(last_name);
@@ -56,8 +62,31 @@ CREATE TABLE IF NOT EXISTS visits (
   pet_id INTEGER NOT NULL,
   visit_date DATE NOT NULL,
   description VARCHAR(255) NOT NULL,
-  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE
+  status VARCHAR(20) NOT NULL DEFAULT 'SCHEDULED',
+  vet_id INTEGER,
+  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+  FOREIGN KEY (vet_id) REFERENCES vets(id)
 );
+
+CREATE TABLE IF NOT EXISTS appointments (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  owner_id INTEGER NOT NULL,
+  pet_id INTEGER NOT NULL,
+  start_time TIMESTAMP NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  notes VARCHAR(255),
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (owner_id) REFERENCES owners(id) ON DELETE CASCADE,
+  FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
+  vet_id INTEGER,
+  FOREIGN KEY (vet_id) REFERENCES vets(id)
+);
+
+CREATE INDEX idx_appointments_owner ON appointments(owner_id);
+CREATE INDEX idx_appointments_pet ON appointments(pet_id);
+CREATE INDEX idx_appointments_vet ON appointments(vet_id);
+CREATE INDEX idx_visits_vet ON visits(vet_id);
 
 CREATE TABLE IF NOT EXISTS users (
   username VARCHAR(20) NOT NULL PRIMARY KEY,

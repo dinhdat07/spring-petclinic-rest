@@ -43,6 +43,9 @@ public class Vet {
     @NotBlank
     private String lastName;
 
+    @Column(name = "username", unique = true)
+    private String username;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"))
     @Column(name = "specialty_id")

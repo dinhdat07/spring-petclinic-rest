@@ -13,5 +13,7 @@ public interface OwnerJpaRepository extends JpaRepository<Owner, Integer> {
 
     @EntityGraph(attributePaths = "pets")
     Optional<Owner> findWithPetsById(Integer id);
+
+    Optional<Owner> findByUsernameIgnoreCase(String username);
 }
 
