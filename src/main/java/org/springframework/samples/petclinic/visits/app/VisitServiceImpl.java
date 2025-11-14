@@ -29,13 +29,13 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    @Cacheable(value = "visits", key = "'all'", sync = true)
+    @Cacheable(value = "visits_all", key = "'all'")
     public Collection<Visit> findAll() throws DataAccessException {
         return visitRepository.findAll();
     }
 
     @Override
-    @Cacheable(value = "visits", key = "'petId: ' + #petId")
+    @Cacheable(value = "visits_all", key = "'petId: ' + #petId")
     public Collection<Visit> findByPetId(int petId) {
         return visitRepository.findByPetId(petId);
     }
@@ -52,7 +52,11 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = "visits", key = "'visitId: ' + #visit.id"),
+            @CacheEvict(value = "visits", key = "'all'"),
+            @CacheEvict(value = "visits", key = "'petId: '+ #visit.petId")
+    })
     public void delete(Visit visit) throws DataAccessException {
         visitRepository.delete(visit);
     }

@@ -2,6 +2,8 @@ package org.springframework.samples.petclinic.owners.domain;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,6 +46,7 @@ public class Pet {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
+    @JsonBackReference
     private Owner owner;
 
     @Override
@@ -51,4 +54,3 @@ public class Pet {
         return this.name;
     }
 }
-

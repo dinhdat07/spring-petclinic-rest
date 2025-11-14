@@ -96,12 +96,12 @@
         </dependency>
 
         <!-- Devtools -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
-        </dependency>
+        </dependency> -->
 
 
         <!-- Modulith dependencies -->
@@ -216,10 +216,18 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <version>2.15.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.15.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.15.0</version>
         </dependency>
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
@@ -424,15 +432,17 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>${maven.openapi-generator-plugin.version}</version>
-        <executions>
-            <execution>
-                <id>generate-owners</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                <executions>
+                    <execution>
+                        <id>generate-owners</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/owners</output>
                             <apiPackage>org.springframework.samples.petclinic.owners.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.owners.web.dto</modelPackage>
@@ -468,15 +478,17 @@
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-            <execution>
-                <id>generate-catalog</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                    </execution>
+                    <execution>
+                        <id>generate-catalog</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/catalog</output>
                             <apiPackage>org.springframework.samples.petclinic.catalog.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.catalog.web.dto</modelPackage>
@@ -510,15 +522,17 @@
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-            <execution>
-                <id>generate-vets</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                    </execution>
+                    <execution>
+                        <id>generate-vets</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/vets</output>
                             <apiPackage>org.springframework.samples.petclinic.vets.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.vets.web.dto</modelPackage>
@@ -552,15 +566,17 @@
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-            <execution>
-                <id>generate-iam</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                    </execution>
+                    <execution>
+                        <id>generate-iam</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/iam</output>
                             <apiPackage>org.springframework.samples.petclinic.iam.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.iam.web.dto</modelPackage>
@@ -594,15 +610,17 @@
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-            <execution>
-                <id>generate-visits</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                    </execution>
+                    <execution>
+                        <id>generate-visits</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/visits</output>
                             <apiPackage>org.springframework.samples.petclinic.visits.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.visits.web.dto</modelPackage>
@@ -636,15 +654,17 @@
                             </importMappings>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-            <execution>
-                <id>generate-platform</id>
-                <phase>generate-sources</phase>
-                <goals><goal>generate</goal></goals>
-                <configuration>
-                    <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
-                    <generatorName>spring</generatorName>
-                    <library>spring-boot</library>
+                    </execution>
+                    <execution>
+                        <id>generate-platform</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <library>spring-boot</library>
                             <output>${project.build.directory}/generated-sources/openapi/platform</output>
                             <apiPackage>org.springframework.samples.petclinic.platform.api</apiPackage>
                             <modelPackage>org.springframework.samples.petclinic.platform.web.dto</modelPackage>
@@ -668,9 +688,9 @@
                             </configOptions>
                             <skipIfSpecIsUnchanged>false</skipIfSpecIsUnchanged>
                         </configuration>
-            </execution>
-        </executions>
-        </plugin>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
