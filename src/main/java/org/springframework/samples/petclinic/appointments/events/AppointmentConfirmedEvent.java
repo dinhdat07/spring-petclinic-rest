@@ -1,16 +1,13 @@
-package org.springframework.samples.petclinic.appointments.api;
-
-import java.time.LocalDateTime;
+package org.springframework.samples.petclinic.appointments.events;
 
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 
-public record AppointmentCreateCommand(
+public record AppointmentConfirmedEvent(
+    Integer appointmentId,
     Integer ownerId,
     Integer petId,
     Integer vetId,
-    LocalDateTime startTime,
     AppointmentStatus status,
-    String notes,
     String triageNotes
 ) {
 }

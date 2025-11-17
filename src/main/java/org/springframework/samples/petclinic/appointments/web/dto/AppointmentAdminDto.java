@@ -11,6 +11,8 @@ public record AppointmentAdminDto(
     String status,
     String notes,
     LocalDateTime createdAt,
-    LocalDateTime updatedAt
+    LocalDateTime updatedAt,
+    String triageNotes,
+    Integer visitId
 ) {
 }

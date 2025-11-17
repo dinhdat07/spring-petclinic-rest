@@ -68,7 +68,9 @@ class OwnerSelfServiceTests {
             AppointmentStatus.PENDING,
             "Routine check",
             futureTime.minusDays(1),
-            futureTime.minusDays(1)
+            futureTime.minusDays(1),
+            null,
+            null
         );
 
         when(appointmentsFacade.create(any())).thenReturn(saved);
@@ -103,7 +105,9 @@ class OwnerSelfServiceTests {
             AppointmentStatus.PENDING,
             "Routine check",
             startTime.minusDays(1),
-            startTime.minusDays(1)
+            startTime.minusDays(1),
+            null,
+            null
         );
 
         AppointmentView cancelledView = new AppointmentView(
@@ -115,7 +119,9 @@ class OwnerSelfServiceTests {
             AppointmentStatus.CANCELLED,
             existing.notes(),
             existing.createdAt(),
-            LocalDateTime.now()
+            LocalDateTime.now(),
+            null,
+            null
         );
 
         when(appointmentsFacade.findForOwner(existing.id(), owner.getId()))
@@ -140,7 +146,9 @@ class OwnerSelfServiceTests {
             AppointmentStatus.CONFIRMED,
             null,
             LocalDateTime.now().minusDays(1),
-            LocalDateTime.now().minusDays(1)
+            LocalDateTime.now().minusDays(1),
+            null,
+            null
         );
 
         when(appointmentsFacade.findForOwner(existing.id(), owner.getId()))
@@ -162,7 +170,9 @@ class OwnerSelfServiceTests {
             AppointmentStatus.COMPLETED,
             null,
             LocalDateTime.now().minusDays(2),
-            LocalDateTime.now().minusDays(1)
+            LocalDateTime.now().minusDays(1),
+            null,
+            null
         );
 
         when(appointmentsFacade.findForOwner(existing.id(), owner.getId()))

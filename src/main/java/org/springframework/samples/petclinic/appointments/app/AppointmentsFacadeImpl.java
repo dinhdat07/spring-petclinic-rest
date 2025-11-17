@@ -1,6 +1,5 @@
 package org.springframework.samples.petclinic.appointments.app;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class AppointmentsFacadeImpl implements AppointmentsFacade {
 
     private final AppointmentService appointmentService;
+    private final AppointmentMapper appointmentMapper;
 
     @Override
     @Transactional
@@ -37,6 +37,7 @@ public class AppointmentsFacadeImpl implements AppointmentsFacade {
         appointment.setStartTime(command.startTime());
         appointment.setStatus(command.status() != null ? command.status() : AppointmentStatus.PENDING);
         appointment.setNotes(command.notes());
+        appointment.setTriageNotes(command.triageNotes());
 
         return toView(appointmentService.save(appointment));
     }
@@ -96,6 +97,12 @@ public class AppointmentsFacadeImpl implements AppointmentsFacade {
                 if (command.vetId() != null) {
                     existing.setVetId(command.vetId());
                 }
+                if (command.triageNotes() != null) {
+                    existing.setTriageNotes(command.triageNotes());
+                }
+                if (command.visitId() != null) {
+                    existing.setVisitId(command.visitId());
+                }
                 return toView(appointmentService.save(existing));
             });
     }
@@ -112,18 +119,6 @@ public class AppointmentsFacadeImpl implements AppointmentsFacade {
     }
 
     private AppointmentView toView(Appointment appointment) {
-        LocalDateTime createdAt = appointment.getCreatedAt();
-        LocalDateTime updatedAt = appointment.getUpdatedAt();
-        return new AppointmentView(
-            appointment.getId(),
-            appointment.getOwnerId(),
-            appointment.getPetId(),
-            appointment.getVetId(),
-            appointment.getStartTime(),
-            appointment.getStatus(),
-            appointment.getNotes(),
-            createdAt,
-            updatedAt
-        );
+        return appointmentMapper.toView(appointment);
     }
 }

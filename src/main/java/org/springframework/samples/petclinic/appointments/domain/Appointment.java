@@ -46,8 +46,14 @@ public class Appointment {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "triage_notes")
+    private String triageNotes;
+
     @Column(name = "vet_id")
     private Integer vetId;
+
+    @Column(name = "visit_id")
+    private Integer visitId;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

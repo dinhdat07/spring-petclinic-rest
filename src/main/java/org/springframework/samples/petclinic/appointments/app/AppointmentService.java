@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.appointments.app;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
 
 public interface AppointmentService {
@@ -14,6 +15,8 @@ public interface AppointmentService {
     List<Appointment> findByOwnerId(Integer ownerId);
 
     List<Appointment> findByVetId(Integer vetId);
+
+    List<Appointment> findByStatuses(List<AppointmentStatus> statuses);
 
     Optional<Appointment> findById(Integer appointmentId);
 

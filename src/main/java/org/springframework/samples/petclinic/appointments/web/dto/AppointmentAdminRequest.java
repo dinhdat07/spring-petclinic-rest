@@ -14,6 +14,7 @@ public record AppointmentAdminRequest(
     Integer vetId,
     @NotNull @Future LocalDateTime startTime,
     AppointmentStatus status,
-    @Size(max = 255) String notes
+    @Size(max = 255) String notes,
+    @Size(max = 255) String triageNotes
 ) {
 }

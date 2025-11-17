@@ -75,17 +75,21 @@ CREATE TABLE IF NOT EXISTS appointments (
   start_time TIMESTAMP NOT NULL,
   status VARCHAR(20) NOT NULL,
   notes VARCHAR(255),
+  triage_notes VARCHAR(255),
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (owner_id) REFERENCES owners(id) ON DELETE CASCADE,
   FOREIGN KEY (pet_id) REFERENCES pets(id) ON DELETE CASCADE,
   vet_id INTEGER,
-  FOREIGN KEY (vet_id) REFERENCES vets(id)
+  visit_id INTEGER UNIQUE,
+  FOREIGN KEY (vet_id) REFERENCES vets(id),
+  FOREIGN KEY (visit_id) REFERENCES visits(id)
 );
 
 CREATE INDEX idx_appointments_owner ON appointments(owner_id);
 CREATE INDEX idx_appointments_pet ON appointments(pet_id);
 CREATE INDEX idx_appointments_vet ON appointments(vet_id);
+CREATE INDEX idx_appointments_status ON appointments(status);
 CREATE INDEX idx_visits_vet ON visits(vet_id);
 
 CREATE TABLE IF NOT EXISTS users (

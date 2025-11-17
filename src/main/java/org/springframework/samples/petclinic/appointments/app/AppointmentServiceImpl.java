@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.appointments.app;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
 import org.springframework.samples.petclinic.appointments.infra.jpa.AppointmentJpaRepository;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<Appointment> findByVetId(Integer vetId) {
         return appointmentRepository.findByVetIdOrderByStartTimeDesc(vetId);
+    }
+
+    @Override
+    public List<Appointment> findByStatuses(List<AppointmentStatus> statuses) {
+        return appointmentRepository.findByStatusInOrderByStartTimeAsc(statuses);
     }
 
     @Override

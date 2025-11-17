@@ -76,15 +76,19 @@ CREATE TABLE IF NOT EXISTS appointments (
   start_time DATETIME NOT NULL,
   status VARCHAR(20) NOT NULL,
   notes VARCHAR(255),
+  triage_notes VARCHAR(255),
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (owner_id) REFERENCES owners(id),
   FOREIGN KEY (pet_id) REFERENCES pets(id),
   vet_id INT(4) UNSIGNED,
+  visit_id INT(4) UNSIGNED UNIQUE,
   FOREIGN KEY (vet_id) REFERENCES vets(id),
+  FOREIGN KEY (visit_id) REFERENCES visits(id),
   INDEX idx_appointments_owner (owner_id),
   INDEX idx_appointments_pet (pet_id),
-  INDEX idx_appointments_vet (vet_id)
+  INDEX idx_appointments_vet (vet_id),
+  INDEX idx_appointments_status (status)
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS roles (

@@ -56,7 +56,8 @@ public class OwnerSelfService {
             null,
             request.startTime(),
             AppointmentStatus.PENDING,
-            request.notes()
+            request.notes(),
+            null
         ));
     }
 
@@ -83,7 +84,14 @@ public class OwnerSelfService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot cancel past appointments.");
         }
 
-        var updateCommand = new AppointmentUpdateCommand(null, AppointmentStatus.CANCELLED, appointment.notes(), appointment.vetId());
+        var updateCommand = new AppointmentUpdateCommand(
+            null,
+            AppointmentStatus.CANCELLED,
+            appointment.notes(),
+            appointment.vetId(),
+            null,
+            null
+        );
         return appointmentsFacade.update(appointment.id(), updateCommand)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to cancel appointment."));
     }

@@ -132,7 +132,9 @@ public class OwnerSelfController {
             status,
             appointment.notes(),
             appointment.createdAt(),
-            appointment.updatedAt()
+            appointment.updatedAt(),
+            appointment.triageNotes(),
+            appointment.visitId()
         );
     }
 

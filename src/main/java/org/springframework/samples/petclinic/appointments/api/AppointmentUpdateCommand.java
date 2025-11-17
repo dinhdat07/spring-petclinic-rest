@@ -8,6 +8,8 @@ public record AppointmentUpdateCommand(
     LocalDateTime startTime,
     AppointmentStatus status,
     String notes,
-    Integer vetId
+    Integer vetId,
+    String triageNotes,
+    Integer visitId
 ) {
 }

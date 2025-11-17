@@ -75,7 +75,9 @@ class VetSelfServiceTests {
             AppointmentStatus.PENDING,
             "Routine check",
             future.minusDays(1),
-            future.minusDays(1)
+            future.minusDays(1),
+            null,
+            null
         );
         AppointmentView confirmed = new AppointmentView(
             10,
@@ -86,7 +88,9 @@ class VetSelfServiceTests {
             AppointmentStatus.CONFIRMED,
             "Routine check",
             future.minusDays(1),
-            future
+            future,
+            null,
+            null
         );
 
         when(appointmentsFacade.findForVet(10, vet.getId())).thenReturn(Optional.of(pending));

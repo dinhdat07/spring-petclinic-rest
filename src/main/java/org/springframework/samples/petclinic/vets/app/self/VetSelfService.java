@@ -65,7 +65,9 @@ public class VetSelfService {
             null,
             AppointmentStatus.CONFIRMED,
             appointment.notes(),
-            vetId
+            vetId,
+            null,
+            null
         );
         return appointmentsFacade.update(appointment.id(), command)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to confirm appointment."));

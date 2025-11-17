@@ -86,16 +86,20 @@ CREATE TABLE appointments (
   start_time  TIMESTAMP NOT NULL,
   status      VARCHAR(20) NOT NULL,
   notes       VARCHAR(255),
+  triage_notes VARCHAR(255),
   created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-  vet_id      INTEGER
+  vet_id      INTEGER,
+  visit_id    INTEGER UNIQUE
 );
 ALTER TABLE appointments ADD CONSTRAINT fk_appointments_owner FOREIGN KEY (owner_id) REFERENCES owners (id);
 ALTER TABLE appointments ADD CONSTRAINT fk_appointments_pet FOREIGN KEY (pet_id) REFERENCES pets (id);
 ALTER TABLE appointments ADD CONSTRAINT fk_appointments_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE appointments ADD CONSTRAINT fk_appointments_visit FOREIGN KEY (visit_id) REFERENCES visits (id);
 CREATE INDEX idx_appointments_owner ON appointments (owner_id);
 CREATE INDEX idx_appointments_pet ON appointments (pet_id);
 CREATE INDEX idx_appointments_vet ON appointments (vet_id);
+CREATE INDEX idx_appointments_status ON appointments (status);
 
 CREATE TABLE roles (
   id              INTEGER IDENTITY PRIMARY KEY,
