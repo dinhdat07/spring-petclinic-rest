@@ -9,6 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.samples.petclinic.owners.api.OwnersFacade;
+import org.springframework.samples.petclinic.owners.api.PetsFacade;
+import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.visits.app.VisitService;
 import org.springframework.samples.petclinic.visits.domain.Visit;
 import org.springframework.samples.petclinic.visits.mapper.VisitMapper;
@@ -31,6 +34,15 @@ class VisitRestControllerWebTest {
     @MockitoBean
     private VisitMapper visitMapper;
 
+    @MockitoBean
+    private PetsFacade petsFacade;
+
+    @MockitoBean
+    private OwnersFacade ownersFacade;
+
+    @MockitoBean
+    private PetTypesFacade petTypesFacade;
+
     @Test
     @WithMockUser(roles = "OWNER_ADMIN")
     void listVisitsReturnsNotFoundWhenEmpty() throws Exception {
@@ -43,7 +55,11 @@ class VisitRestControllerWebTest {
     @Test
     @WithMockUser(roles = "OWNER_ADMIN")
     void listVisitsReturnsData() throws Exception {
-        given(visitService.findAll()).willReturn(List.of(new Visit(1, null, "Checkup", 10)));
+        Visit visit = new Visit();
+        visit.setId(1);
+        visit.setDescription("Checkup");
+        visit.setPetId(10);
+        given(visitService.findAll()).willReturn(List.of(visit));
 
         mockMvc.perform(get("/api/visits"))
             .andExpect(status().isOk());

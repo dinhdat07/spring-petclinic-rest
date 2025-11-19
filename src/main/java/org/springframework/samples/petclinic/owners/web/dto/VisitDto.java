@@ -15,6 +15,10 @@ public class VisitDto {
 
     private String description;
 
+    private String status;
+
+    private Integer vetId;
+
     public Integer getId() {
         return id;
     }
@@ -46,5 +50,20 @@ public class VisitDto {
     public void setDescription(String description) {
         this.description = description;
     }
-}
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getVetId() {
+        return vetId;
+    }
+
+    public void setVetId(Integer vetId) {
+        this.vetId = vetId;
+    }
+}

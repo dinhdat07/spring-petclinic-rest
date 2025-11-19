@@ -17,13 +17,13 @@ import org.springframework.samples.petclinic.catalog.api.SpecialtiesFacade;
 import org.springframework.samples.petclinic.catalog.api.SpecialtyView;
 import org.springframework.samples.petclinic.vets.app.VetService;
 import org.springframework.samples.petclinic.vets.domain.Vet;
-import org.springframework.samples.petclinic.vets.mapper.VetMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = VetRestController.class)
 @AutoConfigureMockMvc(addFilters = false)
-@Import(VetMapperImpl.class)
+@Import(MapStructTestConfiguration.class)
 class VetRestControllerWebTest {
 
     @Autowired

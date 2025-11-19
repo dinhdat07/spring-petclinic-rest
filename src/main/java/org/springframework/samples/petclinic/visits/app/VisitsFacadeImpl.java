@@ -61,7 +61,15 @@ public class VisitsFacadeImpl implements VisitsFacade {
                 if (command.date() != null) {
                     existing.setDate(command.date());
                 }
-                existing.setDescription(command.description());
+                if (command.description() != null) {
+                    existing.setDescription(command.description());
+                }
+                if (command.status() != null) {
+                    existing.setStatus(command.status());
+                }
+                if (command.vetId() != null) {
+                    existing.setVetId(command.vetId());
+                }
                 visitService.save(existing);
                 return toView(existing);
             });
@@ -83,8 +91,9 @@ public class VisitsFacadeImpl implements VisitsFacade {
             visit.getId(),
             visit.getPetId(),
             visit.getDate(),
-            visit.getDescription()
+            visit.getDescription(),
+            visit.getStatus(),
+            visit.getVetId()
         );
     }
 }
-

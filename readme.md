@@ -86,6 +86,15 @@ API documentation (OAS 3.1) is accessible at: [http://localhost:9966/petclinic/v
 | **POST** | `/api/visits` | Add a new visit |
 | **PUT** | `/api/visits/{visitId}` | Update a visit |
 | **DELETE** | `/api/visits/{visitId}` | Delete a visit |
+| **Appointments** |  |  |
+| **GET** | `/api/appointments` | Retrieve all appointments (admin) |
+| **GET** | `/api/appointments/queue?status=PENDING&status=CONFIRMED` | Owner-admin queue filtered by appointment status |
+| **GET** | `/api/appointments/{appointmentId}` | Get appointment details by ID |
+| **POST** | `/api/appointments` | Create an appointment for any owner/pet |
+| **POST** | `/api/appointments/{appointmentId}/confirm` | Triage + confirm, optionally assign a vet and write triage notes |
+| **POST** | `/api/appointments/{appointmentId}/visits` | Create a visit from a confirmed appointment (1–1 link + optional vet assignment) |
+| **PUT** | `/api/appointments/{appointmentId}` | Update appointment schedule/status |
+| **DELETE** | `/api/appointments/{appointmentId}` | Delete or cancel an appointment |
 | **Users** |  |  |
 | **POST** | `/api/users` | Create a new user |
 
@@ -230,12 +239,38 @@ This will secure all APIs and in order to access them, basic authentication is r
 Apart from authentication, APIs also require authorization. This is done via roles that a user can have.
 The existing roles are listed below with the corresponding permissions 
 
-* `OWNER_ADMIN` -> `OwnerController`, `PetController`, `PetTypeController` (`getAllPetTypes` and `getPetType`), `VisitController`
+* `OWNER_ADMIN` -> `OwnerController`, `PetController`, `PetTypeController` (`getAllPetTypes` and `getPetType`), `VisitController`, `AppointmentController`
 * `VET_ADMIN`   -> `PetTypeController`, `SpecialityController`, `VetController`
 * `ADMIN`       -> `UserController`
+* `OWNER`       -> self-service endpoints under `/api/me/**` (profile, own pets & visit history, appointment scheduling/cancellation) and read-only access to `PetTypeController`
+* `VET`         -> vet self-service endpoints under `/api/vets/me/**` (profile, assigned appointments, visit completion) and read-only access to `PetTypeController`/`SpecialtyController`
 
-There is an existing user with the username `admin` and password `admin` that has access to all APIs.
- In order to add a new user, please make `POST /api/users` request with the following payload:
+There are three default users:
+
+* `admin` / `admin` – full access with all administrative roles
+* `owner` / `owner` – standard pet owner with self-service permissions
+* `vet` / `vet` – veterinarian account with vet self-service permissions
+
+Owners can also sign themselves up by calling the registration endpoint:
+
+```http
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "username": "jdoe",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe",
+  "address": "742 Evergreen Terrace",
+  "city": "Springfield",
+  "telephone": "6085554321"
+}
+```
+
+Upon successful registration the new owner can authenticate via `/api/auth/login` and interact with the self-service API surface.
+
+In order to add a new user, please make `POST /api/users` request with the following payload:
 
 ```json
 {
@@ -247,6 +282,125 @@ There is an existing user with the username `admin` and password `admin` that ha
     ]
 }
 ```
+
+### Owner self-service API
+
+When authenticated with the `OWNER` role the following endpoints become available:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/api/me/profile` | Retrieve the logged-in owner's profile, pets, and visit history |
+| `GET`  | `/api/me/appointments` | List scheduled appointments for the current owner |
+| `POST` | `/api/me/appointments` | Schedule a new appointment for one of your pets |
+| `DELETE` | `/api/me/appointments/{appointmentId}` | Cancel a pending or eligible appointment |
+| `GET`  | `/api/me/pets/{petId}/visits` | List visit history for a specific owned pet |
+
+> Note: Appointments can be cancelled while they are pending or, if already confirmed, at least 24 hours before the scheduled start time.
+
+### Vet self-service API
+
+When authenticated with the `VET` role the following endpoints become available:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET`  | `/api/vets/me/profile` | Retrieve the logged-in vet profile and specialties |
+| `GET`  | `/api/vets/me/appointments` | List appointments assigned to the vet |
+| `POST` | `/api/vets/me/appointments/{appointmentId}/confirm` | Confirm an assigned appointment |
+| `POST` | `/api/vets/me/visits/{visitId}/complete` | Mark a visit as completed (and claim it if unassigned) |
+
+Vets also have read-only access to the `PetTypeController` and `SpecialtyController` so they can review pet types and specialty catalogs.
+
+### Owner-admin appointment workflow
+
+Owner administrators are responsible for triage, vet assignment, and keeping the visit queue healthy:
+
+* `GET /api/appointments/queue?status=...` filters the queue by one or many statuses so back-office users can focus on PENDING, CONFIRMED, etc.
+* `POST /api/appointments/{id}/confirm` stores triage notes, assigns a vet (optional), and transitions the appointment to `CONFIRMED` atomically.
+* `POST /api/appointments/{id}/visits` creates a visit from a confirmed appointment, links it 1–1, copies the triage reason into the visit description, and can push the vet assignment down to the visit record.
+
+All endpoints require `ROLE_OWNER_ADMIN`, live inside the appointments module, and are exposed via an application service/facade so other modules continue to depend solely on exported APIs.
+
+### Booking events & messaging choice
+
+`AppointmentWorkflowService` emits two lightweight domain events through Spring's `ApplicationEventPublisher`:
+
+* `AppointmentConfirmedEvent` — raised every time an appointment is triaged/confirmed (even when already confirmed but vet assignment or notes change).
+* `AppointmentVisitLinkedEvent` — raised after a visit is created from an appointment and the linkage succeeds.
+
+These in-process events keep the workflow Modulith-friendly while an AMQP adapter (`AppointmentEventAmqpAdapter`) fans them out through RabbitMQ. We are standardising on **RabbitMQ** for the booking stream because the use-cases need:
+
+1. Low-latency fan-out (notifications, dashboards, SLA timers) rather than long-lived log retention.
+2. Strict ordering per appointment/owner but modest throughput.
+3. Dead-letter/retry semantics that match triage workflows (e.g. requeue when downstream enrichment fails).
+
+RabbitMQ's routing keys/queues align with those requirements better than Kafka's partition+compaction model, and the adapter publishes JSON payloads to `petclinic.appointments.exchange` using the configurable routing keys `appointments.confirmed` / `appointments.visit-linked` (override via `petclinic.messaging.appointments.*` properties as needed).
+
+### Appointment messaging topology
+
+The default RabbitMQ layout is ready for queue-based load leveling, competing consumers, and dead-letter queues:
+
+| Purpose | Primary queue | DLQ | Routing keys from exchange |
+|---------|---------------|-----|----------------------------|
+| Notifications / communications | `appointments.notifications.q` | `appointments.notifications.dlq` | `appointments.confirmed`, `appointments.visit-linked` |
+| Availability / scheduling | `appointments.availability.q` | `appointments.availability.dlq` | `appointments.confirmed` |
+
+- Exchange: `petclinic.appointments.exchange` (topic)
+- Dead-letter exchange: `petclinic.appointments.dlx` (direct)
+- Properties to override any name:  
+  `petclinic.messaging.appointments.exchange`,  
+  `petclinic.messaging.appointments.dead-letter-exchange`,  
+  `petclinic.messaging.appointments.notifications-queue`,  
+  `petclinic.messaging.appointments.notifications-dlq`,  
+  `petclinic.messaging.appointments.availability-queue`,  
+  `petclinic.messaging.appointments.availability-dlq`.
+
+Internal consumers are disabled/enabled independently:
+
+- Notifications listener (`AppointmentNotificationsListener`) → `petclinic.messaging.appointments.internal-notifications-consumer-enabled` (default `true`)
+- Availability listener (`AppointmentAvailabilityListener`) → `petclinic.messaging.appointments.internal-availability-consumer-enabled` (default `true`)
+
+Each listener is idempotent, logs its work, and throws `AmqpRejectAndDontRequeueException` on failure so the message is dead-lettered. You can switch the internal consumers off (set the property to `false`) when migrating to an external microservice; the queues keep receiving events so another process can bind using the same names without any code changes inside the appointments module.
+
+The DLQs capture failed deliveries for later inspection. Because the workers use standard RabbitMQ semantics, you can scale horizontally simply by adding more instances (competing consumers) or by plugging in a dedicated microservice that listens to the same queues.
+
+### External Notification & Scheduling services
+
+Two standalone Spring Boot entry points ship with the codebase so you can offload work from the modulith without changing domain logic:
+
+| Service | Main class | Queue consumed | Toggle internal consumer off |
+|---------|------------|----------------|------------------------------|
+| Notification Service | `org.springframework.samples.petclinic.notifications.NotificationServiceApplication` | `appointments.notifications.q` | `petclinic.messaging.appointments.internal-notifications-consumer-enabled=false` |
+| Scheduling Service | `org.springframework.samples.petclinic.scheduling.SchedulingServiceApplication` | `appointments.availability.q` | `petclinic.messaging.appointments.internal-availability-consumer-enabled=false` |
+
+Both services reuse the same event contracts (`appointments.events.*`) and `AppointmentMessagingProperties`, so pointing them at the same broker is as simple as sharing `spring.rabbitmq.*` properties. To run them locally against the default topology:
+
+```sh
+./mvnw spring-boot:run -Dspring-boot.run.main-class=org.springframework.samples.petclinic.notifications.NotificationServiceApplication
+./mvnw spring-boot:run -Dspring-boot.run.main-class=org.springframework.samples.petclinic.scheduling.SchedulingServiceApplication
+```
+
+The scheduling service exposes a basic REST probe (`GET /api/scheduling/vets/{vetId}/capacity`) that reports how many confirmed appointments are currently tracked for a vet, showing how downstream services can build their own read models. Because the listeners throw `AmqpRejectAndDontRequeueException` on errors, the messages fall straight into the DLQs described above, regardless of whether they are processed inside the modulith or by the external microservices.
+
+### Notification Service – Email channel
+
+Set `petclinic.messaging.appointments.internal-notifications-consumer-enabled=false` when the external service handles notifications. Then configure the Notification Service with a mail server and enable the email processor:
+
+```properties
+petclinic.notifications.service-enabled=true
+petclinic.notifications.email.enabled=true
+petclinic.notifications.email.from=notifications@petclinic.test
+petclinic.notifications.email.owner-recipient=owner@example.com
+petclinic.notifications.email.vet-recipient=vet@example.com
+petclinic.notifications.email.subject-confirmed=Appointment #{appointmentId} confirmed
+petclinic.notifications.email.subject-visit-linked=Visit #{visitId} linked to appointment #{appointmentId}
+
+spring.mail.host=localhost
+spring.mail.port=1025  # e.g. MailHog
+spring.mail.username=
+spring.mail.password=
+```
+
+If `petclinic.notifications.email.enabled=false` (default), the service falls back to the lightweight logging processor. Any exception thrown by the email processor will push the message into `appointments.notifications.dlq`, ensuring failed deliveries can be retried once SMTP is restored.
 
 ## Working with Petclinic in Eclipse/STS
 

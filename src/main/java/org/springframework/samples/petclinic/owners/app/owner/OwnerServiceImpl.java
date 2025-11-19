@@ -43,10 +43,17 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
+    @Cacheable(value = "owners", key = "'username: ' + #username")
+    public Optional<Owner> findByUsername(String username) throws DataAccessException {
+        return ownerRepository.findByUsernameIgnoreCase(username);
+    }
+
+    @Override
     @Caching(evict = {
             @CacheEvict(value = "owners", key = "#owner.id"),
             @CacheEvict(value = "owners", key = "'all'"),
-            @CacheEvict(value = "owners", key = "'lastName: ' + #lastName")
+            @CacheEvict(value = "owners", key = "'lastName: ' + #owner.lastName"),
+            @CacheEvict(value = "owners", key = "'username: ' + #owner.username")
     })
     @Transactional
     public void save(Owner owner) throws DataAccessException {
@@ -57,7 +64,8 @@ public class OwnerServiceImpl implements OwnerService {
     @Caching(evict = {
             @CacheEvict(value = "owners", key = "#owner.id"),
             @CacheEvict(value = "owners", key = "'all'"),
-            @CacheEvict(value = "owners", key = "'lastName: ' + #lastName")
+            @CacheEvict(value = "owners", key = "'lastName: ' + #owner.lastName"),
+            @CacheEvict(value = "owners", key = "'username: ' + #owner.username")
     })
     @Transactional
     public void delete(Owner owner) throws DataAccessException {

@@ -139,6 +139,10 @@ public class VisitRestController implements VisitApi {
     private VisitDetailsDto toDetailsDto(Visit visit) {
         VisitDto base = visitMapper.toVisitDto(visit);
         VisitDetailsDto details = new VisitDetailsDto(base);
+        if (visit.getStatus() != null) {
+            details.setStatus(visit.getStatus().name());
+        }
+        details.setVetId(visit.getVetId());
 
         Optional<PetView> petOpt = petsFacade.findById(visit.getPetId());
         petOpt.ifPresent(pet -> {

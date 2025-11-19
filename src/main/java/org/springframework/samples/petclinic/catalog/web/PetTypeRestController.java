@@ -49,7 +49,7 @@ public class PetTypeRestController implements PettypesApi {
         this.petTypeMapper = petTypeMapper;
     }
 
-    @PreAuthorize("hasAnyRole(@roles.OWNER_ADMIN, @roles.VET_ADMIN)")
+    @PreAuthorize("hasAnyRole(@roles.OWNER_ADMIN, @roles.VET_ADMIN, @roles.OWNER, @roles.VET)")
     @Override
     public ResponseEntity<List<PetTypeDto>> listPetTypes() {
         List<PetType> petTypes = new ArrayList<>(this.petTypeService.findAll());
@@ -59,7 +59,7 @@ public class PetTypeRestController implements PettypesApi {
         return new ResponseEntity<>(petTypeMapper.toPetTypeDtos(petTypes), HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole(@roles.OWNER_ADMIN, @roles.VET_ADMIN)")
+    @PreAuthorize("hasAnyRole(@roles.OWNER_ADMIN, @roles.VET_ADMIN, @roles.OWNER, @roles.VET)")
     @Override
     public ResponseEntity<PetTypeDto> getPetType(Integer petTypeId) {
         return this.petTypeService.findById(petTypeId)

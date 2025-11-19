@@ -17,6 +17,8 @@ package org.springframework.samples.petclinic.visits.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +30,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.samples.petclinic.visits.api.VisitStatus;
 
 /**
  * Simple JavaBean domain object representing a visit.
@@ -62,12 +65,19 @@ public class Visit {
     @Column(name = "pet_id", nullable = false)
     private Integer petId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private VisitStatus status = VisitStatus.SCHEDULED;
+
+    @Column(name = "vet_id")
+    private Integer vetId;
 
     /**
      * Creates a new instance of Visit for the current date
      */
     public Visit() {
         this.date = LocalDate.now();
+        this.status = VisitStatus.SCHEDULED;
     }
 
 

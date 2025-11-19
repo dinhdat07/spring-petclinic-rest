@@ -17,10 +17,10 @@ import org.springframework.samples.petclinic.catalog.api.PetTypesFacade;
 import org.springframework.samples.petclinic.owners.app.owner.OwnerService;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
-import org.springframework.samples.petclinic.owners.mapper.OwnerMapperImpl;
-import org.springframework.samples.petclinic.owners.mapper.PetMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.samples.petclinic.visits.api.VisitView;
+import org.springframework.samples.petclinic.visits.api.VisitStatus;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -28,7 +28,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.samples.petclinic.owners.web.PetDetailsAssembler;
 
 @WebMvcTest(controllers = OwnerRestController.class)
-@Import({OwnerMapperImpl.class, PetMapperImpl.class, PetDetailsAssembler.class, Roles.class})
+@Import({MapStructTestConfiguration.class, PetDetailsAssembler.class, Roles.class})
 class OwnerRestControllerWebTest {
 
     @Autowired
@@ -71,7 +71,7 @@ class OwnerRestControllerWebTest {
         owner.setPets(List.of(pet));
 
         given(ownerService.findAll()).willReturn(List.of(owner));
-        given(visitsFacade.findByPetId(10)).willReturn(List.of(new VisitView(100, 10, null, "Checkup")));
+        given(visitsFacade.findByPetId(10)).willReturn(List.of(new VisitView(100, 10, null, "Checkup", VisitStatus.SCHEDULED, null)));
         given(petTypesFacade.findById(2)).willReturn(Optional.of(new PetTypeView(2, "dog")));
 
         mockMvc.perform(get("/api/owners"))

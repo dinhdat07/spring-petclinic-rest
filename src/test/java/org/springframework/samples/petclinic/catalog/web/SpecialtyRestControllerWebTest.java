@@ -17,12 +17,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.samples.petclinic.catalog.app.specialty.SpecialtyService;
 import org.springframework.samples.petclinic.catalog.domain.Specialty;
-import org.springframework.samples.petclinic.catalog.mapper.SpecialtyMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = SpecialtyRestController.class)
 @AutoConfigureMockMvc(addFilters = false)
-@Import(SpecialtyMapperImpl.class)
+@Import(MapStructTestConfiguration.class)
 class SpecialtyRestControllerWebTest {
 
     @Autowired

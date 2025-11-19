@@ -12,8 +12,8 @@ class ModularityVerificationTests {
 
         modules.verify();
         new Documenter(modules).writeDocumentation();
-        // new Documenter(modules).writeModulesAsPlantUml();   
-        // new Documenter(modules).writeIndividualModulesAsPlantUml();
+        new Documenter(modules).writeModulesAsPlantUml();   
+        new Documenter(modules).writeIndividualModulesAsPlantUml();
         // new Documenter(modules).writeModuleCanvases();
     }
 }
