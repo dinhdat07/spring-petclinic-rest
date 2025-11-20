@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
+import java.time.LocalDateTime;
+
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.scheduling.domain.SchedulingAvailabilityService;
 
@@ -25,7 +27,9 @@ class SchedulingEventListenerTests {
 
     @Test
     void delegatesConfirmedEvent() {
-        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(1, 2, 3, 5, AppointmentStatus.CONFIRMED, null);
+        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
+            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+        );
 
         listener.handleAppointmentConfirmed(event);
 
@@ -34,7 +38,9 @@ class SchedulingEventListenerTests {
 
     @Test
     void rejectsOnFailure() {
-        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(1, 2, 3, 5, AppointmentStatus.CONFIRMED, null);
+        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
+            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+        );
         doThrow(new IllegalStateException("boom")).when(availabilityService).onAppointmentConfirmed(event);
 
         assertThatThrownBy(() -> listener.handleAppointmentConfirmed(event))

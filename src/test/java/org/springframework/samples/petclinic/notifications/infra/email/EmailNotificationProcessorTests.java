@@ -15,6 +15,8 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
+import java.time.LocalDateTime;
+
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.notifications.app.NotificationProcessor;
@@ -40,7 +42,9 @@ class EmailNotificationProcessorTests {
 
     @Test
     void sendsEmailOnAppointmentConfirmed() {
-        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triaged");
+        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
+            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triaged", LocalDateTime.now()
+        );
 
         processor.onAppointmentConfirmed(event);
 
