@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NotificationServiceApplication",
+            "request": "launch",
+            "mainClass": "org.springframework.samples.petclinic.notifications.NotificationServiceApplication",
+            "projectName": "spring-petclinic-rest"
+        },
+        {
+            "type": "java",
+            "name": "SchedulingServiceApplication",
+            "request": "launch",
+            "mainClass": "org.springframework.samples.petclinic.scheduling.SchedulingServiceApplication",
+            "projectName": "spring-petclinic-rest"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-PetClinicApplication<spring-petclinic-rest>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

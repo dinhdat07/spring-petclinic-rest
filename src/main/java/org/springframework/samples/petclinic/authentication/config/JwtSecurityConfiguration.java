@@ -104,7 +104,9 @@ public class JwtSecurityConfiguration {
                         "/swagger-resources/**",
                         "/webjars/**",
                         "/login",
-                        "/api/auth/**")
+                        "/api/auth/**",
+                        "/api/scheduling/**"
+                    )
                     .permitAll()
                     .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
