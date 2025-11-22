@@ -8,12 +8,20 @@ DROP TABLE owners IF EXISTS;
 DROP TABLE roles IF EXISTS;
 DROP TABLE users IF EXISTS;
 
+CREATE  TABLE users (
+  username    VARCHAR(20) NOT NULL ,
+  password    VARCHAR(60) NOT NULL ,
+  enabled     BOOLEAN DEFAULT TRUE NOT NULL ,
+  PRIMARY KEY (username)
+);
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
   first_name VARCHAR(30),
-  last_name  VARCHAR(30)
+  last_name  VARCHAR(30),
+  username   VARCHAR(20) UNIQUE
 );
+ALTER TABLE vets ADD CONSTRAINT fk_vets_users FOREIGN KEY (username) REFERENCES users (username);
 CREATE INDEX vets_last_name ON vets (last_name);
 
 CREATE TABLE specialties (
@@ -41,8 +49,10 @@ CREATE TABLE owners (
   last_name  VARCHAR_IGNORECASE(30),
   address    VARCHAR(255),
   city       VARCHAR(80),
-  telephone  VARCHAR(20)
+  telephone  VARCHAR(20),
+  username   VARCHAR(20) UNIQUE
 );
+ALTER TABLE owners ADD CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users (username);
 CREATE INDEX owners_last_name ON owners (last_name);
 
 CREATE TABLE pets (
@@ -60,17 +70,36 @@ CREATE TABLE visits (
   id          INTEGER IDENTITY PRIMARY KEY,
   pet_id      INTEGER NOT NULL,
   visit_date  DATE,
-  description VARCHAR(255)
+  description VARCHAR(255),
+  status      VARCHAR(20) DEFAULT 'SCHEDULED' NOT NULL,
+  vet_id      INTEGER
 );
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
+ALTER TABLE visits ADD CONSTRAINT fk_visits_vets FOREIGN KEY (vet_id) REFERENCES vets (id);
 CREATE INDEX visits_pet_id ON visits (pet_id);
+CREATE INDEX visits_vet_id ON visits (vet_id);
 
-CREATE  TABLE users (
-  username    VARCHAR(20) NOT NULL ,
-  password    VARCHAR(60) NOT NULL ,
-  enabled     BOOLEAN DEFAULT TRUE NOT NULL ,
-  PRIMARY KEY (username)
+CREATE TABLE appointments (
+  id          INTEGER IDENTITY PRIMARY KEY,
+  owner_id    INTEGER NOT NULL,
+  pet_id      INTEGER NOT NULL,
+  start_time  TIMESTAMP NOT NULL,
+  status      VARCHAR(20) NOT NULL,
+  notes       VARCHAR(255),
+  triage_notes VARCHAR(255),
+  created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  vet_id      INTEGER,
+  visit_id    INTEGER UNIQUE
 );
+ALTER TABLE appointments ADD CONSTRAINT fk_appointments_owner FOREIGN KEY (owner_id) REFERENCES owners (id);
+ALTER TABLE appointments ADD CONSTRAINT fk_appointments_pet FOREIGN KEY (pet_id) REFERENCES pets (id);
+ALTER TABLE appointments ADD CONSTRAINT fk_appointments_vet FOREIGN KEY (vet_id) REFERENCES vets (id);
+ALTER TABLE appointments ADD CONSTRAINT fk_appointments_visit FOREIGN KEY (visit_id) REFERENCES visits (id);
+CREATE INDEX idx_appointments_owner ON appointments (owner_id);
+CREATE INDEX idx_appointments_pet ON appointments (pet_id);
+CREATE INDEX idx_appointments_vet ON appointments (vet_id);
+CREATE INDEX idx_appointments_status ON appointments (status);
 
 CREATE TABLE roles (
   id              INTEGER IDENTITY PRIMARY KEY,

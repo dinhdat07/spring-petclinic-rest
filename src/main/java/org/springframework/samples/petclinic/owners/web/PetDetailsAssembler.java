@@ -68,6 +68,8 @@ public class PetDetailsAssembler {
         dto.setPetId(view.petId());
         dto.setDate(view.date());
         dto.setDescription(view.description());
+        dto.setStatus(view.status() != null ? view.status().name() : null);
+        dto.setVetId(view.vetId());
         return dto;
     }
 

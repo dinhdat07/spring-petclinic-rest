@@ -1,8 +1,17 @@
+CREATE TABLE IF NOT EXISTS users (
+  username VARCHAR(20) NOT NULL ,
+  password VARCHAR(60) NOT NULL ,
+  enabled TINYINT NOT NULL DEFAULT 1 ,
+  PRIMARY KEY (username)
+) engine=InnoDB;
+
 CREATE TABLE IF NOT EXISTS vets (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  INDEX(last_name)
+  username VARCHAR(20) UNIQUE,
+  INDEX(last_name),
+  CONSTRAINT fk_vet_user FOREIGN KEY (username) REFERENCES users(username)
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS specialties (
@@ -32,7 +41,9 @@ CREATE TABLE IF NOT EXISTS owners (
   address VARCHAR(255),
   city VARCHAR(80),
   telephone VARCHAR(20),
-  INDEX(last_name)
+  username VARCHAR(20) UNIQUE,
+  INDEX(last_name),
+  CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users(username)
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS pets (
@@ -51,14 +62,33 @@ CREATE TABLE IF NOT EXISTS visits (
   pet_id INT(4) UNSIGNED NOT NULL,
   visit_date DATE,
   description VARCHAR(255),
-  FOREIGN KEY (pet_id) REFERENCES pets(id)
+  status VARCHAR(20) NOT NULL DEFAULT 'SCHEDULED',
+  vet_id INT(4) UNSIGNED,
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  FOREIGN KEY (vet_id) REFERENCES vets(id),
+  INDEX idx_visits_vet (vet_id)
 ) engine=InnoDB;
 
-CREATE TABLE IF NOT EXISTS users (
-  username VARCHAR(20) NOT NULL ,
-  password VARCHAR(60) NOT NULL ,
-  enabled TINYINT NOT NULL DEFAULT 1 ,
-  PRIMARY KEY (username)
+CREATE TABLE IF NOT EXISTS appointments (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  owner_id INT(4) UNSIGNED NOT NULL,
+  pet_id INT(4) UNSIGNED NOT NULL,
+  start_time DATETIME NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  notes VARCHAR(255),
+  triage_notes VARCHAR(255),
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (owner_id) REFERENCES owners(id),
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  vet_id INT(4) UNSIGNED,
+  visit_id INT(4) UNSIGNED UNIQUE,
+  FOREIGN KEY (vet_id) REFERENCES vets(id),
+  FOREIGN KEY (visit_id) REFERENCES visits(id),
+  INDEX idx_appointments_owner (owner_id),
+  INDEX idx_appointments_pet (pet_id),
+  INDEX idx_appointments_vet (vet_id),
+  INDEX idx_appointments_status (status)
 ) engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS roles (

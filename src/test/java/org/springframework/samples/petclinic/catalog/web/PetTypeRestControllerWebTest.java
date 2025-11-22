@@ -15,13 +15,13 @@ import org.springframework.context.annotation.Import;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.samples.petclinic.catalog.app.pettype.PetTypeService;
 import org.springframework.samples.petclinic.catalog.domain.PetType;
-import org.springframework.samples.petclinic.catalog.mapper.PetTypeMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.samples.petclinic.platform.props.Roles;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(controllers = PetTypeRestController.class)
-@Import({PetTypeMapperImpl.class, Roles.class})
+@Import({MapStructTestConfiguration.class, Roles.class})
 class PetTypeRestControllerWebTest {
 
     @Autowired

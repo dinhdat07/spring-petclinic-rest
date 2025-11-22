@@ -35,9 +35,15 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
+    @Cacheable(value = "vets", key = "'username: ' + #username", unless = "#result == null")
+    public Optional<Vet> findByUsername(String username) throws DataAccessException {
+        return vetRepository.findByUsernameIgnoreCase(username);
+    }
+
     @Caching(evict = {
-            @CacheEvict(value = "vets", key = "#id"),
-            @CacheEvict(value = "vets", key = "'all'"),
+            @CacheEvict(value = "vets", key = "#vet.id"),
+            @CacheEvict(value = "vets", key = "'username: ' + #vet.username"),
+            @CacheEvict(value = "vets", key = "'all'")
     })
     @Transactional
     public void save(Vet vet) throws DataAccessException {
@@ -46,8 +52,9 @@ public class VetServiceImpl implements VetService {
 
     @Override
     @Caching(evict = {
-            @CacheEvict(value = "vets", key = "#id"),
-            @CacheEvict(value = "vets", key = "'all'"),
+            @CacheEvict(value = "vets", key = "#vet.id"),
+            @CacheEvict(value = "vets", key = "'username: ' + #vet.username"),
+            @CacheEvict(value = "vets", key = "'all'")
     })
     @Transactional
     public void delete(Vet vet) throws DataAccessException {

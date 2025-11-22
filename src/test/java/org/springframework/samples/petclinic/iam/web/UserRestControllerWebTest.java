@@ -12,7 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.samples.petclinic.iam.app.UserService;
-import org.springframework.samples.petclinic.iam.mapper.UserMapperImpl;
+import org.springframework.samples.petclinic.MapStructTestConfiguration;
 import org.springframework.samples.petclinic.iam.web.dto.RoleDto;
 import org.springframework.samples.petclinic.iam.web.dto.UserDto;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,7 +20,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @WebMvcTest(controllers = UserRestController.class)
 @AutoConfigureMockMvc(addFilters = false)
-@Import(UserMapperImpl.class)
+@Import(MapStructTestConfiguration.class)
 class UserRestControllerWebTest {
 
     @Autowired
