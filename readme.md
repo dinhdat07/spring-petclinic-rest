@@ -403,6 +403,35 @@ spring.mail.password=
 
 If `petclinic.notifications.email.enabled=false` (default), the service falls back to the lightweight logging processor. Any exception thrown by the email processor will push the message into `appointments.notifications.dlq`, ensuring failed deliveries can be retried once SMTP is restored.
 
+### Scheduling Service – Database configuration
+
+`SchedulingServiceApplication` activates the `scheduling-service` profile. Configure the datasource for that profile (or export the environment variables referenced below) before running the service in production:
+
+```properties
+SCHEDULING_DB_URL=jdbc:postgresql://db.internal:5432/petclinic_scheduling
+SCHEDULING_DB_USERNAME=petclinic_scheduling
+SCHEDULING_DB_PASSWORD=********
+SCHEDULING_DB_SCHEMA=public
+```
+
+The corresponding Spring Boot properties live in `application-scheduling-service.properties`. Apply your migration tool (Flyway/Liquibase) to create the `scheduling_slots` and `scheduling_appointment_allocations` tables before starting the service.
+
+### Notification Service – SMTP placeholders
+
+`NotificationServiceApplication` activates the `notifications-service` profile. Supply real SMTP credentials through the matching environment variables:
+
+```properties
+NOTIFICATIONS_SMTP_HOST=smtp.sendgrid.net
+NOTIFICATIONS_SMTP_PORT=587
+NOTIFICATIONS_SMTP_USERNAME=apikey
+NOTIFICATIONS_SMTP_PASSWORD=********
+NOTIFICATIONS_EMAIL_FROM=notifications@petclinic.com
+NOTIFICATIONS_OWNER_EMAIL=owner@customer.com   # temporary fallback until you wire owner/vet lookup
+NOTIFICATIONS_VET_EMAIL=vet@hospital.com
+```
+
+Update the Lookup strategy (fetch owner/vet email via REST or enrich the appointment events) once those endpoints are available; the placeholders above unblock SMTP wiring in the meantime.
+
 ## Working with Petclinic in Eclipse/STS
 
 ### prerequisites
