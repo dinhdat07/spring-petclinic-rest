@@ -19,6 +19,7 @@ CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
   first_name VARCHAR(30),
   last_name  VARCHAR(30),
+  email      VARCHAR(255),
   username   VARCHAR(20) UNIQUE
 );
 ALTER TABLE vets ADD CONSTRAINT fk_vets_users FOREIGN KEY (username) REFERENCES users (username);
@@ -50,6 +51,7 @@ CREATE TABLE owners (
   address    VARCHAR(255),
   city       VARCHAR(80),
   telephone  VARCHAR(20),
+  email      VARCHAR(255),
   username   VARCHAR(20) UNIQUE
 );
 ALTER TABLE owners ADD CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users (username);

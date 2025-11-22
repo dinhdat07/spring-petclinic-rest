@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic.vets.api;
 
-public class VetsFacade {
-    
+import java.util.Optional;
+
+public interface VetsFacade {
+
+    Optional<VetView> findById(Integer id);
 }

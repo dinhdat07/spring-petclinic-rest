@@ -13,13 +13,13 @@ INSERT INTO roles (username, role) VALUES
 ('vet', 'ROLE_VET');
 
 -- Insert Vets
-INSERT INTO vets (first_name, last_name, username) VALUES 
-('James', 'Carter', 'vet'),
-('Helen', 'Leary', NULL),
-('Linda', 'Douglas', NULL),
-('Rafael', 'Ortega', NULL),
-('Henry', 'Stevens', NULL),
-('Sharon', 'Jenkins', NULL);
+INSERT INTO vets (first_name, last_name, email, username) VALUES 
+('James', 'Carter', 'james.carter@petclinic.test', 'vet'),
+('Helen', 'Leary', 'helen.leary@petclinic.test', NULL),
+('Linda', 'Douglas', 'linda.douglas@petclinic.test', NULL),
+('Rafael', 'Ortega', 'rafael.ortega@petclinic.test', NULL),
+('Henry', 'Stevens', 'henry.stevens@petclinic.test', NULL),
+('Sharon', 'Jenkins', 'sharon.jenkins@petclinic.test', NULL);
 
 -- Insert Specialties
 INSERT INTO specialties (name) VALUES 
@@ -45,17 +45,17 @@ INSERT INTO types (name) VALUES
 ('hamster');
 
 -- Insert Owners
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) VALUES 
-('George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner'),
-('Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', NULL),
-('Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', NULL),
-('Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', NULL),
-('Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', NULL),
-('Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', NULL),
-('Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', NULL),
-('Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', NULL),
-('David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', NULL),
-('Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', NULL);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) VALUES 
+('George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'george.franklin@example.com', 'owner'),
+('Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'betty.davis@example.com', NULL),
+('Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 'eduardo.rodriquez@example.com', NULL),
+('Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 'harold.davis@example.com', NULL),
+('Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 'peter.mctavish@example.com', NULL),
+('Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 'jean.coleman@example.com', NULL),
+('Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 'jeff.black@example.com', NULL),
+('Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 'maria.escobito@example.com', NULL),
+('David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'david.schroeder@example.com', NULL),
+('Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'carlos.estaban@example.com', NULL);
 
 -- Insert Pets
 INSERT INTO pets (name, birth_date, type_id, owner_id) VALUES 

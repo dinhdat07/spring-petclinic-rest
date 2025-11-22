@@ -3,6 +3,8 @@ package org.springframework.samples.petclinic.appointments.app.workflow;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -13,10 +15,14 @@ import org.springframework.samples.petclinic.appointments.app.AppointmentService
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
+import org.springframework.samples.petclinic.owners.api.OwnerView;
+import org.springframework.samples.petclinic.owners.api.OwnersFacade;
 import org.springframework.samples.petclinic.visits.api.VisitCreateCommand;
 import org.springframework.samples.petclinic.visits.api.VisitUpdateCommand;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
+import org.springframework.samples.petclinic.vets.api.VetView;
+import org.springframework.samples.petclinic.vets.api.VetsFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -32,6 +38,8 @@ public class AppointmentWorkflowService {
     private final VisitsFacade visitsFacade;
     private final AppointmentMapper appointmentMapper;
     private final ApplicationEventPublisher applicationEventPublisher;
+    private final OwnersFacade ownersFacade;
+    private final VetsFacade vetsFacade;
 
     public List<AppointmentView> findQueue(List<AppointmentStatus> statuses) {
         List<AppointmentStatus> effectiveStatuses = statuses == null
@@ -76,6 +84,8 @@ public class AppointmentWorkflowService {
 
         Appointment saved = appointmentService.save(appointment);
         AppointmentView view = appointmentMapper.toView(saved);
+        var ownerContact = requireContact("owner", view.ownerId(), resolveOwner(view.ownerId()));
+        var vetContact = requireContact("vet", view.vetId(), resolveVet(view.vetId()));
         applicationEventPublisher.publishEvent(
             new AppointmentConfirmedEvent(
                 view.id(),
@@ -84,7 +94,11 @@ public class AppointmentWorkflowService {
                 view.vetId(),
                 view.status(),
                 view.triageNotes(),
-                view.startTime()
+                view.startTime(),
+                ownerContact.email(),
+                ownerContact.name(),
+                vetContact.email(),
+                vetContact.name()
             )
         );
         return view;
@@ -134,13 +148,19 @@ public class AppointmentWorkflowService {
         }
         Appointment saved = appointmentService.save(appointment);
         AppointmentView view = appointmentMapper.toView(saved);
+        var ownerContact = requireContact("owner", view.ownerId(), resolveOwner(view.ownerId()));
+        var vetContact = requireContact("vet", view.vetId(), resolveVet(view.vetId()));
         applicationEventPublisher.publishEvent(
             new AppointmentVisitLinkedEvent(
                 view.id(),
                 view.visitId(),
                 view.ownerId(),
                 view.petId(),
-                view.vetId()
+                view.vetId(),
+                ownerContact.email(),
+                ownerContact.name(),
+                vetContact.email(),
+                vetContact.name()
             )
         );
         return view;
@@ -155,6 +175,47 @@ public class AppointmentWorkflowService {
         }
         if (command.triageNotes() != null && !command.triageNotes().isBlank()) {
             appointment.setTriageNotes(command.triageNotes());
+        }
+    }
+
+    private ContactDetails resolveOwner(Integer ownerId) {
+        if (ownerId == null) {
+            return ContactDetails.EMPTY;
+        }
+        return ownersFacade.findById(ownerId)
+            .map(owner -> new ContactDetails(buildName(owner.firstName(), owner.secondName()), owner.email()))
+            .orElse(ContactDetails.EMPTY);
+    }
+
+    private ContactDetails resolveVet(Integer vetId) {
+        if (vetId == null) {
+            return ContactDetails.EMPTY;
+        }
+        return vetsFacade.findById(vetId)
+            .map(vet -> new ContactDetails(buildName(vet.firstName(), vet.lastName()), vet.email()))
+            .orElse(ContactDetails.EMPTY);
+    }
+
+    private ContactDetails requireContact(String label, Integer id, ContactDetails contact) {
+        if (id == null || contact.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Missing %s contact information".formatted(label));
+        }
+        return contact;
+    }
+
+    private String buildName(String firstName, String lastName) {
+        return Stream.of(firstName, lastName)
+            .filter(Objects::nonNull)
+            .map(String::trim)
+            .filter(s -> !s.isEmpty())
+            .collect(Collectors.joining(" ")).trim();
+    }
+
+    private record ContactDetails(String name, String email) {
+        private static final ContactDetails EMPTY = new ContactDetails(null, null);
+
+        private boolean isEmpty() {
+            return (name == null || name.isBlank()) && (email == null || email.isBlank());
         }
     }
 }

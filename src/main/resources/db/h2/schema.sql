@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS vets (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
+  email VARCHAR(255),
   username VARCHAR(20),
   CONSTRAINT fk_vet_user FOREIGN KEY (username) REFERENCES users(username),
   CONSTRAINT uq_vet_username UNIQUE (username)
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS owners (
   address VARCHAR(255) NOT NULL,
   city VARCHAR(80) NOT NULL,
   telephone VARCHAR(20) NOT NULL,
+  email VARCHAR(255),
   username VARCHAR(20),
   CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users(username),
   CONSTRAINT uq_owner_username UNIQUE (username)

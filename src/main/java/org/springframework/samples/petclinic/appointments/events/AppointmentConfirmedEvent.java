@@ -11,6 +11,10 @@ public record AppointmentConfirmedEvent(
     Integer vetId,
     AppointmentStatus status,
     String triageNotes,
-    LocalDateTime startTime
+    LocalDateTime startTime,
+    String ownerEmail,
+    String ownerName,
+    String vetEmail,
+    String vetName
 ) {
 }
