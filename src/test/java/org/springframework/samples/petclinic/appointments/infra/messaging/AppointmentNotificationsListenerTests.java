@@ -11,6 +11,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
+import java.time.LocalDateTime;
+
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 
@@ -25,7 +27,9 @@ class AppointmentNotificationsListenerTests {
 
     @Test
     void delegatesConfirmedEvents() {
-        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage");
+        AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
+            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage", LocalDateTime.now()
+        );
 
         listener.handleAppointmentConfirmed(event);
 

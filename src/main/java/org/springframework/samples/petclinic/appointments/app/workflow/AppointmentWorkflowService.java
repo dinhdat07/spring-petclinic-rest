@@ -83,7 +83,8 @@ public class AppointmentWorkflowService {
                 view.petId(),
                 view.vetId(),
                 view.status(),
-                view.triageNotes()
+                view.triageNotes(),
+                view.startTime()
             )
         );
         return view;
@@ -131,7 +132,6 @@ public class AppointmentWorkflowService {
         if (command.triageNotes() != null && !command.triageNotes().isBlank()) {
             appointment.setTriageNotes(command.triageNotes());
         }
-
         Appointment saved = appointmentService.save(appointment);
         AppointmentView view = appointmentMapper.toView(saved);
         applicationEventPublisher.publishEvent(
