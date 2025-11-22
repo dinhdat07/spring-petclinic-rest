@@ -9,12 +9,12 @@ INSERT IGNORE INTO roles (username, role) VALUES ('admin', 'ROLE_ADMIN');
 INSERT IGNORE INTO roles (username, role) VALUES ('owner', 'ROLE_OWNER');
 INSERT IGNORE INTO roles (username, role) VALUES ('vet', 'ROLE_VET');
 
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (1, 'James', 'Carter', 'vet');
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (2, 'Helen', 'Leary', NULL);
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (3, 'Linda', 'Douglas', NULL);
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (4, 'Rafael', 'Ortega', NULL);
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (5, 'Henry', 'Stevens', NULL);
-INSERT IGNORE INTO vets (id, first_name, last_name, username) VALUES (6, 'Sharon', 'Jenkins', NULL);
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (1, 'James', 'Carter', 'james.carter@petclinic.test', 'vet');
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (2, 'Helen', 'Leary', 'helen.leary@petclinic.test', NULL);
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (3, 'Linda', 'Douglas', 'linda.douglas@petclinic.test', NULL);
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (4, 'Rafael', 'Ortega', 'rafael.ortega@petclinic.test', NULL);
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (5, 'Henry', 'Stevens', 'henry.stevens@petclinic.test', NULL);
+INSERT IGNORE INTO vets (id, first_name, last_name, email, username) VALUES (6, 'Sharon', 'Jenkins', 'sharon.jenkins@petclinic.test', NULL);
 
 INSERT IGNORE INTO specialties VALUES (1, 'radiology');
 INSERT IGNORE INTO specialties VALUES (2, 'surgery');
@@ -33,16 +33,16 @@ INSERT IGNORE INTO types VALUES (4, 'snake');
 INSERT IGNORE INTO types VALUES (5, 'bird');
 INSERT IGNORE INTO types VALUES (6, 'hamster');
 
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner');
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', NULL);
-INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, username) VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'george.franklin@example.com', 'owner');
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'betty.davis@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 'eduardo.rodriquez@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 'harold.davis@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 'peter.mctavish@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 'jean.coleman@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 'jeff.black@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 'maria.escobito@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'david.schroeder@example.com', NULL);
+INSERT IGNORE INTO owners (id, first_name, last_name, address, city, telephone, email, username) VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'carlos.estaban@example.com', NULL);
 
 INSERT IGNORE INTO pets VALUES (1, 'Leo', '2000-09-07', 1, 1);
 INSERT IGNORE INTO pets VALUES (2, 'Basil', '2002-08-06', 6, 2);

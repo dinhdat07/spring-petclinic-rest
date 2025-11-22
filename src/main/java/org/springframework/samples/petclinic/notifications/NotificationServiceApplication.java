@@ -10,6 +10,7 @@ public class NotificationServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(NotificationServiceApplication.class);
+        app.setAdditionalProfiles("notifications-service");
         app.setDefaultProperties(Map.of("petclinic.notifications.service-enabled", "true"));
         app.run(args);
     }

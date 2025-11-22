@@ -26,23 +26,30 @@ public class EmailNotificationProcessor implements NotificationProcessor {
     public void onAppointmentConfirmed(AppointmentConfirmedEvent event) {
         String subject = properties.getSubjectConfirmed()
             .replace("{appointmentId}", value(event.appointmentId()));
+
+        String ownerRecipient = fallbackEmail(event.ownerEmail(), properties.getOwnerRecipient());
+        String ownerName = value(event.ownerName());
+        String vetName = value(event.vetName());
+
         String body = """
             Appointment %s has been confirmed.
-            Owner ID: %s
+            Owner: %s (ID %s)
             Pet ID: %s
-            Vet ID: %s
+            Vet: %s (ID %s)
             Status: %s
             Notes: %s
             """.formatted(
             value(event.appointmentId()),
+            ownerName,
             value(event.ownerId()),
             value(event.petId()),
+            vetName,
             value(event.vetId()),
             event.status(),
             event.triageNotes() != null ? event.triageNotes() : "N/A"
         );
 
-        sendEmail(properties.getOwnerRecipient(), subject, body);
+        sendEmail(ownerRecipient, subject, body);
     }
 
     @Override
@@ -61,8 +68,8 @@ public class EmailNotificationProcessor implements NotificationProcessor {
             value(event.vetId())
         );
 
-        sendEmail(properties.getOwnerRecipient(), subject, body);
-        sendEmail(properties.getVetRecipient(), subject, body);
+        sendEmail(fallbackEmail(event.ownerEmail(), properties.getOwnerRecipient()), subject, body);
+        sendEmail(fallbackEmail(event.vetEmail(), properties.getVetRecipient()), subject, body);
     }
 
     private void sendEmail(String to, String subject, String body) {
@@ -83,5 +90,9 @@ public class EmailNotificationProcessor implements NotificationProcessor {
 
     private String value(Object obj) {
         return obj != null ? obj.toString() : "N/A";
+    }
+
+    private String fallbackEmail(String preferred, String fallback) {
+        return (preferred != null && !preferred.isBlank()) ? preferred : fallback;
     }
 }

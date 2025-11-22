@@ -5,6 +5,10 @@ public record AppointmentVisitLinkedEvent(
     Integer visitId,
     Integer ownerId,
     Integer petId,
-    Integer vetId
+    Integer vetId,
+    String ownerEmail,
+    String ownerName,
+    String vetEmail,
+    String vetName
 ) {
 }

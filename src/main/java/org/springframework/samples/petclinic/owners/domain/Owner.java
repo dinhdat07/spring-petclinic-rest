@@ -86,6 +86,9 @@ public class Owner {
     @Pattern(regexp = "^[0-9]{10}$", message = "Phone number must be exactly 10 digits")
     private String telephone;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "username", unique = true)
     private String username;
 

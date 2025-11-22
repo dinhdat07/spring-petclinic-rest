@@ -27,7 +27,8 @@ class AppointmentAvailabilityListenerTests {
     @Test
     void delegatesAvailabilityUpdates() {
         AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
-            42, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+            42, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
 
         listener.handleAppointmentConfirmed(event);
@@ -38,7 +39,8 @@ class AppointmentAvailabilityListenerTests {
     @Test
     void routesFailuresToDlq() {
         AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
-            42, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+            42, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
         doThrow(new IllegalArgumentException("failure")).when(processor).onAppointmentConfirmed(event);
 

@@ -11,12 +11,12 @@ INSERT INTO roles (username, role) VALUES ('admin', 'ROLE_ADMIN');
 INSERT INTO roles (username, role) VALUES ('owner', 'ROLE_OWNER');
 INSERT INTO roles (username, role) VALUES ('vet', 'ROLE_VET');
 
-INSERT INTO vets VALUES (1, 'James', 'Carter', 'vet');
-INSERT INTO vets VALUES (2, 'Helen', 'Leary', NULL);
-INSERT INTO vets VALUES (3, 'Linda', 'Douglas', NULL);
-INSERT INTO vets VALUES (4, 'Rafael', 'Ortega', NULL);
-INSERT INTO vets VALUES (5, 'Henry', 'Stevens', NULL);
-INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins', NULL);
+INSERT INTO vets VALUES (1, 'James', 'Carter', 'james.carter@petclinic.test', 'vet');
+INSERT INTO vets VALUES (2, 'Helen', 'Leary', 'helen.leary@petclinic.test', NULL);
+INSERT INTO vets VALUES (3, 'Linda', 'Douglas', 'linda.douglas@petclinic.test', NULL);
+INSERT INTO vets VALUES (4, 'Rafael', 'Ortega', 'rafael.ortega@petclinic.test', NULL);
+INSERT INTO vets VALUES (5, 'Henry', 'Stevens', 'henry.stevens@petclinic.test', NULL);
+INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins', 'sharon.jenkins@petclinic.test', NULL);
 
 INSERT INTO specialties VALUES (1, 'radiology');
 INSERT INTO specialties VALUES (2, 'surgery');
@@ -35,16 +35,16 @@ INSERT INTO types VALUES (4, 'snake');
 INSERT INTO types VALUES (5, 'bird');
 INSERT INTO types VALUES (6, 'hamster');
 
-INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner');
-INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', NULL);
-INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', NULL);
-INSERT INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', NULL);
-INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', NULL);
-INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', NULL);
-INSERT INTO owners VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', NULL);
-INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', NULL);
-INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', NULL);
-INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', NULL);
+INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'george.franklin@example.com', 'owner');
+INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'betty.davis@example.com', NULL);
+INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 'eduardo.rodriquez@example.com', NULL);
+INSERT INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 'harold.davis@example.com', NULL);
+INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 'peter.mctavish@example.com', NULL);
+INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 'jean.coleman@example.com', NULL);
+INSERT INTO owners VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 'jeff.black@example.com', NULL);
+INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 'maria.escobito@example.com', NULL);
+INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'david.schroeder@example.com', NULL);
+INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'carlos.estaban@example.com', NULL);
 
 INSERT INTO pets VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets VALUES (2, 'Basil', '2012-08-06', 6, 2);

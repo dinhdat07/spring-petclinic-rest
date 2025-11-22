@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.scheduling.SchedulingServiceProperties;
 import org.springframework.samples.petclinic.scheduling.infra.repository.AppointmentSlotAllocationRepository;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
+@ConditionalOnProperty(value = "petclinic.scheduling.service-enabled", havingValue = "true")
 public class SchedulingAvailabilityService {
 
     private final SlotRepository slotRepository;

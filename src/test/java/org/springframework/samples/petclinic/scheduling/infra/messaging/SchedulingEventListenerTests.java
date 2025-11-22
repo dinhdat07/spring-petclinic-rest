@@ -28,7 +28,8 @@ class SchedulingEventListenerTests {
     @Test
     void delegatesConfirmedEvent() {
         AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
-            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
 
         listener.handleAppointmentConfirmed(event);
@@ -39,7 +40,8 @@ class SchedulingEventListenerTests {
     @Test
     void rejectsOnFailure() {
         AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
-            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+            1, 2, 3, 5, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
         doThrow(new IllegalStateException("boom")).when(availabilityService).onAppointmentConfirmed(event);
 

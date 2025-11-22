@@ -34,7 +34,8 @@ class AppointmentEventAmqpAdapterTests {
     @Test
     void publishesConfirmedAppointmentsToExchange() {
         var event = new AppointmentConfirmedEvent(
-            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage", LocalDateTime.now()
+            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
 
         adapter.onAppointmentConfirmed(event);
@@ -48,7 +49,9 @@ class AppointmentEventAmqpAdapterTests {
 
     @Test
     void publishesVisitLinkedEventsToExchange() {
-        var event = new AppointmentVisitLinkedEvent(10, 20, 2, 3, 4);
+        var event = new AppointmentVisitLinkedEvent(
+            10, 20, 2, 3, 4, "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
+        );
 
         adapter.onAppointmentVisitLinked(event);
 

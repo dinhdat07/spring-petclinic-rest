@@ -29,7 +29,8 @@ class NotificationEventListenerTests {
     @Test
     void delegatesConfirmedEvents() {
         AppointmentConfirmedEvent event = new AppointmentConfirmedEvent(
-            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now()
+            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "notes", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
         );
 
         listener.handleConfirmed(event);
@@ -39,7 +40,9 @@ class NotificationEventListenerTests {
 
     @Test
     void routesFailuresToDlq() {
-        AppointmentVisitLinkedEvent event = new AppointmentVisitLinkedEvent(1, 9, 2, 3, 4);
+        AppointmentVisitLinkedEvent event = new AppointmentVisitLinkedEvent(
+            1, 9, 2, 3, 4, "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
+        );
         doThrow(new IllegalStateException("boom")).when(processor).onVisitLinked(event);
 
         assertThatThrownBy(() -> listener.handleVisitLinked(event))
