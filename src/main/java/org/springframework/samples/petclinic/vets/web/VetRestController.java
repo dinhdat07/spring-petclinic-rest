@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 
 /**
@@ -38,8 +40,8 @@ public class VetRestController implements VetApi {
     private final VetMapper vetMapper;
 
     public VetRestController(VetService vetService,
-                             SpecialtiesFacade specialtiesFacade,
-                             VetMapper vetMapper) {
+            SpecialtiesFacade specialtiesFacade,
+            VetMapper vetMapper) {
         this.vetService = vetService;
         this.specialtiesFacade = specialtiesFacade;
         this.vetMapper = vetMapper;
@@ -47,10 +49,12 @@ public class VetRestController implements VetApi {
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<List<VetDto>> listVets() {
         List<VetDto> vets = this.vetService.findAll().stream()
-            .map(this::toVetDto)
-            .collect(Collectors.toList());
+                .map(this::toVetDto)
+                .collect(Collectors.toList());
         if (vets.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,15 +62,19 @@ public class VetRestController implements VetApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> getVet(Integer vetId) {
         return this.vetService.findById(vetId)
-            .map(this::toVetDto)
-            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(this::toVetDto)
+                .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> addVet(VetDto vetDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -75,33 +83,37 @@ public class VetRestController implements VetApi {
         this.vetService.save(vet);
         VetDto response = toVetDto(vet);
         headers.setLocation(UriComponentsBuilder.newInstance().path("/api/vets/{id}")
-            .buildAndExpand(vet.getId()).toUri());
+                .buildAndExpand(vet.getId()).toUri());
         return new ResponseEntity<>(response, headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> updateVet(Integer vetId, VetDto vetDto) {
         return this.vetService.findById(vetId)
-            .map(existing -> {
-                existing = vetMapper.toVet(vetDto);
-                existing.setSpecialtyIds(new HashSet<>(vetDto.getSpecialtyIds()));
-                this.vetService.save(existing);
-                return new ResponseEntity<>(toVetDto(existing), HttpStatus.NO_CONTENT);
-            })
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(existing -> {
+                    existing = vetMapper.toVet(vetDto);
+                    existing.setSpecialtyIds(new HashSet<>(vetDto.getSpecialtyIds()));
+                    this.vetService.save(existing);
+                    return new ResponseEntity<>(toVetDto(existing), HttpStatus.NO_CONTENT);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VetDto> deleteVet(Integer vetId) {
         return this.vetService.findById(vetId)
-            .map(existing -> {
-                this.vetService.delete(existing);
-                return new ResponseEntity<VetDto>(HttpStatus.NO_CONTENT);
-            })
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(existing -> {
+                    this.vetService.delete(existing);
+                    return new ResponseEntity<VetDto>(HttpStatus.NO_CONTENT);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     private VetDto toVetDto(Vet vet) {
@@ -113,8 +125,8 @@ public class VetRestController implements VetApi {
         VetDetailsDto detailed = new VetDetailsDto(base);
         if (!specialtyIds.isEmpty()) {
             List<SpecialtyDto> specialties = specialtiesFacade.findByIds(specialtyIds).stream()
-                .map(this::toSpecialtyDto)
-                .collect(Collectors.toList());
+                    .map(this::toSpecialtyDto)
+                    .collect(Collectors.toList());
             detailed.setSpecialties(specialties);
         }
 
@@ -127,7 +139,10 @@ public class VetRestController implements VetApi {
         dto.setName(view.name());
         return dto;
     }
+
+    public ResponseEntity<String> fallbackMethod(Throwable t) {
+        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
+                HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
 }
-
-
-

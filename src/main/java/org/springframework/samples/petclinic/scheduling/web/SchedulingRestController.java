@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+
 @RestController
 @RequiredArgsConstructor
 @ConditionalOnProperty(value = "petclinic.scheduling.service-enabled", havingValue = "true")
@@ -24,31 +27,36 @@ public class SchedulingRestController {
     private final SchedulingAvailabilityService availabilityService;
 
     @GetMapping("/{vetId}/capacity")
+    @CircuitBreaker(name = "schedulingCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public Map<String, Object> capacity(
-        @PathVariable Integer vetId,
-        @RequestParam(name = "date", required = false)
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
-    ) {
+            @PathVariable Integer vetId,
+            @RequestParam(name = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         LocalDate targetDate = date != null ? date : LocalDate.now();
         int booked = availabilityService.totalBookedForVetOn(vetId, targetDate);
         int capacity = availabilityService.totalCapacityForVetOn(vetId, targetDate);
         return Map.of(
-            "vetId", vetId,
-            "date", targetDate,
-            "booked", booked,
-            "capacity", capacity,
-            "remaining", Math.max(capacity - booked, 0)
-        );
+                "vetId", vetId,
+                "date", targetDate,
+                "booked", booked,
+                "capacity", capacity,
+                "remaining", Math.max(capacity - booked, 0));
     }
 
     @GetMapping("/{vetId}/slots")
+    @CircuitBreaker(name = "schedulingCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public List<SchedulingSlotDto> slots(
-        @PathVariable Integer vetId,
-        @RequestParam(name = "date")
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
-    ) {
+            @PathVariable Integer vetId,
+            @RequestParam(name = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return availabilityService.slotsForVetAndDate(vetId, date).stream()
-            .map(SchedulingSlotDto::from)
-            .toList();
+                .map(SchedulingSlotDto::from)
+                .toList();
+    }
+
+    public Map<String, Object> fallbackMethod(Throwable t) {
+        return Map.of(
+                "message", "Service temporarily unavailable, please try again later",
+                "status", "503 Service Unavailable");
     }
 }
