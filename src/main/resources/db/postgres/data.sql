@@ -21,12 +21,12 @@ ON CONFLICT (username, role) DO NOTHING;
 INSERT INTO roles (username, role) VALUES ('vet', 'ROLE_VET')
 ON CONFLICT (username, role) DO NOTHING;
 
-INSERT INTO vets (first_name, last_name, username) SELECT 'James', 'Carter', 'vet' WHERE NOT EXISTS (SELECT * FROM vets WHERE id=1);
-INSERT INTO vets (first_name, last_name, username) SELECT 'Helen', 'Leary', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=2);
-INSERT INTO vets (first_name, last_name, username) SELECT 'Linda', 'Douglas', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=3);
-INSERT INTO vets (first_name, last_name, username) SELECT 'Rafael', 'Ortega', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=4);
-INSERT INTO vets (first_name, last_name, username) SELECT 'Henry', 'Stevens', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=5);
-INSERT INTO vets (first_name, last_name, username) SELECT 'Sharon', 'Jenkins', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=6);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'James', 'Carter', 'james.carter@petclinic.test', 'vet' WHERE NOT EXISTS (SELECT * FROM vets WHERE id=1);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'Helen', 'Leary', 'helen.leary@petclinic.test', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=2);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'Linda', 'Douglas', 'linda.douglas@petclinic.test', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=3);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'Rafael', 'Ortega', 'rafael.ortega@petclinic.test', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=4);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'Henry', 'Stevens', 'henry.stevens@petclinic.test', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=5);
+INSERT INTO vets (first_name, last_name, email, username) SELECT 'Sharon', 'Jenkins', 'sharon.jenkins@petclinic.test', NULL WHERE NOT EXISTS (SELECT * FROM vets WHERE id=6);
 
 INSERT INTO specialties (name) SELECT 'radiology' WHERE NOT EXISTS (SELECT * FROM specialties WHERE name='radiology');
 INSERT INTO specialties (name) SELECT 'surgery' WHERE NOT EXISTS (SELECT * FROM specialties WHERE name='surgery');
@@ -45,16 +45,16 @@ INSERT INTO types (name) SELECT 'snake' WHERE NOT EXISTS (SELECT * FROM types WH
 INSERT INTO types (name) SELECT 'bird' WHERE NOT EXISTS (SELECT * FROM types WHERE name='bird');
 INSERT INTO types (name) SELECT 'hamster' WHERE NOT EXISTS (SELECT * FROM types WHERE name='hamster');
 
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'owner' WHERE NOT EXISTS (SELECT * FROM owners WHERE id=1);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=2);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=3);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=4);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=5);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=6);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=7);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=8);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=9);
-INSERT INTO owners (first_name, last_name, address, city, telephone, username) SELECT 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=10);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023', 'george.franklin@example.com', 'owner' WHERE NOT EXISTS (SELECT * FROM owners WHERE id=1);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749', 'betty.davis@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=2);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763', 'eduardo.rodriquez@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=3);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198', 'harold.davis@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=4);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765', 'peter.mctavish@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=5);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654', 'jean.coleman@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=6);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387', 'jeff.black@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=7);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683', 'maria.escobito@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=8);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435', 'david.schroeder@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=9);
+INSERT INTO owners (first_name, last_name, address, city, telephone, email, username) SELECT 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487', 'carlos.estaban@example.com', NULL WHERE NOT EXISTS (SELECT * FROM owners WHERE id=10);
 
 INSERT INTO pets (name, birth_date, type_id, owner_id) SELECT 'Leo', '2000-09-07', 1, 1 WHERE NOT EXISTS (SELECT * FROM pets WHERE id=1);
 INSERT INTO pets (name, birth_date, type_id, owner_id) SELECT 'Basil', '2002-08-06', 6, 2 WHERE NOT EXISTS (SELECT * FROM pets WHERE id=2);

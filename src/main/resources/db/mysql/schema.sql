@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS vets (
   id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
+  email VARCHAR(255),
   username VARCHAR(20) UNIQUE,
   INDEX(last_name),
   CONSTRAINT fk_vet_user FOREIGN KEY (username) REFERENCES users(username)
@@ -41,6 +42,7 @@ CREATE TABLE IF NOT EXISTS owners (
   address VARCHAR(255),
   city VARCHAR(80),
   telephone VARCHAR(20),
+  email VARCHAR(255),
   username VARCHAR(20) UNIQUE,
   INDEX(last_name),
   CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users(username)
@@ -99,4 +101,24 @@ CREATE TABLE IF NOT EXISTS roles (
   UNIQUE KEY uni_username_role (role,username),
   KEY fk_username_idx (username),
   CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS scheduling_slots (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  vet_id int NOT NULL,
+  start_time datetime NOT NULL,
+  end_time datetime NOT NULL,
+  capacity int NOT NULL,
+  booked_count int NOT NULL,
+  status varchar(20) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE KEY uk_scheduling_slot_vet_time (vet_id, start_time)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS scheduling_appointment_allocations (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  appointment_id int NOT NULL UNIQUE,
+  slot_id int NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_scheduling_slot FOREIGN KEY (slot_id) REFERENCES scheduling_slots (id)
 ) engine=InnoDB;

@@ -98,12 +98,15 @@ public class JwtSecurityConfiguration {
                 authz -> authz
                     .requestMatchers(
                         "/",
+                        "/actuator/**",
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
                         "/swagger-resources/**",
                         "/webjars/**",
                         "/login",
-                        "/api/auth/**")
+                        "/api/auth/**",
+                        "/api/scheduling/**"
+                    )
                     .permitAll()
                     .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import java.time.LocalDateTime;
+
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
@@ -31,7 +33,10 @@ class AppointmentEventAmqpAdapterTests {
 
     @Test
     void publishesConfirmedAppointmentsToExchange() {
-        var event = new AppointmentConfirmedEvent(1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage");
+        var event = new AppointmentConfirmedEvent(
+            1, 2, 3, 4, AppointmentStatus.CONFIRMED, "triage", LocalDateTime.now(),
+            "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
+        );
 
         adapter.onAppointmentConfirmed(event);
 
@@ -44,7 +49,9 @@ class AppointmentEventAmqpAdapterTests {
 
     @Test
     void publishesVisitLinkedEventsToExchange() {
-        var event = new AppointmentVisitLinkedEvent(10, 20, 2, 3, 4);
+        var event = new AppointmentVisitLinkedEvent(
+            10, 20, 2, 3, 4, "owner@example.com", "Owner Name", "vet@example.com", "Vet Name"
+        );
 
         adapter.onAppointmentVisitLinked(event);
 

@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS vets (
   id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
+  email VARCHAR(255),
   username VARCHAR(20),
   CONSTRAINT fk_vet_user FOREIGN KEY (username) REFERENCES users(username),
   CONSTRAINT uq_vet_username UNIQUE (username)
@@ -38,6 +39,7 @@ CREATE TABLE IF NOT EXISTS owners (
   address VARCHAR(255) NOT NULL,
   city VARCHAR(80) NOT NULL,
   telephone VARCHAR(20) NOT NULL,
+  email VARCHAR(255),
   username VARCHAR(20),
   CONSTRAINT fk_owner_user FOREIGN KEY (username) REFERENCES users(username),
   CONSTRAINT uq_owner_username UNIQUE (username)
@@ -104,4 +106,22 @@ CREATE TABLE IF NOT EXISTS roles (
   role VARCHAR(20) NOT NULL,
   UNIQUE (role, username),
   FOREIGN KEY (username) REFERENCES users(username) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS scheduling_slots (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  vet_id INTEGER NOT NULL,
+  start_time TIMESTAMP NOT NULL,
+  end_time TIMESTAMP NOT NULL,
+  capacity INTEGER NOT NULL,
+  booked_count INTEGER NOT NULL,
+  status VARCHAR(20) NOT NULL,
+  CONSTRAINT uk_scheduling_slot_vet_time UNIQUE (vet_id, start_time)
+);
+
+CREATE TABLE IF NOT EXISTS scheduling_appointment_allocations (
+  id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  appointment_id INTEGER NOT NULL UNIQUE,
+  slot_id INTEGER NOT NULL,
+  FOREIGN KEY (slot_id) REFERENCES scheduling_slots(id)
 );

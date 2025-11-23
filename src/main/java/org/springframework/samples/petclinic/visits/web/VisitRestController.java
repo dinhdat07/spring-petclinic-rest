@@ -17,6 +17,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -40,11 +42,12 @@ public class VisitRestController implements VisitApi {
     private final VisitMapper visitMapper;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<VisitDto>> listVisits() {
         List<VisitDto> visits = new ArrayList<>(
-            visitService.findAll().stream().map(this::toDetailsDto).toList()
-        );
+                visitService.findAll().stream().map(this::toDetailsDto).toList());
         if (visits.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -52,16 +55,20 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VisitDto> getVisit(Integer visitId) {
         Optional<VisitDto> dto = visitService.findById(visitId).map(this::toDetailsDto);
 
         return dto
-            .map(d -> new ResponseEntity<>(d, HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(d -> new ResponseEntity<>(d, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> addVisit(VisitDto visitDto) {
@@ -80,15 +87,16 @@ public class VisitRestController implements VisitApi {
         VisitDto responseBody = this.toDetailsDto(visit);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
-            UriComponentsBuilder.newInstance()
-                .path("/api/visits/{id}")
-                .buildAndExpand(responseBody.getId())
-                .toUri()
-        );
+                UriComponentsBuilder.newInstance()
+                        .path("/api/visits/{id}")
+                        .buildAndExpand(responseBody.getId())
+                        .toUri());
         return new ResponseEntity<>(responseBody, headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> updateVisit(Integer visitId, VisitFieldsDto visitDto) {
@@ -102,11 +110,13 @@ public class VisitRestController implements VisitApi {
         });
 
         return updated
-            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> deleteVisit(Integer visitId) {
@@ -117,8 +127,10 @@ public class VisitRestController implements VisitApi {
                 })
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
+
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VisitDto> addVisitToOwner(Integer ownerId, Integer petId, VisitFieldsDto visitFieldsDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -135,7 +147,7 @@ public class VisitRestController implements VisitApi {
                 .buildAndExpand(visit.getId()).toUri());
         return new ResponseEntity<>(visitDto, headers, HttpStatus.CREATED);
     }
-    
+
     private VisitDetailsDto toDetailsDto(Visit visit) {
         VisitDto base = visitMapper.toVisitDto(visit);
         VisitDetailsDto details = new VisitDetailsDto(base);
@@ -150,17 +162,20 @@ public class VisitRestController implements VisitApi {
 
             if (pet.ownerId() != null) {
                 ownersFacade.findById(pet.ownerId())
-                            .ifPresent(details::setOwner);
+                        .ifPresent(details::setOwner);
             }
 
             if (pet.typeId() != null) {
                 petTypesFacade.findById(pet.typeId())
-                            .ifPresent(details::setPetType);
+                        .ifPresent(details::setPetType);
             }
         });
 
         return details;
     }
 
-
+    public ResponseEntity<String> fallbackMethod(Throwable t) {
+        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
+                HttpStatus.SERVICE_UNAVAILABLE);
+    }
 }

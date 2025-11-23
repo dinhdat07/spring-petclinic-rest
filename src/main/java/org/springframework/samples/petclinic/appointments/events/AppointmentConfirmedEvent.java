@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.appointments.events;
 
+import java.time.LocalDateTime;
+
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 
 public record AppointmentConfirmedEvent(
@@ -8,6 +10,11 @@ public record AppointmentConfirmedEvent(
     Integer petId,
     Integer vetId,
     AppointmentStatus status,
-    String triageNotes
+    String triageNotes,
+    LocalDateTime startTime,
+    String ownerEmail,
+    String ownerName,
+    String vetEmail,
+    String vetName
 ) {
 }

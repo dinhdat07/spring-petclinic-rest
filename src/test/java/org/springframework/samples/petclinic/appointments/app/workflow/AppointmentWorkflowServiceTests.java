@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -25,9 +26,13 @@ import org.springframework.samples.petclinic.appointments.app.AppointmentService
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
+import org.springframework.samples.petclinic.owners.api.OwnerView;
+import org.springframework.samples.petclinic.owners.api.OwnersFacade;
+import org.springframework.samples.petclinic.vets.api.VetView;
+import org.springframework.samples.petclinic.vets.api.VetsFacade;
+import org.springframework.samples.petclinic.visits.api.VisitStatus;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
-import org.springframework.samples.petclinic.visits.api.VisitStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,6 +47,12 @@ class AppointmentWorkflowServiceTests {
     @Mock
     private ApplicationEventPublisher applicationEventPublisher;
 
+    @Mock
+    private OwnersFacade ownersFacade;
+
+    @Mock
+    private VetsFacade vetsFacade;
+
     private AppointmentWorkflowService appointmentWorkflowService;
 
     @BeforeEach
@@ -50,8 +61,12 @@ class AppointmentWorkflowServiceTests {
             appointmentService,
             visitsFacade,
             new AppointmentMapper(),
-            applicationEventPublisher
+            applicationEventPublisher,
+            ownersFacade,
+            vetsFacade
         );
+        lenient().when(ownersFacade.findById(anyInt())).thenReturn(Optional.of(new OwnerView(6, "Owner", "Franklin", "owner@example.com")));
+        lenient().when(vetsFacade.findById(anyInt())).thenReturn(Optional.of(new VetView(8, "James", "Carter", "vet@example.com")));
     }
 
     @Test
@@ -111,6 +126,54 @@ class AppointmentWorkflowServiceTests {
         assertThatThrownBy(() -> appointmentWorkflowService.findQueue(List.of()))
             .isInstanceOf(ResponseStatusException.class)
             .hasMessageContaining("status");
+    }
+
+    @Test
+    void confirmRejectsWhenOwnerContactMissing() {
+        Appointment appointment = buildAppointment(AppointmentStatus.PENDING);
+        when(appointmentService.findById(appointment.getId())).thenReturn(Optional.of(appointment));
+        when(appointmentService.save(appointment)).thenReturn(appointment);
+        when(ownersFacade.findById(appointment.getOwnerId())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> appointmentWorkflowService.confirm(
+            appointment.getId(),
+            new AppointmentConfirmationCommand("triaged", 15)
+        ))
+            .isInstanceOf(ResponseStatusException.class)
+            .hasMessageContaining("owner");
+    }
+
+    @Test
+    void confirmRejectsWhenVetMissing() {
+        Appointment appointment = buildAppointment(AppointmentStatus.PENDING);
+        appointment.setVetId(null);
+        when(appointmentService.findById(appointment.getId())).thenReturn(Optional.of(appointment));
+        when(appointmentService.save(appointment)).thenReturn(appointment);
+
+        assertThatThrownBy(() -> appointmentWorkflowService.confirm(
+            appointment.getId(),
+            new AppointmentConfirmationCommand("triaged", null)
+        ))
+            .isInstanceOf(ResponseStatusException.class)
+            .hasMessageContaining("vet");
+    }
+
+    @Test
+    void createVisitRejectsWhenVetMissing() {
+        Appointment appointment = buildAppointment(AppointmentStatus.CONFIRMED);
+        appointment.setVetId(null);
+        when(appointmentService.findById(appointment.getId())).thenReturn(Optional.of(appointment));
+        when(appointmentService.save(appointment)).thenReturn(appointment);
+        when(visitsFacade.createVisit(any())).thenReturn(
+            new VisitView(55, appointment.getPetId(), LocalDate.now(), "Follow up", VisitStatus.SCHEDULED, null)
+        );
+
+        assertThatThrownBy(() -> appointmentWorkflowService.createVisit(
+            appointment.getId(),
+            new AppointmentVisitCommand(LocalDate.now(), "Follow up", null, null)
+        ))
+            .isInstanceOf(ResponseStatusException.class)
+            .hasMessageContaining("vet");
     }
 
     private Appointment buildAppointment(AppointmentStatus status) {

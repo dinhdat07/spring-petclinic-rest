@@ -23,7 +23,7 @@ public class OwnersFacadeImpl implements OwnersFacade {
     }
 
     private OwnerView toView(Owner owner) {
-        return new OwnerView(owner.getId(), owner.getFirstName(), owner.getLastName());
+        return new OwnerView(owner.getId(), owner.getFirstName(), owner.getLastName(), owner.getEmail());
     }
     
 }
