@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -44,10 +46,12 @@ public class AppointmentRestController {
     private final AppointmentWorkflowService appointmentWorkflowService;
 
     @GetMapping
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<List<AppointmentAdminDto>> listAppointments() {
         List<AppointmentAdminDto> body = appointmentsFacade.findAll().stream()
-            .map(this::toDto)
-            .toList();
+                .map(this::toDto)
+                .toList();
         if (body.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -55,12 +59,13 @@ public class AppointmentRestController {
     }
 
     @GetMapping("/queue")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<List<AppointmentAdminDto>> getQueue(
-        @RequestParam(name = "status", required = false) List<AppointmentStatus> statuses
-    ) {
+            @RequestParam(name = "status", required = false) List<AppointmentStatus> statuses) {
         List<AppointmentAdminDto> body = appointmentWorkflowService.findQueue(statuses).stream()
-            .map(this::toDto)
-            .toList();
+                .map(this::toDto)
+                .toList();
         if (body.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -68,52 +73,56 @@ public class AppointmentRestController {
     }
 
     @GetMapping("/{appointmentId}")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> getAppointment(@PathVariable Integer appointmentId) {
         return appointmentsFacade.findById(appointmentId)
-            .map(view -> new ResponseEntity<>(toDto(view), HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(view -> new ResponseEntity<>(toDto(view), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> createAppointment(@Valid @RequestBody AppointmentAdminRequest request) {
         AppointmentCreateCommand command = new AppointmentCreateCommand(
-            request.ownerId(),
-            request.petId(),
-            request.vetId(),
-            request.startTime(),
-            request.status(),
-            request.notes(),
-            request.triageNotes()
-        );
+                request.ownerId(),
+                request.petId(),
+                request.vetId(),
+                request.startTime(),
+                request.status(),
+                request.notes(),
+                request.triageNotes());
         AppointmentView created = appointmentsFacade.create(command);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(
-            UriComponentsBuilder.fromPath("/api/appointments/{id}")
-                .buildAndExpand(created.id())
-                .toUri()
-        );
+                UriComponentsBuilder.fromPath("/api/appointments/{id}")
+                        .buildAndExpand(created.id())
+                        .toUri());
         return new ResponseEntity<>(toDto(created), headers, HttpStatus.CREATED);
     }
 
     @PutMapping("/{appointmentId}")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> updateAppointment(
-        @PathVariable Integer appointmentId,
-        @Valid @RequestBody AppointmentUpdateRequest request
-    ) {
+            @PathVariable Integer appointmentId,
+            @Valid @RequestBody AppointmentUpdateRequest request) {
         AppointmentUpdateCommand command = new AppointmentUpdateCommand(
-            request.startTime(),
-            request.status(),
-            request.notes(),
-            request.vetId(),
-            request.triageNotes(),
-            request.visitId()
-        );
+                request.startTime(),
+                request.status(),
+                request.notes(),
+                request.vetId(),
+                request.triageNotes(),
+                request.visitId());
         return appointmentsFacade.update(appointmentId, command)
-            .map(view -> new ResponseEntity<>(toDto(view), HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(view -> new ResponseEntity<>(toDto(view), HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{appointmentId}")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<Void> deleteAppointment(@PathVariable Integer appointmentId) {
         boolean deleted = appointmentsFacade.delete(appointmentId);
         if (deleted) {
@@ -123,19 +132,21 @@ public class AppointmentRestController {
     }
 
     @PostMapping("/{appointmentId}/confirm")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> confirmAppointment(
-        @PathVariable Integer appointmentId,
-        @Valid @RequestBody AppointmentConfirmationRequest request
-    ) {
+            @PathVariable Integer appointmentId,
+            @Valid @RequestBody AppointmentConfirmationRequest request) {
         AppointmentView updated = appointmentWorkflowService.confirm(appointmentId, request.toCommand());
         return new ResponseEntity<>(toDto(updated), HttpStatus.OK);
     }
 
     @PostMapping("/{appointmentId}/visits")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> createVisitFromAppointment(
-        @PathVariable Integer appointmentId,
-        @Valid @RequestBody AppointmentVisitRequest request
-    ) {
+            @PathVariable Integer appointmentId,
+            @Valid @RequestBody AppointmentVisitRequest request) {
         AppointmentView updated = appointmentWorkflowService.createVisit(appointmentId, request.toCommand());
         return new ResponseEntity<>(toDto(updated), HttpStatus.OK);
     }
@@ -143,17 +154,21 @@ public class AppointmentRestController {
     private AppointmentAdminDto toDto(AppointmentView view) {
         String status = view.status() != null ? view.status().name() : null;
         return new AppointmentAdminDto(
-            view.id(),
-            view.ownerId(),
-            view.petId(),
-            view.vetId(),
-            view.startTime(),
-            status,
-            view.notes(),
-            view.createdAt(),
-            view.updatedAt(),
-            view.triageNotes(),
-            view.visitId()
-        );
+                view.id(),
+                view.ownerId(),
+                view.petId(),
+                view.vetId(),
+                view.startTime(),
+                status,
+                view.notes(),
+                view.createdAt(),
+                view.updatedAt(),
+                view.triageNotes(),
+                view.visitId());
+    }
+
+    public ResponseEntity<String> fallbackMethod(Throwable t) {
+        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
+                HttpStatus.SERVICE_UNAVAILABLE);
     }
 }

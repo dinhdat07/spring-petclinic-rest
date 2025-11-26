@@ -29,7 +29,7 @@ public class VetServiceImpl implements VetService {
     }
 
     @Override
-    @Cacheable(value = "vets", key = "'all'")
+    @Cacheable(value = "vets_all", key = "'all'")
     public Collection<Vet> findAll() throws DataAccessException {
         return vetRepository.findAll();
     }

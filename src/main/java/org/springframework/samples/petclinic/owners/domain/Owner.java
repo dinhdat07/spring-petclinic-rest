@@ -37,6 +37,8 @@ import jakarta.validation.constraints.Pattern;
 
 import org.springframework.core.style.ToStringCreator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -91,6 +93,7 @@ public class Owner {
     private String username;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<Pet> pets;
 
     protected Set<Pet> getPetsInternal() {
@@ -156,14 +159,13 @@ public class Owner {
     @Override
     public String toString() {
         return new ToStringCreator(this)
-            .append("id", this.id)
-            .append("new", (this.getId() == null))
-            .append("lastName", this.lastName)
-            .append("firstName", this.firstName)
-            .append("address", this.address)
-            .append("city", this.city)
-            .append("telephone", this.telephone)
-            .toString();
+                .append("id", this.id)
+                .append("new", (this.getId() == null))
+                .append("lastName", this.lastName)
+                .append("firstName", this.firstName)
+                .append("address", this.address)
+                .append("city", this.city)
+                .append("telephone", this.telephone)
+                .toString();
     }
 }
-

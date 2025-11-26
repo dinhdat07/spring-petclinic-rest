@@ -30,13 +30,13 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    @Cacheable(value = "owners", key = "'all'", sync = true)
+    @Cacheable(value = "owners_all", key = "'all'")
     public Collection<Owner> findAll() throws DataAccessException {
         return ownerRepository.findAll();
     }
 
     @Override
-    @Cacheable(value = "owners", key = "'lastName: ' + #lastName")
+    // @Cacheable(value = "owners", key = "'lastName: ' + #lastName")
     public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
         List<Owner> owners = ownerRepository.findByLastNameStartingWithIgnoreCase(lastName);
         return owners;

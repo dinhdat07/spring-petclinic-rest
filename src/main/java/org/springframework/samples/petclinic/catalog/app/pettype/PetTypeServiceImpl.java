@@ -29,14 +29,14 @@ public class PetTypeServiceImpl implements PetTypeService {
     }
 
     @Override
-    @Cacheable(value = "petTypes", key = "'all'", sync = true)
+    @Cacheable(value = "petTypes_all", key = "'all'")
     public Collection<PetType> findAll() throws DataAccessException {
         return petTypeRepository.findAll();
     }
 
     @Override
     @Caching(evict = {
-            @CacheEvict(value = "petTypes", key = "#pettype.id"),
+            @CacheEvict(value = "petTypes", key = "#petType.id"),
             @CacheEvict(value = "petTypes", key = "'all'")
     })
     @Transactional
@@ -47,7 +47,7 @@ public class PetTypeServiceImpl implements PetTypeService {
     @Override
     @Transactional
     @Caching(evict = {
-            @CacheEvict(value = "petTypes", key = "#pettype.id"),
+            @CacheEvict(value = "petTypes", key = "#petType.id"),
             @CacheEvict(value = "petTypes", key = "'all'")
     })
     public void delete(PetType petType) throws DataAccessException {

@@ -36,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -53,32 +55,38 @@ public class OwnerRestController implements OwnerApi {
     private final PetDetailsAssembler petDetailsAssembler;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<OwnerDto>> listOwners(String lastName) {
         Collection<Owner> owners = (lastName != null)
-            ? this.ownerService.findByLastName(lastName)
-            : this.ownerService.findAll();
+                ? this.ownerService.findByLastName(lastName)
+                : this.ownerService.findAll();
 
         if (owners.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         List<OwnerDto> ownerDtos = owners.stream()
-            .map(this::toOwnerDetailsDto)
-            .collect(Collectors.toList());
+                .map(this::toOwnerDetailsDto)
+                .collect(Collectors.toList());
         return new ResponseEntity<>(ownerDtos, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> getOwner(Integer ownerId) {
         return this.ownerService.findById(ownerId)
-            .map(this::toOwnerDetailsDto)
-            .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(this::toOwnerDetailsDto)
+                .map(dto -> new ResponseEntity<>(dto, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> addOwner(OwnerFieldsDto ownerFieldsDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -86,11 +94,13 @@ public class OwnerRestController implements OwnerApi {
         this.ownerService.save(owner);
         OwnerDto ownerDto = toOwnerDetailsDto(owner);
         headers.setLocation(UriComponentsBuilder.newInstance()
-            .path("/api/owners/{id}").buildAndExpand(owner.getId()).toUri());
+                .path("/api/owners/{id}").buildAndExpand(owner.getId()).toUri());
         return new ResponseEntity<>(ownerDto, headers, HttpStatus.CREATED);
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> updateOwner(Integer ownerId, OwnerFieldsDto ownerFieldsDto) {
         return ownerService.findById(ownerId)
@@ -103,15 +113,17 @@ public class OwnerRestController implements OwnerApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<OwnerDto> deleteOwner(Integer ownerId) {
         return this.ownerService.findById(ownerId)
-            .map(owner -> {
-                this.ownerService.delete(owner);
-                return new ResponseEntity<OwnerDto>(HttpStatus.NO_CONTENT);
-            })
-            .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(owner -> {
+                    this.ownerService.delete(owner);
+                    return new ResponseEntity<OwnerDto>(HttpStatus.NO_CONTENT);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     private OwnerDto toOwnerDetailsDto(Owner owner) {
@@ -120,6 +132,9 @@ public class OwnerRestController implements OwnerApi {
         return dto;
     }
 
+    public ResponseEntity<String> fallbackMethod(Throwable t) {
+        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
+                HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
 }
-
-

@@ -26,23 +26,22 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    @Cacheable(value = "pets", key = "#id")
+    // @Cacheable(value = "pets", key = "#id")
     public Optional<Pet> findById(int id) throws DataAccessException {
         return petRepository.findById(id);
     }
 
     @Override
-    @Cacheable(value = "pets", key = "'all'", sync = true)
+    // @Cacheable(value = "pets_all", key = "'all'")
     public Collection<Pet> findAll() throws DataAccessException {
         return petRepository.findAll();
     }
 
     @Override
-    @Caching(evict = {
-            @CacheEvict(value = "pets", key = "#pet.id"),
-            @CacheEvict(value = "pets", key = "'all'")
-    })
-    @Transactional
+    // @Caching(evict = {
+    // @CacheEvict(value = "pets", key = "#pet.id"),
+    // @CacheEvict(value = "pets", key = "'all'")
+    // })
     public void save(Pet pet) throws DataAccessException {
         if (pet.getTypeId() == null) {
             throw new IllegalArgumentException("Pet type id must be provided");
@@ -53,11 +52,10 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    @Caching(evict = {
-            @CacheEvict(value = "pets", key = "#pet.id"),
-            @CacheEvict(value = "pets", key = "'all'")
-    })
-    @Transactional
+    // @Caching(evict = {
+    // @CacheEvict(value = "pets", key = "#pet.id"),
+    // @CacheEvict(value = "pets", key = "'all'")
+    // })
     public void delete(Pet pet) throws DataAccessException {
         petRepository.delete(pet);
     }

@@ -31,7 +31,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     }
 
     @Override
-    @Cacheable(value = "specialties", key = "'all'", sync = true)
+    @Cacheable(value = "specialties_all", key = "'all'")
     public Collection<Specialty> findAll() throws DataAccessException {
         return specialtyRepository.findAll();
     }
