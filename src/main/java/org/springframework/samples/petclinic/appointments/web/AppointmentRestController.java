@@ -31,8 +31,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -46,8 +44,6 @@ public class AppointmentRestController {
     private final AppointmentWorkflowService appointmentWorkflowService;
 
     @GetMapping
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<List<AppointmentAdminDto>> listAppointments() {
         List<AppointmentAdminDto> body = appointmentsFacade.findAll().stream()
                 .map(this::toDto)
@@ -59,8 +55,6 @@ public class AppointmentRestController {
     }
 
     @GetMapping("/queue")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<List<AppointmentAdminDto>> getQueue(
             @RequestParam(name = "status", required = false) List<AppointmentStatus> statuses) {
         List<AppointmentAdminDto> body = appointmentWorkflowService.findQueue(statuses).stream()
@@ -73,8 +67,6 @@ public class AppointmentRestController {
     }
 
     @GetMapping("/{appointmentId}")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> getAppointment(@PathVariable Integer appointmentId) {
         return appointmentsFacade.findById(appointmentId)
                 .map(view -> new ResponseEntity<>(toDto(view), HttpStatus.OK))
@@ -82,8 +74,6 @@ public class AppointmentRestController {
     }
 
     @PostMapping
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> createAppointment(@Valid @RequestBody AppointmentAdminRequest request) {
         AppointmentCreateCommand command = new AppointmentCreateCommand(
                 request.ownerId(),
@@ -103,8 +93,6 @@ public class AppointmentRestController {
     }
 
     @PutMapping("/{appointmentId}")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> updateAppointment(
             @PathVariable Integer appointmentId,
             @Valid @RequestBody AppointmentUpdateRequest request) {
@@ -121,8 +109,6 @@ public class AppointmentRestController {
     }
 
     @DeleteMapping("/{appointmentId}")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<Void> deleteAppointment(@PathVariable Integer appointmentId) {
         boolean deleted = appointmentsFacade.delete(appointmentId);
         if (deleted) {
@@ -132,8 +118,6 @@ public class AppointmentRestController {
     }
 
     @PostMapping("/{appointmentId}/confirm")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> confirmAppointment(
             @PathVariable Integer appointmentId,
             @Valid @RequestBody AppointmentConfirmationRequest request) {
@@ -142,8 +126,6 @@ public class AppointmentRestController {
     }
 
     @PostMapping("/{appointmentId}/visits")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<AppointmentAdminDto> createVisitFromAppointment(
             @PathVariable Integer appointmentId,
             @Valid @RequestBody AppointmentVisitRequest request) {
@@ -167,8 +149,4 @@ public class AppointmentRestController {
                 view.visitId());
     }
 
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
-    }
 }

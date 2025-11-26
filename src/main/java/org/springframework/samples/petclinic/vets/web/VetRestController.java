@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 
 /**
@@ -49,8 +47,6 @@ public class VetRestController implements VetApi {
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
     @Override
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     public ResponseEntity<List<VetDto>> listVets() {
         List<VetDto> vets = this.vetService.findAll().stream()
                 .map(this::toVetDto)
@@ -62,8 +58,6 @@ public class VetRestController implements VetApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> getVet(Integer vetId) {
         return this.vetService.findById(vetId)
@@ -73,8 +67,6 @@ public class VetRestController implements VetApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> addVet(VetDto vetDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -88,8 +80,6 @@ public class VetRestController implements VetApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VetDto> updateVet(Integer vetId, VetDto vetDto) {
         return this.vetService.findById(vetId)
@@ -103,8 +93,6 @@ public class VetRestController implements VetApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VetDto> deleteVet(Integer vetId) {
@@ -138,11 +126,6 @@ public class VetRestController implements VetApi {
         dto.setId(view.id());
         dto.setName(view.name());
         return dto;
-    }
-
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
     }
 
 }

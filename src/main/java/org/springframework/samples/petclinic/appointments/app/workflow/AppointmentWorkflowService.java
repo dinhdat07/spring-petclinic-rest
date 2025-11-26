@@ -10,19 +10,17 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 import org.springframework.samples.petclinic.appointments.api.AppointmentView;
+import org.springframework.samples.petclinic.appointments.api.VetContactPort;
 import org.springframework.samples.petclinic.appointments.app.AppointmentMapper;
 import org.springframework.samples.petclinic.appointments.app.AppointmentService;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
-import org.springframework.samples.petclinic.owners.api.OwnerView;
 import org.springframework.samples.petclinic.owners.api.OwnersFacade;
 import org.springframework.samples.petclinic.visits.api.VisitCreateCommand;
 import org.springframework.samples.petclinic.visits.api.VisitUpdateCommand;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
-import org.springframework.samples.petclinic.vets.api.VetView;
-import org.springframework.samples.petclinic.vets.api.VetsFacade;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -39,7 +37,7 @@ public class AppointmentWorkflowService {
     private final AppointmentMapper appointmentMapper;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final OwnersFacade ownersFacade;
-    private final VetsFacade vetsFacade;
+    private final VetContactPort vetContactPort;
 
     public List<AppointmentView> findQueue(List<AppointmentStatus> statuses) {
         List<AppointmentStatus> effectiveStatuses = statuses == null
@@ -191,8 +189,8 @@ public class AppointmentWorkflowService {
         if (vetId == null) {
             return ContactDetails.EMPTY;
         }
-        return vetsFacade.findById(vetId)
-            .map(vet -> new ContactDetails(buildName(vet.firstName(), vet.lastName()), vet.email()))
+        return vetContactPort.findContact(vetId)
+            .map(contact -> new ContactDetails(contact.name(), contact.email()))
             .orElse(ContactDetails.EMPTY);
     }
 

@@ -5,12 +5,16 @@ import java.time.format.DateTimeFormatter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.notifications.app.NotificationProcessor;
 import org.springframework.stereotype.Component;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 
 @Slf4j
 @Component
@@ -23,6 +27,8 @@ public class EmailNotificationProcessor implements NotificationProcessor {
     private static final DateTimeFormatter DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     @Override
+    @Retry(name = "rt.notifications.email")
+    @CircuitBreaker(name = "cb.notifications.email")
     public void onAppointmentConfirmed(AppointmentConfirmedEvent event) {
         String subject = properties.getSubjectConfirmed()
             .replace("{appointmentId}", value(event.appointmentId()));
@@ -53,6 +59,8 @@ public class EmailNotificationProcessor implements NotificationProcessor {
     }
 
     @Override
+    @Retry(name = "rt.notifications.email")
+    @CircuitBreaker(name = "cb.notifications.email")
     public void onVisitLinked(AppointmentVisitLinkedEvent event) {
         String subject = properties.getSubjectVisitLinked()
             .replace("{appointmentId}", value(event.appointmentId()))
@@ -73,6 +81,9 @@ public class EmailNotificationProcessor implements NotificationProcessor {
     }
 
     private void sendEmail(String to, String subject, String body) {
+        if (to == null || to.isBlank()) {
+            throw new AmqpRejectAndDontRequeueException("Missing recipient email");
+        }
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setTo(to);
@@ -81,6 +92,13 @@ public class EmailNotificationProcessor implements NotificationProcessor {
             message.setText(body);
             mailSender.send(message);
             log.info("NotificationService - sent email to {} with subject '{}'", to, subject);
+        }
+        catch (AmqpRejectAndDontRequeueException ex) {
+            throw ex;
+        }
+        catch (MailException ex) {
+            log.warn("NotificationService - mail transport failed for {}: {}", to, ex.getMessage());
+            throw new AmqpRejectAndDontRequeueException("Email delivery failed", ex);
         }
         catch (Exception ex) {
             log.error("NotificationService - failed to send email to {}", to, ex);

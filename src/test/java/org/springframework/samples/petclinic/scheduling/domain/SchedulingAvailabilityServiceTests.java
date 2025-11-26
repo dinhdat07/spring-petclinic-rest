@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import org.springframework.samples.petclinic.scheduling.infra.repository.SlotRep
 import org.springframework.test.context.TestPropertySource;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import({SchedulingAvailabilityService.class, SchedulingAvailabilityServiceTests.TestConfig.class})
 @TestPropertySource(properties = "petclinic.scheduling.service-enabled=true")
 class SchedulingAvailabilityServiceTests {

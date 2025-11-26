@@ -21,6 +21,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.samples.petclinic.appointments.api.AppointmentStatus;
 import org.springframework.samples.petclinic.appointments.api.AppointmentView;
+import org.springframework.samples.petclinic.appointments.api.VetContactPort;
 import org.springframework.samples.petclinic.appointments.app.AppointmentMapper;
 import org.springframework.samples.petclinic.appointments.app.AppointmentService;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
@@ -28,8 +29,6 @@ import org.springframework.samples.petclinic.appointments.events.AppointmentVisi
 import org.springframework.samples.petclinic.appointments.domain.Appointment;
 import org.springframework.samples.petclinic.owners.api.OwnerView;
 import org.springframework.samples.petclinic.owners.api.OwnersFacade;
-import org.springframework.samples.petclinic.vets.api.VetView;
-import org.springframework.samples.petclinic.vets.api.VetsFacade;
 import org.springframework.samples.petclinic.visits.api.VisitStatus;
 import org.springframework.samples.petclinic.visits.api.VisitView;
 import org.springframework.samples.petclinic.visits.api.VisitsFacade;
@@ -51,7 +50,7 @@ class AppointmentWorkflowServiceTests {
     private OwnersFacade ownersFacade;
 
     @Mock
-    private VetsFacade vetsFacade;
+    private VetContactPort vetContactPort;
 
     private AppointmentWorkflowService appointmentWorkflowService;
 
@@ -63,10 +62,10 @@ class AppointmentWorkflowServiceTests {
             new AppointmentMapper(),
             applicationEventPublisher,
             ownersFacade,
-            vetsFacade
+            vetContactPort
         );
         lenient().when(ownersFacade.findById(anyInt())).thenReturn(Optional.of(new OwnerView(6, "Owner", "Franklin", "owner@example.com")));
-        lenient().when(vetsFacade.findById(anyInt())).thenReturn(Optional.of(new VetView(8, "James", "Carter", "vet@example.com")));
+        lenient().when(vetContactPort.findContact(anyInt())).thenReturn(Optional.of(new VetContactPort.VetContact("James Carter", "vet@example.com")));
     }
 
     @Test

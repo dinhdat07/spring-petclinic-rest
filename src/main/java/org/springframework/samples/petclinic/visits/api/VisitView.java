@@ -2,8 +2,6 @@ package org.springframework.samples.petclinic.visits.api;
 
 import java.time.LocalDate;
 
-import org.springframework.samples.petclinic.visits.api.VisitStatus;
-
 /**
  * Lightweight projection of a visit for cross-module interactions.
  */

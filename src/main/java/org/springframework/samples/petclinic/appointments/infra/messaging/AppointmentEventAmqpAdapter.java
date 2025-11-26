@@ -7,6 +7,8 @@ import org.springframework.samples.petclinic.appointments.events.AppointmentVisi
 import org.springframework.samples.petclinic.appointments.messaging.AppointmentMessagingProperties;
 import org.springframework.stereotype.Component;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,11 +21,15 @@ public class AppointmentEventAmqpAdapter {
     private final AppointmentMessagingProperties properties;
 
     @EventListener
+    @Retry(name = "rt.appointments.messaging")
+    @CircuitBreaker(name = "cb.appointments.messaging")
     public void onAppointmentConfirmed(AppointmentConfirmedEvent event) {
         publish(properties.getConfirmedRoutingKey(), event);
     }
 
     @EventListener
+    @Retry(name = "rt.appointments.messaging")
+    @CircuitBreaker(name = "cb.appointments.messaging")
     public void onAppointmentVisitLinked(AppointmentVisitLinkedEvent event) {
         publish(properties.getVisitLinkedRoutingKey(), event);
     }

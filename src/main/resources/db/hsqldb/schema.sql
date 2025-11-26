@@ -1,7 +1,10 @@
-DROP TABLE vet_specialties IF EXISTS;
+DROP TABLE scheduling_appointment_allocations IF EXISTS;      
+DROP TABLE scheduling_slots IF EXISTS;      
+DROP TABLE appointments IF EXISTS;      
+DROP TABLE vet_specialties IF EXISTS;    
+DROP TABLE visits IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
-DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;

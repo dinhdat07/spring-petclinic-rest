@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -40,8 +38,6 @@ public class PetRestController implements PetApi {
     private final PetDetailsAssembler petDetailsAssembler;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<PetDto> getPet(Integer petId) {
         return this.petService.findById(petId)
@@ -51,8 +47,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<PetDto>> listPets() {
         List<PetDto> pets = this.petService.findAll().stream()
@@ -65,8 +59,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<PetDto> updatePet(Integer petId, PetDto petDto) {
         return this.petService.findById(petId)
@@ -79,8 +71,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<PetDto> deletePet(Integer petId) {
         return this.petService.findById(petId)
@@ -92,8 +82,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<PetDto> addPetToOwner(Integer ownerId, PetFieldsDto petFieldsDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -110,8 +98,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<PetDto> getOwnersPet(Integer ownerId, Integer petId) {
         return ownerService.findById(ownerId)
@@ -121,8 +107,6 @@ public class PetRestController implements PetApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<Void> updateOwnersPet(Integer ownerId, Integer petId, PetFieldsDto petFieldsDto) {
         Optional<Owner> owner = this.ownerService.findById(ownerId);
@@ -136,11 +120,6 @@ public class PetRestController implements PetApi {
                     return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
                 })
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
-
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
     }
 
 }

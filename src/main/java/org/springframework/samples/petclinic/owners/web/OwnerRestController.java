@@ -36,8 +36,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -55,8 +53,6 @@ public class OwnerRestController implements OwnerApi {
     private final PetDetailsAssembler petDetailsAssembler;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<OwnerDto>> listOwners(String lastName) {
         Collection<Owner> owners = (lastName != null)
@@ -74,8 +70,6 @@ public class OwnerRestController implements OwnerApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> getOwner(Integer ownerId) {
         return this.ownerService.findById(ownerId)
@@ -85,8 +79,6 @@ public class OwnerRestController implements OwnerApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> addOwner(OwnerFieldsDto ownerFieldsDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -99,8 +91,6 @@ public class OwnerRestController implements OwnerApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<OwnerDto> updateOwner(Integer ownerId, OwnerFieldsDto ownerFieldsDto) {
         return ownerService.findById(ownerId)
@@ -113,8 +103,6 @@ public class OwnerRestController implements OwnerApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<OwnerDto> deleteOwner(Integer ownerId) {
@@ -130,11 +118,6 @@ public class OwnerRestController implements OwnerApi {
         OwnerDto dto = ownerMapper.toOwnerDto(owner);
         dto.setPets(petDetailsAssembler.toDetailedDtos(owner.getPets()));
         return dto;
-    }
-
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
     }
 
 }

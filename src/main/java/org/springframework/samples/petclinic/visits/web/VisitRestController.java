@@ -17,8 +17,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
@@ -42,8 +40,6 @@ public class VisitRestController implements VisitApi {
     private final VisitMapper visitMapper;
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<VisitDto>> listVisits() {
         List<VisitDto> visits = new ArrayList<>(
@@ -55,8 +51,6 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VisitDto> getVisit(Integer visitId) {
         Optional<VisitDto> dto = visitService.findById(visitId).map(this::toDetailsDto);
@@ -67,8 +61,6 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> addVisit(VisitDto visitDto) {
@@ -95,8 +87,6 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> updateVisit(Integer visitId, VisitFieldsDto visitDto) {
@@ -115,8 +105,6 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<VisitDto> deleteVisit(Integer visitId) {
@@ -129,8 +117,6 @@ public class VisitRestController implements VisitApi {
     }
 
     @PreAuthorize("hasRole(@roles.OWNER_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<VisitDto> addVisitToOwner(Integer ownerId, Integer petId, VisitFieldsDto visitFieldsDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -174,8 +160,4 @@ public class VisitRestController implements VisitApi {
         return details;
     }
 
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
-    }
 }

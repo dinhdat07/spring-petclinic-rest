@@ -33,8 +33,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.transaction.Transactional;
 
 @RestController
@@ -52,8 +50,6 @@ public class SpecialtyRestController implements SpecialtyApi {
     }
 
     @PreAuthorize("hasAnyRole(@roles.VET_ADMIN, @roles.VET)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<List<SpecialtyDto>> listSpecialties() {
         List<SpecialtyDto> specialties = new ArrayList<>();
@@ -65,8 +61,6 @@ public class SpecialtyRestController implements SpecialtyApi {
     }
 
     @PreAuthorize("hasAnyRole(@roles.VET_ADMIN, @roles.VET)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<SpecialtyDto> getSpecialty(Integer specialtyId) {
         return this.specialtyService.findById(specialtyId)
@@ -76,8 +70,6 @@ public class SpecialtyRestController implements SpecialtyApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<SpecialtyDto> addSpecialty(SpecialtyDto specialtyDto) {
         HttpHeaders headers = new HttpHeaders();
@@ -89,8 +81,6 @@ public class SpecialtyRestController implements SpecialtyApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Override
     public ResponseEntity<SpecialtyDto> updateSpecialty(Integer specialtyId, SpecialtyDto specialtyDto) {
         return this.specialtyService.findById(specialtyId)
@@ -103,8 +93,6 @@ public class SpecialtyRestController implements SpecialtyApi {
     }
 
     @PreAuthorize("hasRole(@roles.VET_ADMIN)")
-    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "fallbackMethod")
-    @Retry(name = "myRetry")
     @Transactional
     @Override
     public ResponseEntity<SpecialtyDto> deleteSpecialty(Integer specialtyId) {
@@ -116,8 +104,4 @@ public class SpecialtyRestController implements SpecialtyApi {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    public ResponseEntity<String> fallbackMethod(Throwable t) {
-        return new ResponseEntity<>("Service temporarily unavailable. Please try again later.",
-                HttpStatus.SERVICE_UNAVAILABLE);
-    }
 }
