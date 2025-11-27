@@ -1,3 +1,4 @@
+DROP TABLE notification_log IF EXISTS;
 DROP TABLE scheduling_appointment_allocations IF EXISTS;      
 DROP TABLE scheduling_slots IF EXISTS;      
 DROP TABLE appointments IF EXISTS;      
@@ -113,6 +114,13 @@ CREATE TABLE roles (
 );
 ALTER TABLE roles ADD CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username);
 CREATE INDEX fk_username_idx ON roles (username);
+
+CREATE TABLE notification_log (
+  id INTEGER IDENTITY PRIMARY KEY,
+  appointment_id INTEGER,
+  event_type VARCHAR(50),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
 
 CREATE TABLE scheduling_slots (
   id INTEGER IDENTITY PRIMARY KEY,

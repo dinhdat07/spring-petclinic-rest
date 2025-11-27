@@ -20,12 +20,16 @@ import java.time.LocalDateTime;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.notifications.app.NotificationProcessor;
+import org.springframework.samples.petclinic.notifications.infra.repository.NotificationLogRepository;
 
 @ExtendWith(MockitoExtension.class)
 class EmailNotificationProcessorTests {
 
     @Mock
     private JavaMailSender mailSender;
+
+    @Mock
+    private NotificationLogRepository notificationLogRepository;
 
     private NotificationEmailProperties emailProperties;
 
@@ -37,7 +41,7 @@ class EmailNotificationProcessorTests {
         emailProperties.setEnabled(true);
         emailProperties.setOwnerRecipient("owner@test.local");
         emailProperties.setVetRecipient("vet@test.local");
-        processor = new EmailNotificationProcessor(mailSender, emailProperties);
+        processor = new EmailNotificationProcessor(mailSender, emailProperties, notificationLogRepository);
     }
 
     @Test

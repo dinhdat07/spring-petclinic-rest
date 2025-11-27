@@ -11,18 +11,19 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.appointments.events.AppointmentVisitLinkedEvent;
 import org.springframework.samples.petclinic.notifications.app.NotificationProcessor;
-import org.springframework.stereotype.Component;
+import org.springframework.samples.petclinic.notifications.domain.NotificationLog;
+import org.springframework.samples.petclinic.notifications.infra.repository.NotificationLogRepository;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class EmailNotificationProcessor implements NotificationProcessor {
 
     private final JavaMailSender mailSender;
     private final NotificationEmailProperties properties;
+    private final NotificationLogRepository notificationLogRepository;
 
     private static final DateTimeFormatter DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -56,6 +57,7 @@ public class EmailNotificationProcessor implements NotificationProcessor {
         );
 
         sendEmail(ownerRecipient, subject, body);
+        logEvent(event.appointmentId(), "CONFIRMED");
     }
 
     @Override
@@ -78,6 +80,7 @@ public class EmailNotificationProcessor implements NotificationProcessor {
 
         sendEmail(fallbackEmail(event.ownerEmail(), properties.getOwnerRecipient()), subject, body);
         sendEmail(fallbackEmail(event.vetEmail(), properties.getVetRecipient()), subject, body);
+        logEvent(event.appointmentId(), "VISIT_LINKED");
     }
 
     private void sendEmail(String to, String subject, String body) {
@@ -106,6 +109,15 @@ public class EmailNotificationProcessor implements NotificationProcessor {
         }
     }
 
+    private void logEvent(Integer appointmentId, String eventType) {
+        try {
+            notificationLogRepository.save(new NotificationLog(appointmentId, eventType));
+        }
+        catch (Exception ex) {
+            log.warn("NotificationService - failed to persist notification log for appointment {} ({})",
+                    appointmentId, eventType, ex);
+        }
+    }
     private String value(Object obj) {
         return obj != null ? obj.toString() : "N/A";
     }

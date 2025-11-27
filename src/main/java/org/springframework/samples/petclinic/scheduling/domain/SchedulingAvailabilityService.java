@@ -7,6 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.samples.petclinic.appointments.events.AppointmentConfirmedEvent;
 import org.springframework.samples.petclinic.scheduling.SchedulingServiceProperties;
 import org.springframework.samples.petclinic.scheduling.infra.repository.AppointmentSlotAllocationRepository;
@@ -41,13 +42,26 @@ public class SchedulingAvailabilityService {
 
         LocalDateTime slotStart = normalizeToSlotStart(event.startTime());
         LocalDateTime slotEnd = slotStart.plusMinutes(properties.getSlotDurationMinutes());
-        Slot slot = slotRepository.findByVetIdAndStartTime(event.vetId(), slotStart)
-            .orElseGet(() -> slotRepository.save(new Slot(
-                event.vetId(),
-                slotStart,
-                slotEnd,
-                properties.getSlotCapacity()
-            )));
+        
+        Slot slot;
+        try {
+            slot = slotRepository.findByVetIdAndStartTime(event.vetId(), slotStart)
+                .orElseGet(() -> slotRepository.save(new Slot(
+                    event.vetId(),
+                    slotStart,
+                    slotEnd,
+                    properties.getSlotCapacity()
+                )));
+        } catch (DataIntegrityViolationException e) {
+            slot = slotRepository.findByVetIdAndStartTime(event.vetId(), slotStart)
+                .orElseThrow();
+        }
+
+        if (slot.getBookedCount() >= slot.getCapacity()) {
+            log.warn("Slot already at capacity for vet {} at {}. Skipping allocation for appointment {}",
+                event.vetId(), slotStart, event.appointmentId());
+            return;
+        }
 
         slot.incrementBooking();
         slotRepository.save(slot);
