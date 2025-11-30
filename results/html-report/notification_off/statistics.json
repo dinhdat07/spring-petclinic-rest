@@ -1,0 +1,50 @@
+{
+  "create appointment" : {
+    "transaction" : "create appointment",
+    "sampleCount" : 500,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 48.41000000000002,
+    "medianResTime" : 43.0,
+    "minResTime" : 13.0,
+    "maxResTime" : 105.0,
+    "pct1ResTime" : 81.0,
+    "pct2ResTime" : 94.0,
+    "pct3ResTime" : 102.0,
+    "throughput" : 313.8731952291274,
+    "receivedKBytesPerSec" : 233.51430084745763,
+    "sentKBytesPerSec" : 221.61164077212806
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 1000,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 76.45399999999988,
+    "medianResTime" : 75.5,
+    "minResTime" : 13.0,
+    "maxResTime" : 206.0,
+    "pct1ResTime" : 128.0,
+    "pct2ResTime" : 147.89999999999986,
+    "pct3ResTime" : 187.97000000000003,
+    "throughput" : 620.3473945409429,
+    "receivedKBytesPerSec" : 448.4820874689826,
+    "sentKBytesPerSec" : 395.8955296215881
+  },
+  "confirm appointment" : {
+    "transaction" : "confirm appointment",
+    "sampleCount" : 500,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 104.49800000000006,
+    "medianResTime" : 99.0,
+    "minResTime" : 17.0,
+    "maxResTime" : 206.0,
+    "pct1ResTime" : 147.80000000000007,
+    "pct2ResTime" : 168.0,
+    "pct3ResTime" : 194.99,
+    "throughput" : 328.515111695138,
+    "receivedKBytesPerSec" : 230.59450969119578,
+    "sentKBytesPerSec" : 187.35627463863338
+  }
+}
