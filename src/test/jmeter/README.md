@@ -17,14 +17,20 @@ This JMeter test plan is designed to benchmark and measure the scalability of th
 Ensure you have the following installed:
 
 - **Apache JMeter 5.6.3+** ([Download here](https://jmeter.apache.org/download_jmeter.cgi))
-- **Spring PetClinic REST API running locally**
+- **Spring PetClinic REST API running locally** with its backing services (PostgreSQL, RabbitMQ, Redis). See the root `readme.md` for the quickest Docker Compose setup.
     ```sh
     # Navigate to the Spring PetClinic REST project directory and start the application
     cd /path/to/spring-petclinic-rest
-    mvn spring-boot:run
+    ./mvnw spring-boot:run
     ```
 
-_(Runs on http://localhost:9966 by default)_
+_(Runs on http://localhost:9966/petclinic by default)_
+
+### Configure host, port, and credentials
+
+- Host/port defaults (`localhost:9966`) live in the **HTTP Request Defaults** element inside the JMX plan.
+- The samplers already include the `/petclinic/api/...` context path.
+- The login request uses the seeded `admin` / `admin` account to grab a JWT. Update that first request if you change credentials or disable security.
 
 ### Running the Test from CLI
 

@@ -17,15 +17,20 @@ Ensure the following are available:
 
 - **Node.js installed** ([Download here](https://nodejs.org))
 - **jq installed** ([Download here](https://jqlang.org/download/))
-- **Spring PetClinic REST API running locally**
+- **Spring PetClinic REST API running locally** with its infrastructure (PostgreSQL, RabbitMQ, Redis). See the root `readme.md` for the Docker Compose bootstrap.
 
 ```sh
 # Run the application from its root directory
 cd /path/to/spring-petclinic-rest
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
-_(Runs by default at http://localhost:9966)_
+_(Runs by default at http://localhost:9966/petclinic)_
+
+### Configure environment and credentials
+
+- The Postman environment file (`src/test/postman/petclinic-env.postman_environment.json`) points `baseUrl` to `http://localhost:9966/petclinic`. Adjust it if you run on a different host/port.
+- The first request logs in with the seeded `admin` / `admin` user to capture a JWT (`accessToken`) used by the remaining scenarios. Update that request if you change credentials or disable security.
 
 ### Running the Test with Newman
 

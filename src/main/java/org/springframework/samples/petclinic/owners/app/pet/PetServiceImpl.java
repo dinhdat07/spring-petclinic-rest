@@ -42,6 +42,7 @@ public class PetServiceImpl implements PetService {
     // @CacheEvict(value = "pets", key = "#pet.id"),
     // @CacheEvict(value = "pets", key = "'all'")
     // })
+    @Transactional
     public void save(Pet pet) throws DataAccessException {
         if (pet.getTypeId() == null) {
             throw new IllegalArgumentException("Pet type id must be provided");
@@ -56,6 +57,7 @@ public class PetServiceImpl implements PetService {
     // @CacheEvict(value = "pets", key = "#pet.id"),
     // @CacheEvict(value = "pets", key = "'all'")
     // })
+    @Transactional
     public void delete(Pet pet) throws DataAccessException {
         petRepository.delete(pet);
     }
