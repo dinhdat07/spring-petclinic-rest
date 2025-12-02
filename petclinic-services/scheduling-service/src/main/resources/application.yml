@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:9967}
+
+spring:
+  application:
+    name: scheduling-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/petclinic_scheduling}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:12345678}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA:public}
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+  config:
+    import: optional:classpath:application-legacy.properties
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState
+
+petclinic:
+  scheduling:
+    service-enabled: true

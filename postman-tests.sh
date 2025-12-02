@@ -2,9 +2,9 @@
 
 
 # ------------------- Constants & Config ---------------------------------------------------
-COLLECTION="./src/test/postman/petclinic-nonregressiontests.postman_collection.json"
-ENVIRONMENT="./src/test/postman/petclinic-env.postman_environment.json"
-REPORT_DIR="./src/test/postman/reports"
+COLLECTION="./petclinic-services/modulith-main/src/test/postman/petclinic-nonregressiontests.postman_collection.json"
+ENVIRONMENT="./petclinic-services/modulith-main/src/test/postman/petclinic-env.postman_environment.json"
+REPORT_DIR="./petclinic-services/modulith-main/src/test/postman/reports"
 
 GREEN='\033[0;32m'
 RED='\033[0;31m'

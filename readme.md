@@ -7,6 +7,16 @@
 
 Backend-only, API-first version of Spring PetClinic. There is **no UI** in this module; the Angular client lives at https://github.com/spring-petclinic/spring-petclinic-angular.
 
+## Monorepo layout (Maven)
+```
+petclinic-services/
+  pom.xml               # parent
+  common/               # shared DTO/events/util
+  modulith-main/        # main API app (owners, vets, visits, appointments, IAM, etc.)
+  scheduling-service/   # scheduling worker
+  notification-service/ # notification worker
+```
+
 ## What this backend provides
 - REST API at `/petclinic/api/**` for owners, pets, vets, pet types, specialties, visits, appointments, and user management
 - OpenAPI 3.1 contract (`src/main/resources/openapi.yml`) with Swagger UI at `/petclinic/swagger-ui.html`
@@ -37,6 +47,70 @@ $env:SPRING_DATASOURCE_PASSWORD="petclinic"
 export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/petclinic
 export SPRING_DATASOURCE_USERNAME=petclinic
 export SPRING_DATASOURCE_PASSWORD=petclinic
+```
+
+### Build & run
+```sh
+cd petclinic-services
+mvn clean package
+
+# Main API app
+java -jar modulith-main/target/modulith-main-3.4.3.jar
+
+# Optional workers
+java -jar scheduling-service/target/scheduling-service-3.4.3.jar
+java -jar notification-service/target/notification-service-3.4.3.jar
+```
+
+Run tests (all modules):
+```sh
+cd petclinic-services
+mvn test
+```
+
+### Service runtime (per module)
+Minimal env examples (PowerShell style) before running JARs:
+
+**Scheduling Service (PostgreSQL)**
+```powershell
+$env:SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5433/petclinic_scheduling"
+$env:SPRING_DATASOURCE_USERNAME="petclinic"
+$env:SPRING_DATASOURCE_PASSWORD="petclinic"
+$env:SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.postgresql.Driver"
+$env:RABBITMQ_HOST="localhost"; $env:RABBITMQ_PORT="5672"; $env:RABBITMQ_USERNAME="guest"; $env:RABBITMQ_PASSWORD="guest"
+java -jar scheduling-service/target/scheduling-service-3.4.3.jar
+```
+
+**Scheduling Service (H2, no external DB)**
+```powershell
+$env:SPRING_DATASOURCE_URL="jdbc:h2:mem:scheduling;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"
+$env:SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.h2.Driver"
+$env:SPRING_DATASOURCE_USERNAME="sa"; $env:SPRING_DATASOURCE_PASSWORD=""
+$env:SPRING_JPA_HIBERNATE_DDL_AUTO="create-drop"
+$env:RABBITMQ_HOST="localhost"; $env:RABBITMQ_PORT="5672"; $env:RABBITMQ_USERNAME="guest"; $env:RABBITMQ_PASSWORD="guest"
+java -jar scheduling-service/target/scheduling-service-3.4.3.jar
+```
+
+**Notification Service (PostgreSQL)**
+```powershell
+$env:SPRING_DATASOURCE_URL="jdbc:postgresql://localhost:5433/petclinic"
+$env:SPRING_DATASOURCE_USERNAME="petclinic"
+$env:SPRING_DATASOURCE_PASSWORD="petclinic"
+$env:SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.postgresql.Driver"
+$env:RABBITMQ_HOST="localhost"; $env:RABBITMQ_PORT="5672"; $env:RABBITMQ_USERNAME="guest"; $env:RABBITMQ_PASSWORD="guest"
+$env:MAIL_HOST="localhost"; $env:MAIL_PORT="1025"
+java -jar notification-service/target/notification-service-3.4.3.jar
+```
+
+**Notification Service (H2)**
+```powershell
+$env:SPRING_DATASOURCE_URL="jdbc:h2:mem:notifications;MODE=PostgreSQL;DB_CLOSE_DELAY=-1"
+$env:SPRING_DATASOURCE_DRIVER_CLASS_NAME="org.h2.Driver"
+$env:SPRING_DATASOURCE_USERNAME="sa"; $env:SPRING_DATASOURCE_PASSWORD=""
+$env:SPRING_JPA_HIBERNATE_DDL_AUTO="create-drop"
+$env:RABBITMQ_HOST="localhost"; $env:RABBITMQ_PORT="5672"; $env:RABBITMQ_USERNAME="guest"; $env:RABBITMQ_PASSWORD="guest"
+$env:MAIL_HOST="localhost"; $env:MAIL_PORT="1025"
+java -jar notification-service/target/notification-service-3.4.3.jar
 ```
 
 ### Run the API
@@ -112,7 +186,7 @@ Schema and data live under `src/main/resources/db/<platform>/`. For PostgreSQL/M
   - Notification Service: `./mvnw spring-boot:run -Dspring-boot.run.main-class=org.springframework.samples.petclinic.notifications.NotificationServiceApplication`
   - Scheduling Service: `./mvnw spring-boot:run -Dspring-boot.run.main-class=org.springframework.samples.petclinic.scheduling.SchedulingServiceApplication`
 
-Configure RabbitMQ via `spring.rabbitmq.*` and SMTP via `petclinic.notifications.*`. Scheduling service datasource settings are in `application-scheduling-service.properties`.
+Configure RabbitMQ via `spring.rabbitmq.*` and SMTP via `petclinic.notifications.*`. Datasource settings are read from `SPRING_DATASOURCE_*` (or `application.yml` overrides).
 
 ## Testing
 - Unit/integration tests: `./mvnw verify`

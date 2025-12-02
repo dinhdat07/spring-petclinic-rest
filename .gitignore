@@ -1,4 +1,5 @@
 target/*
+**/target/
 .settings/*
 .classpath
 .project
@@ -24,3 +25,4 @@ springboot-petclinic-server/
 
 # newman reports
 ./src/test/postman/reports/
+petclinic-services/modulith-main/src/test/postman/reports/
