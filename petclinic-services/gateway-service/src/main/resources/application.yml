@@ -1,0 +1,104 @@
+server:
+  port: ${SERVER_PORT:8081}
+
+spring:
+  application:
+    name: gateway-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+  cloud:
+    gateway:
+      default-filters:
+        - RemoveResponseHeader=Server
+      server:
+        webflux:
+          routes:
+            # Scheduling is more specific (/api/scheduling/**) so put it first
+            - id: scheduling-service
+              uri: ${SCHEDULING_URI:http://localhost:9967}
+              predicates:
+                - Path=/api/scheduling/**, /actuator/scheduling/**
+              filters:
+                - RewritePath=/actuator/scheduling/(?<segment>.*), /actuator/${segment}
+
+            # Notifications
+            - id: notification-api
+              uri: ${NOTIFICATION_URI:http://localhost:9968}
+              predicates:
+                - Path=/notifications/**
+              filters:
+                - StripPrefix=1
+
+            - id: notification-actuator
+              uri: ${NOTIFICATION_URI:http://localhost:9968}
+              predicates:
+                - Path=/actuator/notifications/**
+              filters:
+                - RewritePath=/actuator/notifications/(?<segment>.*), /actuator/${segment}
+                
+            # Main API (context-path /petclinic)
+            - id: modulith-main
+              uri: ${BACKEND_URI:http://localhost:8080}
+              predicates:
+                - Path=/petclinic/api/**, /petclinic/actuator/**
+  config:
+    import: optional:classpath:application-legacy.properties
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState
+
+bucket4j:
+  enabled: true
+  cache-to-use: redis-lettuce
+  filters:
+    # /api/visits/** : 100 req/min per IP
+    - cache-name: rateLimitVisits
+      url: ^/api/visits(/.*)?$
+      filter-method: gateway
+      rate-limits:
+        - bandwidths:
+            - capacity: 100
+              time: 1
+              unit: MINUTES
+          cache-key: "#{getRemoteAddress()}"
+
+    # /api/owners/** : 100 req/min per IP
+    - cache-name: rateLimitOwners
+      url: ^/api/owners(/.*)?$
+      filter-method: gateway
+      rate-limits:
+        - bandwidths:
+            - capacity: 100
+              time: 1
+              unit: MINUTES
+          cache-key: "#{getRemoteAddress()}"
+
+    # /api/** : 1000 req/min, prefer principal, fallback to IP
+    - cache-name: rateLimitApi
+      url: ^/api(/.*)?$
+      filter-method: gateway
+      rate-limits:
+        - bandwidths:
+            - capacity: 1000
+              time: 1
+              unit: MINUTES
+          cache-key: "#{getPrincipal() != null ? getPrincipal() : getRemoteAddress()}"
+
+petclinic:
+  jwt:
+    base64-secret: ${PETCLINIC_JWT_BASE64_SECRET:ODcxODJlOGI4YTdhZWNlYzE4NmRhNzQwYzQ4ZmIxOTQzODMzZDcxOWQ2OGVlNTk5MjY0MTcxNTc3YTcyZmIzN2I0YmI4NmI1ZDU2NDU4YzUxZjI0MDMwM2E5MDI4YWU5YTIyMWQ5ZDNhODBhMmNhZjFkM2VlZWRhN2Y4ZWVlOTk=}

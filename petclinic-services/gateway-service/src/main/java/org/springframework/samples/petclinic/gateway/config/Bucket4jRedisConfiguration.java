@@ -1,5 +1,17 @@
-package org.springframework.samples.petclinic.platform.config;
+package org.springframework.samples.petclinic.gateway.config;
 
+import com.giffing.bucket4j.spring.boot.starter.config.cache.AsyncCacheResolver;
+import com.giffing.bucket4j.spring.boot.starter.config.cache.CacheManager;
+import com.giffing.bucket4j.spring.boot.starter.config.cache.SyncCacheResolver;
+import com.giffing.bucket4j.spring.boot.starter.config.cache.redis.lettuce.LettuceCacheManager;
+import com.giffing.bucket4j.spring.boot.starter.config.cache.redis.lettuce.LettuceCacheResolver;
+import com.giffing.bucket4j.spring.boot.starter.context.properties.Bucket4JBootProperties;
+import com.giffing.bucket4j.spring.boot.starter.context.properties.Bucket4JConfiguration;
+import io.github.bucket4j.distributed.ExpirationAfterWriteStrategy;
+import io.github.bucket4j.distributed.proxy.AbstractProxyManager;
+import io.github.bucket4j.redis.lettuce.cas.LettuceBasedProxyManager;
+import io.lettuce.core.RedisClient;
+import io.lettuce.core.RedisURI;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -7,26 +19,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
-import com.giffing.bucket4j.spring.boot.starter.config.cache.AsyncCacheResolver;
-import com.giffing.bucket4j.spring.boot.starter.config.cache.CacheManager;
-import com.giffing.bucket4j.spring.boot.starter.config.cache.redis.lettuce.LettuceCacheManager;
-import com.giffing.bucket4j.spring.boot.starter.config.cache.redis.lettuce.LettuceCacheResolver;
-import com.giffing.bucket4j.spring.boot.starter.context.properties.Bucket4JBootProperties;
-import com.giffing.bucket4j.spring.boot.starter.context.properties.Bucket4JConfiguration;
-import com.giffing.bucket4j.spring.boot.starter.config.cache.SyncCacheResolver;
-
-import io.github.bucket4j.distributed.proxy.AbstractProxyManager;
-import io.github.bucket4j.redis.lettuce.cas.LettuceBasedProxyManager;
-import io.github.bucket4j.distributed.ExpirationAfterWriteStrategy;
-import io.lettuce.core.RedisClient;
-import io.lettuce.core.RedisURI;
-
 /**
- * Provides the Redis client and Bucket4j cache resolver for rate-limiting.
+ * Bucket4j Redis cache setup for the API Gateway.
  */
 @Configuration
 @EnableConfigurationProperties(Bucket4JBootProperties.class)
-class Bucket4jRedisConfiguration {
+public class Bucket4jRedisConfiguration {
 
     @Bean(destroyMethod = "shutdown")
     @ConditionalOnMissingBean(RedisClient.class)
@@ -41,7 +39,8 @@ class Bucket4jRedisConfiguration {
         String username = properties.getUsername();
         if (StringUtils.hasText(username)) {
             builder.withAuthentication(username, password != null ? password.toCharArray() : new char[0]);
-        } else if (StringUtils.hasText(password)) {
+        }
+        else if (StringUtils.hasText(password)) {
             builder.withPassword(password);
         }
 
@@ -85,7 +84,7 @@ class Bucket4jRedisConfiguration {
     }
 
     /**
-     * Simple sync resolver that mirrors LettuceCacheResolver behaviour but reports sync.
+     * Simple sync resolver mirroring LettuceCacheResolver but marked as sync.
      */
     static class LettuceSyncResolver extends com.giffing.bucket4j.spring.boot.starter.config.cache.AbstractCacheResolverTemplate<byte[]>
         implements SyncCacheResolver {
