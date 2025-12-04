@@ -26,3 +26,5 @@ springboot-petclinic-server/
 # newman reports
 ./src/test/postman/reports/
 petclinic-services/modulith-main/src/test/postman/reports/
+petclinic_key.pem
+k3s.yaml
