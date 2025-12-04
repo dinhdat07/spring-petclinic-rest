@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduling-service
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduling-service
+  template:
+    metadata:
+      labels:
+        app: scheduling-service
+    spec:
+      containers:
+        - name: scheduling-service
+          image: whaleplay710/petclinic-scheduling-service:3.4.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9967
+          envFrom:
+            - configMapRef:
+                name: petclinic-config
+            - secretRef:
+                name: petclinic-secrets
+          env:
+            - name: SCHEDULING_DB_URL
+              value: "jdbc:postgresql://petclinic-db.c7gaycq0sgtu.ap-southeast-2.rds.amazonaws.com:5432/petclinic_scheduling"
+            - name: SCHEDULING_DB_USERNAME
+              value: "postgres"
+            - name: SCHEDULING_DB_PASSWORD
+              value: "dinhdat0710"
+            - name: SCHEDULING_DB_SCHEMA
+              value: "public"
+            - name: RABBITMQ_HOST
+              value: "rabbitmq.infra.svc.cluster.local"
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_SQL_INIT_PLATFORM
+              value: "postgres"
+            - name: SPRING_SQL_INIT_MODE
+              value: "never"
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scheduling-service
+  namespace: prod
+spec:
+  type: ClusterIP
+  selector:
+    app: scheduling-service
+  ports:
+    - port: 9967
+      targetPort: 9967

@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-service
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-service
+  template:
+    metadata:
+      labels:
+        app: gateway-service
+    spec:
+      containers:
+        - name: gateway-service
+          image: whaleplay710/petclinic-gateway-service:3.4.3
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+          envFrom:
+            - configMapRef:
+                name: petclinic-config
+            - secretRef:
+                name: petclinic-secrets
+          env:
+            - name: BACKEND_URI
+              value: "http://modulith-main:8080"
+            - name: SCHEDULING_URI
+              value: "http://scheduling-service:9967"
+            - name: NOTIFICATION_URI
+              value: "http://notification-service:9968"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "300m"
+              memory: "384Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-service
+  namespace: prod
+spec:
+  type: ClusterIP
+  selector:
+    app: gateway-service
+  ports:
+    - port: 8081
+      targetPort: 8081

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-config
+  namespace: prod
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  REDIS_HOST: "redis.infra.svc.cluster.local"
+  REDIS_PORT: "6379"
+  RABBITMQ_HOST: "rabbitmq.infra.svc.cluster.local"
+  RABBITMQ_PORT: "5672"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: petclinic-secrets
+  namespace: prod
+type: Opaque
+stringData:
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://petclinic-db.c7gaycq0sgtu.ap-southeast-2.rds.amazonaws.com:5432/petclinic"
+  SPRING_DATASOURCE_USERNAME: "postgres"
+  SPRING_DATASOURCE_PASSWORD: "dinhdat0710"
+  RABBITMQ_USERNAME: "guest"
+  RABBITMQ_PASSWORD: "guest"
+  PETCLINIC_JWT_BASE64_SECRET: "ODcxODJlOGI4YTdhZWNlYzE4NmRhNzQwYzQ4ZmIxOTQzODMzZDcxOWQ2OGVlNTk5MjY0MTcxNTc3YTcyZmIzN2I0YmI4NmI1ZDU2NDU4YzUxZjI0MDMwM2E5MDI4YWU5YTIyMWQ5ZDNhODBhMmNhZjFkM2VlZWRhN2Y4ZWVlOTk="
