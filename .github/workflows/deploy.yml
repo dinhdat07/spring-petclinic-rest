@@ -31,6 +31,10 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
+      
+      - name: Make mvnw executable
+        working-directory: petclinic-services
+        run: chmod +x mvnw
 
       - name: Run tests
         working-directory: petclinic-services
@@ -51,6 +55,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Make mvnw executable
+        working-directory: petclinic-services
+        run: chmod +x mvnw     
 
       - name: Build Maven artifacts (all services)
         working-directory: petclinic-services
