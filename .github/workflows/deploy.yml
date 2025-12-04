@@ -68,7 +68,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./petclinic-services/modulith-main
-          file: Dockerfile
+          file: ./petclinic-services/modulith-main/Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.DOCKERHUB_USERNAME }}/petclinic-modulith-main:${{ env.VERSION }}
@@ -78,7 +78,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./petclinic-services/gateway-service
-          file: Dockerfile
+          file: ./petclinic-services/gateway-service/Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.DOCKERHUB_USERNAME }}/petclinic-gateway-service:${{ env.VERSION }}
@@ -88,7 +88,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./petclinic-services/scheduling-service
-          file: Dockerfile
+          file: ./petclinic-services/scheduling-service/Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.DOCKERHUB_USERNAME }}/petclinic-scheduling-service:${{ env.VERSION }}
@@ -98,7 +98,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./petclinic-services/notification-service
-          file: Dockerfile
+          file: ./petclinic-services/notification-service/Dockerfile
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.DOCKERHUB_USERNAME }}/petclinic-notification-service:${{ env.VERSION }}
