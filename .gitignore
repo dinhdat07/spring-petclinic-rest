@@ -28,3 +28,4 @@ springboot-petclinic-server/
 petclinic-services/modulith-main/src/test/postman/reports/
 petclinic_key.pem
 k3s.yaml
+k3s-remote.yaml
