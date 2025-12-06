@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.samples.petclinic.catalog.domain.PetType;
 import org.springframework.samples.petclinic.catalog.domain.Specialty;
 import org.springframework.samples.petclinic.owners.domain.Owner;
 import org.springframework.samples.petclinic.owners.domain.Pet;
@@ -40,6 +41,9 @@ public class CacheManagerConfiguration {
                 Jackson2JsonRedisSerializer<Specialty> specialtySerializer = new Jackson2JsonRedisSerializer<>(
                                 objectMapper,
                                 Specialty.class);
+                Jackson2JsonRedisSerializer<PetType> pettypeSerializer = new Jackson2JsonRedisSerializer<>(
+                                objectMapper,
+                                PetType.class);
                 Jackson2JsonRedisSerializer<Owner> ownerSerializer = new Jackson2JsonRedisSerializer<>(objectMapper,
                                 Owner.class);
                 Jackson2JsonRedisSerializer<Pet> petSerializer = new Jackson2JsonRedisSerializer<>(objectMapper,
@@ -51,6 +55,11 @@ public class CacheManagerConfiguration {
                                 Specialty.class);
                 Jackson2JsonRedisSerializer<Collection<Specialty>> specialtiesAllSerializer = new Jackson2JsonRedisSerializer<>(
                                 objectMapper, specialtyJavaType);
+
+                JavaType pettypeJavaType = objectMapper.getTypeFactory().constructCollectionType(Collection.class,
+                                PetType.class);
+                Jackson2JsonRedisSerializer<Collection<Specialty>> pettypesAllSerializer = new Jackson2JsonRedisSerializer<>(
+                                objectMapper, pettypeJavaType);
 
                 JavaType vetJavaType = objectMapper.getTypeFactory().constructCollectionType(Collection.class,
                                 Vet.class);
@@ -106,7 +115,7 @@ public class CacheManagerConfiguration {
                                 .serializeKeysWith(RedisSerializationContext.SerializationPair
                                                 .fromSerializer(new StringRedisSerializer()))
                                 .serializeValuesWith(RedisSerializationContext.SerializationPair
-                                                .fromSerializer(specialtySerializer));
+                                                .fromSerializer(pettypeSerializer));
 
                 RedisCacheConfiguration visitCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
                                 .entryTtl(Duration.ofMinutes(5)) // TTL cho cache vets
@@ -132,6 +141,13 @@ public class CacheManagerConfiguration {
                                                 .fromSerializer(new StringRedisSerializer()))
                                 .serializeValuesWith(RedisSerializationContext.SerializationPair
                                                 .fromSerializer(specialtiesAllSerializer));
+                RedisCacheConfiguration pettypesAllCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
+                                .entryTtl(Duration.ofMinutes(60)) // TTL cho cache specialties_all
+                                .disableCachingNullValues()
+                                .serializeKeysWith(RedisSerializationContext.SerializationPair
+                                                .fromSerializer(new StringRedisSerializer()))
+                                .serializeValuesWith(RedisSerializationContext.SerializationPair
+                                                .fromSerializer(pettypesAllSerializer));
                 RedisCacheConfiguration vetsAllCacheConfig = RedisCacheConfiguration.defaultCacheConfig()
                                 .entryTtl(Duration.ofMinutes(60)) // TTL cho cache specialties_all
                                 .disableCachingNullValues()
@@ -157,10 +173,12 @@ public class CacheManagerConfiguration {
                 Map<String, RedisCacheConfiguration> cacheConfigurations = new HashMap<>();
                 cacheConfigurations.put("vets", vetCacheConfig);
                 cacheConfigurations.put("specialties", specialtyCacheConfig);
+                cacheConfigurations.put("petTypes", petTypeCacheConfig);
                 cacheConfigurations.put("owners", ownerCacheConfig);
                 cacheConfigurations.put("pets", petCacheConfig);
                 cacheConfigurations.put("visits", visitCacheConfig);
                 cacheConfigurations.put("specialties_all", specialtiesAllCacheConfig);
+                cacheConfigurations.put("petTypes_all", pettypesAllCacheConfig);
                 cacheConfigurations.put("vets_all", vetsAllCacheConfig);
                 cacheConfigurations.put("owners_all", ownersAllCacheConfig);
                 cacheConfigurations.put("visits_all", visitsAllCacheConfig);

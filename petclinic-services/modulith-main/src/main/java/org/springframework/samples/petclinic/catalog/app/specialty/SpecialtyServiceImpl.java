@@ -39,7 +39,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
     @Override
     @Caching(evict = {
             @CacheEvict(value = "specialties", key = "#specialty.id"),
-            @CacheEvict(value = "specialties", key = "'all'")
+            @CacheEvict(value = "specialties_all", key = "'all'")
     })
     @Transactional
     public void save(Specialty specialty) throws DataAccessException {

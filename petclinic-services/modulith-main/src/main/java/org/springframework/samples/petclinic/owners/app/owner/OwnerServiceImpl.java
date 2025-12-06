@@ -51,7 +51,7 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     @Caching(evict = {
             @CacheEvict(value = "owners", key = "#owner.id"),
-            @CacheEvict(value = "owners", key = "'all'"),
+            @CacheEvict(value = "owners_all", key = "'all'"),
             @CacheEvict(value = "owners", key = "'lastName: ' + #owner.lastName"),
             @CacheEvict(value = "owners", key = "'username: ' + #owner.username")
     })
@@ -63,7 +63,7 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     @Caching(evict = {
             @CacheEvict(value = "owners", key = "#owner.id"),
-            @CacheEvict(value = "owners", key = "'all'"),
+            @CacheEvict(value = "owners_all", key = "'all'"),
             @CacheEvict(value = "owners", key = "'lastName: ' + #owner.lastName"),
             @CacheEvict(value = "owners", key = "'username: ' + #owner.username")
     })
