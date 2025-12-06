@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -50,7 +51,7 @@ public class Vet {
     private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"))
+    @CollectionTable(name = "vet_specialties", joinColumns = @JoinColumn(name = "vet_id"), uniqueConstraints = @UniqueConstraint(columnNames = {"vet_id", "specialty_id"}))
     @Column(name = "specialty_id")
     private Set<Integer> specialtyIds;
 
