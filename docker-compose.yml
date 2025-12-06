@@ -14,16 +14,16 @@ services:
       - "./conf.d:/etc/mysql/conf.d:ro"
     profiles:
       - mysql
-  postgres:
-    image: postgres:16.3
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_PASSWORD=petclinic
-      - POSTGRES_USER=petclinic
-      - POSTGRES_DB=petclinic
-    profiles:
-      - postgres
+  # postgres:
+  #   image: postgres:16.3
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_PASSWORD=petclinic
+  #     - POSTGRES_USER=petclinic
+  #     - POSTGRES_DB=petclinic
+  #   profiles:
+  #     - postgres
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -44,6 +44,28 @@ services:
     image: mailhog/mailhog
     container_name: petclinic-mailhog
     ports:
-      - "1025:1025"   
-      - "8025:8025" 
-    
+      - "1025:1025"
+      - "8025:8025"
+  postgres-main:
+    image: postgres:16.3
+    container_name: postgres-main
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: petclinic
+    ports:
+      - "5433:5432"
+  postgres-scheduling:
+    image: postgres:16.3
+    container_name: postgres-scheduling
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: petclinic_scheduling
+    ports:
+      - "5434:5432"
+  redis:
+    image: redis:7
+    container_name: petclinic-redis
+    ports:
+      - "6379:6379"
