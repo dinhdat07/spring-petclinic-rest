@@ -23,6 +23,36 @@
             "projectName": "spring-petclinic-rest",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PetClinicApplication<modulith-main>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.springframework.samples.petclinic.PetClinicApplication",
+            "projectName": "modulith-main",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificationServiceApplication<notification-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.springframework.samples.petclinic.notifications.NotificationServiceApplication",
+            "projectName": "notification-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SchedulingServiceApplication<scheduling-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.springframework.samples.petclinic.scheduling.SchedulingServiceApplication",
+            "projectName": "scheduling-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
