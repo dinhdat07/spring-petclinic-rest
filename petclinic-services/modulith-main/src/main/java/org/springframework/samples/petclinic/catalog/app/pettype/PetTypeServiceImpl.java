@@ -48,7 +48,7 @@ public class PetTypeServiceImpl implements PetTypeService {
     @Transactional
     @Caching(evict = {
             @CacheEvict(value = "petTypes", key = "#petType.id"),
-            @CacheEvict(value = "petTypes", key = "'all'")
+            @CacheEvict(value = "petTypes_all", key = "'all'")
     })
     public void delete(PetType petType) throws DataAccessException {
         petTypeRepository.delete(petType);

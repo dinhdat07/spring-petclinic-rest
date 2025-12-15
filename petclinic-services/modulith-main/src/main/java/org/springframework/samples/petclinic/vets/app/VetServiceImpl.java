@@ -43,7 +43,7 @@ public class VetServiceImpl implements VetService {
     @Caching(evict = {
             @CacheEvict(value = "vets", key = "#vet.id"),
             @CacheEvict(value = "vets", key = "'username: ' + #vet.username"),
-            @CacheEvict(value = "vets", key = "'all'")
+            @CacheEvict(value = "vets_all", key = "'all'")
     })
     @Transactional
     public void save(Vet vet) throws DataAccessException {
@@ -54,7 +54,7 @@ public class VetServiceImpl implements VetService {
     @Caching(evict = {
             @CacheEvict(value = "vets", key = "#vet.id"),
             @CacheEvict(value = "vets", key = "'username: ' + #vet.username"),
-            @CacheEvict(value = "vets", key = "'all'")
+            @CacheEvict(value = "vets_all", key = "'all'")
     })
     @Transactional
     public void delete(Vet vet) throws DataAccessException {
