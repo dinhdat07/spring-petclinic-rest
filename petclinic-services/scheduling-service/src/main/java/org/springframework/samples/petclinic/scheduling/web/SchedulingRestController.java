@@ -27,7 +27,7 @@ public class SchedulingRestController {
     private final SchedulingAvailabilityService availabilityService;
 
     @GetMapping("/{vetId}/capacity")
-    @CircuitBreaker(name = "schedulingCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "capacityfallbackMethod")
     @Retry(name = "myRetry")
     public Map<String, Object> capacity(
             @PathVariable Integer vetId,
@@ -44,7 +44,7 @@ public class SchedulingRestController {
     }
 
     @GetMapping("/{vetId}/slots")
-    @CircuitBreaker(name = "schedulingCircuitBreaker", fallbackMethod = "fallbackMethod")
+    @CircuitBreaker(name = "myCircuitBreaker", fallbackMethod = "slotfallbackMethod")
     @Retry(name = "myRetry")
     public List<SchedulingSlotDto> slots(
             @PathVariable Integer vetId,
@@ -54,9 +54,13 @@ public class SchedulingRestController {
                 .toList();
     }
 
-    public Map<String, Object> fallbackMethod(Throwable t) {
+    public Map<String, Object> capacityfallbackMethod(Integer vetId, LocalDate date, Throwable t) {
         return Map.of(
                 "message", "Service temporarily unavailable, please try again later",
                 "status", "503 Service Unavailable");
+    }
+
+    public List<SchedulingSlotDto> slotfallbackMethod(Integer vetId, LocalDate date, Throwable t) {
+        return List.of();
     }
 }

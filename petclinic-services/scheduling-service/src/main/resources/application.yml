@@ -5,10 +5,10 @@ spring:
   application:
     name: scheduling-service
   datasource:
-    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/petclinic_scheduling}
+    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5434}/petclinic_scheduling}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:12345678}
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: org.postgresql.
   jpa:
     hibernate:
       ddl-auto: none

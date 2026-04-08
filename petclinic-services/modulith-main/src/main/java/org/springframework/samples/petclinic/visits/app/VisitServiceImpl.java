@@ -44,8 +44,8 @@ public class VisitServiceImpl implements VisitService {
     @Transactional
     @Caching(evict = {
             @CacheEvict(value = "visits", key = "'visitId: ' + #visit.id"),
-            @CacheEvict(value = "visits", key = "'all'"),
-            @CacheEvict(value = "visits", key = "'petId: '+ #visit.petId")
+            @CacheEvict(value = "visits_all", key = "'all'"),
+            @CacheEvict(value = "visits_all", key = "'petId: '+ #visit.petId")
     })
     public void save(Visit visit) throws DataAccessException {
         visitRepository.save(visit);
@@ -54,8 +54,8 @@ public class VisitServiceImpl implements VisitService {
     @Override
     @Caching(evict = {
             @CacheEvict(value = "visits", key = "'visitId: ' + #visit.id"),
-            @CacheEvict(value = "visits", key = "'all'"),
-            @CacheEvict(value = "visits", key = "'petId: '+ #visit.petId")
+            @CacheEvict(value = "visits_all", key = "'all'"),
+            @CacheEvict(value = "visits_all", key = "'petId: '+ #visit.petId")
     })
     public void delete(Visit visit) throws DataAccessException {
         visitRepository.delete(visit);

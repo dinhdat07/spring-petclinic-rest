@@ -1,0 +1,201 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1764996307971,21,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,20,0,1
+1764996307992,12,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,12,0,0
+1764996308005,170,get owner list,200,,Rate limiting 1-1,text,true,,66195,470,1,1,http://localhost:9966/petclinic/api/owners,169,0,0
+1764996308175,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996308182,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996308188,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996308195,170,get owner list,200,,Rate limiting 1-1,text,true,,66440,470,1,1,http://localhost:9966/petclinic/api/owners,169,0,0
+1764996308365,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996308373,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996308379,5,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,5,0,0
+1764996308385,159,get owner list,200,,Rate limiting 1-1,text,true,,66684,470,1,1,http://localhost:9966/petclinic/api/owners,159,0,0
+1764996308544,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996308551,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996308557,6,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996308563,164,get owner list,200,,Rate limiting 1-1,text,true,,66928,470,1,1,http://localhost:9966/petclinic/api/owners,164,0,0
+1764996308727,9,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996308736,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996308741,9,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996308750,173,get owner list,200,,Rate limiting 1-1,text,true,,67172,470,1,1,http://localhost:9966/petclinic/api/owners,172,0,0
+1764996308923,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996308931,7,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,7,0,0
+1764996308938,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996308946,159,get owner list,200,,Rate limiting 1-1,text,true,,67416,470,1,1,http://localhost:9966/petclinic/api/owners,159,0,0
+1764996309105,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996309112,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996309117,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996309124,167,get owner list,200,,Rate limiting 1-1,text,true,,67660,470,1,1,http://localhost:9966/petclinic/api/owners,166,0,0
+1764996309291,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996309298,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996309304,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996309311,156,get owner list,200,,Rate limiting 1-1,text,true,,67904,470,1,1,http://localhost:9966/petclinic/api/owners,156,0,0
+1764996309467,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996309474,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996309480,6,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996309487,164,get owner list,200,,Rate limiting 1-1,text,true,,68148,470,1,1,http://localhost:9966/petclinic/api/owners,164,0,0
+1764996309652,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996309659,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996309664,6,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996309670,162,get owner list,200,,Rate limiting 1-1,text,true,,68392,470,1,1,http://localhost:9966/petclinic/api/owners,162,0,0
+1764996309833,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996309840,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996309845,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996309852,167,get owner list,200,,Rate limiting 1-1,text,true,,68636,470,1,1,http://localhost:9966/petclinic/api/owners,166,0,0
+1764996310019,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996310027,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996310033,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996310041,183,get owner list,200,,Rate limiting 1-1,text,true,,68880,470,1,1,http://localhost:9966/petclinic/api/owners,181,0,0
+1764996310224,11,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996310235,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996310240,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996310248,167,get owner list,200,,Rate limiting 1-1,text,true,,69124,470,1,1,http://localhost:9966/petclinic/api/owners,166,0,0
+1764996310415,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996310422,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996310428,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996310435,172,get owner list,200,,Rate limiting 1-1,text,true,,69368,470,1,1,http://localhost:9966/petclinic/api/owners,171,0,0
+1764996310607,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996310615,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996310621,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996310628,174,get owner list,200,,Rate limiting 1-1,text,true,,69612,470,1,1,http://localhost:9966/petclinic/api/owners,173,0,0
+1764996310803,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996310810,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996310816,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996310824,174,get owner list,200,,Rate limiting 1-1,text,true,,69856,470,1,1,http://localhost:9966/petclinic/api/owners,173,0,0
+1764996310998,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311006,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996311012,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996311019,173,get owner list,200,,Rate limiting 1-1,text,true,,70100,470,1,1,http://localhost:9966/petclinic/api/owners,172,0,0
+1764996311192,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311199,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996311205,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996311212,168,get owner list,200,,Rate limiting 1-1,text,true,,70345,470,1,1,http://localhost:9966/petclinic/api/owners,167,0,0
+1764996311380,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311387,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996311392,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996311400,171,get owner list,200,,Rate limiting 1-1,text,true,,70589,470,1,1,http://localhost:9966/petclinic/api/owners,170,0,0
+1764996311571,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311579,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996311584,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996311591,178,get owner list,200,,Rate limiting 1-1,text,true,,70833,470,1,1,http://localhost:9966/petclinic/api/owners,177,0,0
+1764996311769,9,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311778,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996311783,8,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996311791,170,get owner list,200,,Rate limiting 1-1,text,true,,71077,470,1,1,http://localhost:9966/petclinic/api/owners,169,0,0
+1764996311961,10,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996311971,7,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996311978,6,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996311984,172,get owner list,200,,Rate limiting 1-1,text,true,,71321,470,1,1,http://localhost:9966/petclinic/api/owners,171,0,0
+1764996312156,7,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996312163,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996312169,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996312176,173,get owner list,200,,Rate limiting 1-1,text,true,,71565,470,1,1,http://localhost:9966/petclinic/api/owners,172,0,0
+1764996312349,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996312357,6,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996312363,7,get owner by id,200,,Rate limiting 1-1,text,true,,692,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996312370,172,get owner list,200,,Rate limiting 1-1,text,true,,71809,470,1,1,http://localhost:9966/petclinic/api/owners,171,0,0
+1764996312542,8,update owner,204,,Rate limiting 1-1,text,true,,421,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996312550,5,add owner,201,,Rate limiting 1-1,text,true,,608,621,1,1,http://localhost:9966/petclinic/api/owners,5,0,0
+1764996312555,7,get owner by id,200,,Rate limiting 1-1,text,true,,691,472,1,1,http://localhost:9966/petclinic/api/owners/1,7,0,0
+1764996312563,176,get owner list,200,,Rate limiting 1-1,text,true,,72052,470,1,1,http://localhost:9966/petclinic/api/owners,175,0,0
+1764996312739,8,update owner,204,,Rate limiting 1-1,text,true,,391,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996312747,6,add owner,201,,Rate limiting 1-1,text,true,,607,621,1,1,http://localhost:9966/petclinic/api/owners,6,0,0
+1764996312753,9,get owner by id,200,,Rate limiting 1-1,text,true,,691,472,1,1,http://localhost:9966/petclinic/api/owners/1,8,0,0
+1764996312762,174,get owner list,200,,Rate limiting 1-1,text,true,,72296,470,1,1,http://localhost:9966/petclinic/api/owners,173,0,0
+1764996312936,8,update owner,204,,Rate limiting 1-1,text,true,,420,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996312944,4,add owner,201,,Rate limiting 1-1,text,true,,607,621,1,1,http://localhost:9966/petclinic/api/owners,4,0,0
+1764996312949,6,get owner by id,200,,Rate limiting 1-1,text,true,,691,472,1,1,http://localhost:9966/petclinic/api/owners/1,6,0,0
+1764996312956,182,get owner list,200,,Rate limiting 1-1,text,true,,72540,470,1,1,http://localhost:9966/petclinic/api/owners,180,0,0
+1764996313138,7,update owner,204,,Rate limiting 1-1,text,true,,420,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313145,2,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,2,0,0
+1764996313147,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313148,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313150,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313151,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313152,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313153,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313154,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313155,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313156,2,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,2,0,0
+1764996313158,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313159,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313160,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313161,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313162,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313163,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313164,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313165,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313167,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313168,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313169,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313170,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313171,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313172,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313173,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313174,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313175,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313176,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313177,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313178,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313179,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313180,2,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,2,0,0
+1764996313182,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313183,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313184,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313185,0,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313185,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313186,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313187,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313188,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313189,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313190,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313191,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313192,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313193,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313194,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313195,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313196,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313197,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313198,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313199,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313200,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313201,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313202,0,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313203,0,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,0,0,0
+1764996313203,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313204,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313205,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313206,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313207,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313208,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313209,0,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313210,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313211,0,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313211,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313212,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313213,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313214,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313215,0,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,0,0,0
+1764996313215,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313216,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313217,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313218,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313219,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313220,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313221,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313222,0,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,0,0,0
+1764996313222,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313223,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313224,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313225,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313226,0,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313226,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313227,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313228,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313229,0,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,0,0,0
+1764996313229,1,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313230,1,update owner,429,,Rate limiting 1-1,text,false,,504,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313231,1,add owner,429,,Rate limiting 1-1,text,false,,504,621,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313232,1,get owner by id,429,,Rate limiting 1-1,text,false,,504,472,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0
+1764996313233,2,get owner list,429,,Rate limiting 1-1,text,false,,504,470,1,1,http://localhost:9966/petclinic/api/owners,1,0,0
+1764996313235,1,update owner,429,,Rate limiting 1-1,text,false,,475,622,1,1,http://localhost:9966/petclinic/api/owners/1,1,0,0

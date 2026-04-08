@@ -21,7 +21,18 @@ spring:
       mail.smtp.starttls.enable: ${MAIL_SMTP_STARTTLS:false}
   config:
     import: optional:classpath:application-legacy.properties
+  datasource:
+    url: jdbc:postgresql://localhost:5433/petclinic
+    username: postgres
+    password: 12345678
+    driver-class-name: org.postgresql.Driver
 
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 management:
   endpoints:
     web:

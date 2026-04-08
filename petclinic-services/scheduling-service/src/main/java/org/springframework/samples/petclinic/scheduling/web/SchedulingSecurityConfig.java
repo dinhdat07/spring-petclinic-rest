@@ -16,7 +16,7 @@ public class SchedulingSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/scheduling/**", "/actuator/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
         return http.build();
     }
 }

@@ -1,0 +1,1201 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1764994178837,15,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178837,15,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,15,0,1
+1764994178852,6,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178852,6,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178858,8,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178858,9,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178858,9,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178858,9,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178858,9,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994178858,10,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994178858,10,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178858,11,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994178858,11,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994178858,14,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994178867,8,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994178867,8,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994178869,7,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994178867,10,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,10,0,0
+1764994178868,9,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994178867,13,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,13,0,0
+1764994178868,14,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,14,0,0
+1764994178869,15,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,14,0,0
+1764994178873,11,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,11,0,0
+1764994178868,16,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,16,0,0
+1764994178875,78,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,78,0,0
+1764994178884,71,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,70,0,0
+1764994178885,71,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,71,0,0
+1764994178882,74,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,74,0,0
+1764994178884,72,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994178877,79,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,79,0,0
+1764994178875,81,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,81,0,0
+1764994178876,81,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,80,0,0
+1764994178880,77,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,77,0,0
+1764994178955,5,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994178956,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994178956,4,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994178956,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994178877,84,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,84,0,0
+1764994178956,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994178954,7,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994178956,5,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994178961,4,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994178957,8,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994178958,8,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994178961,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994178961,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994178961,6,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994178961,8,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994178961,8,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994178961,9,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994178968,5,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994178967,6,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994178967,6,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178966,8,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994178966,8,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994178969,6,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178962,13,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,12,0,0
+1764994178970,5,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994178966,10,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994178969,10,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994178976,3,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994178974,6,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994178974,6,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994178973,9,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178973,9,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994178973,9,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178975,8,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994178975,9,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994178975,11,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994178980,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994178980,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994178980,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994178979,8,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994178983,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994178982,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994178982,6,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994178984,6,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994178982,8,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994178987,5,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994178987,5,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994178987,5,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994178987,8,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994178986,12,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,12,0,0
+1764994178998,8,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994178988,67,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,66,0,0
+1764994178990,66,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994178988,69,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994178992,66,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994178990,68,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994178987,72,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994178995,65,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994178992,69,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994179057,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179056,5,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994178993,68,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994179055,8,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179059,5,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179059,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179058,6,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179060,4,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179061,3,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179061,6,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179061,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179063,7,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179061,9,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179064,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179064,6,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179067,5,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179064,8,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179065,7,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179065,8,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179067,7,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994179070,4,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179070,4,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179073,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179073,3,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179073,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179070,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179070,6,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179006,73,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994179072,7,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179076,10,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994179076,10,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994179075,11,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,11,0,0
+1764994179075,11,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,11,0,0
+1764994179076,10,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994179076,10,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994179076,12,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,11,0,0
+1764994179075,13,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,12,0,0
+1764994179079,10,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,9,0,0
+1764994179086,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179086,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179086,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179086,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179079,11,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,11,0,0
+1764994179087,5,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179086,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179088,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179088,5,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179089,7,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179093,5,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179096,6,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179102,7,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179110,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179090,65,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994179090,66,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994179093,65,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994179092,68,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994179090,70,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,70,0,0
+1764994179156,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179090,71,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,71,0,0
+1764994179158,5,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179155,8,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179093,70,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,70,0,0
+1764994179090,73,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,73,0,0
+1764994179161,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179160,5,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179161,6,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179163,5,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179161,7,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994179163,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179163,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179099,80,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,80,0,0
+1764994179168,9,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179168,8,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179168,8,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179170,5,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179167,8,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994179166,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179163,7,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179166,6,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179115,74,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,74,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,5,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179186,7,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179186,8,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179186,9,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179189,8,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179191,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179191,6,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179191,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179191,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179191,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179191,7,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179193,6,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179195,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179195,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179197,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179197,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179197,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179198,3,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179197,6,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179197,7,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179201,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179197,8,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179205,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179205,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179211,5,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179210,6,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179216,6,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179199,83,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,83,0,0
+1764994179201,90,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,90,0,0
+1764994179282,9,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,9,0,0
+1764994179199,94,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,94,0,0
+1764994179203,90,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,90,0,0
+1764994179291,6,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179201,96,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,96,0,0
+1764994179293,5,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179201,97,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,97,0,0
+1764994179291,7,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179293,7,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994179204,97,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,97,0,0
+1764994179297,5,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179298,4,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179298,6,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179297,7,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179298,8,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179201,106,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,105,0,0
+1764994179301,6,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179300,10,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179302,9,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179302,11,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,10,0,0
+1764994179307,8,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179306,9,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,9,0,0
+1764994179305,10,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994179311,5,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179304,14,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,13,0,0
+1764994179310,9,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,9,0,0
+1764994179308,14,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,13,0,0
+1764994179313,9,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,9,0,0
+1764994179315,9,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994179315,9,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179318,6,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179315,10,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994179317,9,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179319,8,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179322,8,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,8,0,0
+1764994179325,5,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179324,6,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179326,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179324,7,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179327,6,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179322,14,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,13,0,0
+1764994179332,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179330,10,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994179336,7,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994179339,5,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179340,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179216,130,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,130,0,0
+1764994179346,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179222,129,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,129,0,0
+1764994179351,6,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179351,8,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179357,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179360,5,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179364,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179365,5,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179370,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179369,5,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179374,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179330,68,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994179324,78,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,78,0,0
+1764994179330,72,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994179330,72,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994179334,70,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,69,0,0
+1764994179402,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179402,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179398,8,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179402,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179344,63,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994179343,64,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994179404,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179406,10,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179406,10,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179406,10,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179406,10,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179407,9,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179407,9,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994179344,72,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,71,0,0
+1764994179416,6,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179416,6,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179416,6,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179416,6,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179408,14,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,14,0,0
+1764994179416,7,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994179416,9,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179416,9,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179422,5,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179422,7,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179425,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179422,7,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179422,7,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179422,9,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179425,6,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179423,10,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179429,5,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179427,7,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179430,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179429,9,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179431,8,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994179433,6,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179430,9,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,9,0,0
+1764994179434,6,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179432,9,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994179438,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179439,7,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179441,5,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179446,5,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179379,107,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,106,0,0
+1764994179374,112,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,110,0,0
+1764994179486,16,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,15,0,0
+1764994179486,16,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,15,0,0
+1764994179502,9,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179502,9,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179511,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179511,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179516,7,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179516,7,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179523,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179523,5,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179435,115,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,115,0,0
+1764994179441,109,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,109,0,0
+1764994179439,112,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,112,0,0
+1764994179442,109,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,109,0,0
+1764994179440,112,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,112,0,0
+1764994179434,120,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,120,0,0
+1764994179551,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179551,4,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179551,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179446,111,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,111,0,0
+1764994179552,5,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179551,6,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179554,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179557,5,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179556,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179555,7,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179451,111,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,111,0,0
+1764994179557,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179555,8,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994179557,7,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179562,3,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179562,3,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179562,3,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179559,7,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179563,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179562,5,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179563,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179564,4,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179566,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179565,5,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179565,5,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179567,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179565,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179567,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179568,5,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179570,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179570,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179571,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179568,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179570,6,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179570,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179573,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179573,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179574,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179574,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179576,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179576,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179580,3,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179529,56,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,56,0,0
+1764994179529,58,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,58,0,0
+1764994179587,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179585,6,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179591,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179591,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179597,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179597,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179602,5,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179602,5,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179608,4,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179608,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179574,49,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179574,51,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,51,0,0
+1764994179577,49,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179577,51,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,51,0,0
+1764994179625,4,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179623,6,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179626,3,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179579,51,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,51,0,0
+1764994179580,52,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,52,0,0
+1764994179580,52,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,52,0,0
+1764994179628,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179630,5,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179629,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179629,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179629,6,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179632,3,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179632,3,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179632,5,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179635,3,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179635,3,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179635,3,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179583,57,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,56,0,0
+1764994179635,5,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179635,5,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179635,5,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179637,4,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179640,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179640,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179640,3,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179638,5,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179640,3,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179638,5,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179638,5,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179644,3,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179643,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179644,3,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179641,6,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179643,6,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179643,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179644,5,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179643,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179648,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179649,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179649,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179649,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179649,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179612,44,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,44,0,0
+1764994179612,44,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,44,0,0
+1764994179653,7,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179656,6,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179656,6,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179660,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179662,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179662,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179668,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179668,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179672,6,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179672,7,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179652,50,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179653,46,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,46,0,0
+1764994179653,46,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994179647,50,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179647,49,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179647,49,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994179679,4,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179679,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179702,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179702,3,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179702,3,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179702,3,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179653,52,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,52,0,0
+1764994179702,3,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179702,4,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179665,43,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,42,0,0
+1764994179706,3,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179706,5,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179706,5,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179706,5,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179706,5,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179706,5,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179706,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179708,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179711,4,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179711,4,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179711,4,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179711,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179712,3,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179711,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179710,5,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179713,5,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179715,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179715,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179719,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179721,3,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179721,3,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179721,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179721,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179719,6,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179721,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179721,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179725,3,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179723,5,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179728,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179702,43,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,43,0,0
+1764994179702,46,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,46,0,0
+1764994179746,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179748,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179750,5,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179755,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179753,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179759,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179759,6,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179765,4,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179763,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179725,44,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,44,0,0
+1764994179725,44,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,44,0,0
+1764994179725,44,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,44,0,0
+1764994179725,45,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994179725,45,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994179725,45,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994179769,3,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179770,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179769,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179769,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179770,3,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179770,3,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179728,46,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,46,0,0
+1764994179770,4,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179774,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179773,6,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179773,6,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179773,6,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179773,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179773,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179779,3,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,2,0,0
+1764994179779,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179779,3,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179779,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179732,51,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,50,0,0
+1764994179780,3,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179774,9,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994179778,6,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179782,5,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179783,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179782,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179782,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179785,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179782,7,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179783,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179783,7,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994179788,3,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179789,2,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994179788,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179787,5,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179789,5,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179788,7,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179790,6,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179790,7,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179795,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179795,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179797,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179799,7,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179806,7,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994179769,67,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,67,0,0
+1764994179773,69,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,69,0,0
+1764994179836,6,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179842,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179842,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179848,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179847,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179792,62,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994179792,62,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,62,0,0
+1764994179792,64,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994179853,3,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179796,60,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,60,0,0
+1764994179854,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179854,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179792,66,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,66,0,0
+1764994179853,5,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179856,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179857,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179799,62,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994179858,4,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179856,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179858,5,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179858,5,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179858,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179861,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179862,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179861,5,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179863,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179861,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179865,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179802,68,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994179863,7,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179866,8,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,8,0,0
+1764994179865,10,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,10,0,0
+1764994179868,7,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994179813,63,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994179867,10,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994179870,7,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994179870,7,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994179875,3,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179870,8,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179876,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179877,3,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994179875,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179876,5,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179877,4,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994179878,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179877,5,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994179878,6,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179881,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179882,3,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179881,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179882,3,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179880,5,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179885,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179884,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179885,8,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994179889,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179893,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179895,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179862,62,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994179866,61,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994179924,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179927,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179882,51,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,51,0,0
+1764994179880,53,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,53,0,0
+1764994179929,8,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179933,5,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179933,5,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994179932,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179885,53,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,53,0,0
+1764994179938,3,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179938,3,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179937,5,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179885,57,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,57,0,0
+1764994179938,5,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179938,5,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179885,58,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,58,0,0
+1764994179942,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179889,56,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,56,0,0
+1764994179941,6,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179942,5,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994179943,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179944,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179941,7,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179945,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179943,7,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994179947,3,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179948,2,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994179947,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179948,4,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,3,0,0
+1764994179945,7,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179948,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179898,56,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,55,0,0
+1764994179954,3,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179950,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179950,7,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179952,5,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179954,3,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994179899,58,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,58,0,0
+1764994179950,8,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994179952,7,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994179957,3,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179957,3,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179957,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994179957,5,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179957,5,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179957,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994179958,5,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994179962,3,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179963,2,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,2,0,0
+1764994179962,3,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179962,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179963,5,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994179968,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994179968,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994179966,6,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994179973,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994179972,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994179978,5,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994179950,66,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,66,0,0
+1764994179950,72,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994180016,7,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994179959,64,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994179960,63,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180023,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180023,3,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180022,5,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180023,7,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179960,73,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,72,0,0
+1764994180027,6,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180027,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180027,7,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994179966,68,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994180030,5,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180033,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180033,3,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180033,3,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180034,3,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994179972,67,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,67,0,0
+1764994180034,7,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994180036,7,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180036,7,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180036,8,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180040,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180036,9,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994179966,79,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,78,0,0
+1764994180037,9,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180043,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180041,7,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180044,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180043,5,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180045,6,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994180045,6,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180048,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180046,7,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994179977,76,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,75,0,0
+1764994180044,9,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994180048,7,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180053,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180053,4,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180052,7,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180052,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180055,5,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180057,5,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180057,5,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994179983,79,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,79,0,0
+1764994180059,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180059,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180062,3,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180062,3,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180062,3,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180063,4,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994180065,6,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180065,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180067,5,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180071,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180071,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180075,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180081,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180051,52,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,51,0,0
+1764994180048,55,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,55,0,0
+1764994180048,56,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,56,0,0
+1764994180053,54,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,54,0,0
+1764994180103,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180103,7,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994180104,13,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,13,0,0
+1764994180060,57,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,57,0,0
+1764994180107,11,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,10,0,0
+1764994180107,12,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,12,0,0
+1764994180117,6,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180118,5,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180117,8,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180110,15,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,14,0,0
+1764994180063,63,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180119,7,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180125,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180123,8,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180125,6,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180123,8,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994180126,6,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180065,70,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,70,0,0
+1764994180126,10,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994180131,6,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180129,11,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,10,0,0
+1764994180132,9,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994180131,11,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,11,0,0
+1764994180131,12,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,11,0,0
+1764994180135,9,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,8,0,0
+1764994180140,6,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180141,5,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180137,9,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994180143,3,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180146,3,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180144,5,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180142,9,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180146,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180150,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180151,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180152,5,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180072,86,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,86,0,0
+1764994180154,19,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,18,0,0
+1764994180158,16,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,16,0,0
+1764994180075,100,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,100,0,0
+1764994180175,3,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180173,6,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,6,0,0
+1764994180174,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180178,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180085,102,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,102,0,0
+1764994180184,6,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180182,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180201,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180201,6,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180137,70,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,70,0,0
+1764994180201,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180146,63,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180146,63,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180149,61,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994180155,55,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,55,0,0
+1764994180207,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180207,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180207,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180205,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180209,4,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180209,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180210,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180210,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180211,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180157,58,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,58,0,0
+1764994180211,4,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180213,5,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180213,5,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180215,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180214,4,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180215,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180214,4,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180215,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180218,4,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180218,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180218,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180218,4,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180180,43,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,43,0,0
+1764994180218,6,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180221,3,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180218,7,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180222,5,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180222,5,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180222,5,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180224,3,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180222,5,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180224,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180225,3,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180228,2,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994180227,3,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180227,3,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180227,3,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180227,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180228,5,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180233,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180233,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180237,6,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180244,5,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180211,43,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,43,0,0
+1764994180254,5,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180211,49,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,49,0,0
+1764994180260,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180259,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180266,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180265,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180271,5,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180270,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180224,52,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,52,0,0
+1764994180276,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180276,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180228,52,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,52,0,0
+1764994180276,7,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180280,4,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180230,56,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,56,0,0
+1764994180283,6,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180286,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180280,10,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,10,0,0
+1764994180230,61,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,60,0,0
+1764994180230,61,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994180290,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180284,9,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994180291,3,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180230,64,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994180290,4,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180291,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180293,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180294,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180294,3,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180293,5,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994180294,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180298,3,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994180237,64,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994180296,5,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180298,4,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994180296,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180297,7,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180302,3,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180300,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180302,3,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180302,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180302,3,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180304,5,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180249,60,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,59,0,0
+1764994180306,4,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180305,5,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180305,5,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180309,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180310,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180310,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180310,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180309,6,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180314,8,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180314,8,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180315,8,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,8,0,0
+1764994180322,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180322,5,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180327,8,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180335,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180280,64,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,0
+1764994180344,5,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180289,66,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,66,0,0
+1764994180349,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180355,6,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180357,5,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180361,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180362,6,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180368,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180368,7,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,7,0,0
+1764994180301,74,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,74,0,0
+1764994180305,73,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,73,0,0
+1764994180375,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180305,75,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,75,0,0
+1764994180375,8,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180378,5,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180380,6,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180380,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180383,5,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180383,7,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180386,6,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180386,7,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180314,80,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,80,0,0
+1764994180390,4,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180393,5,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180392,6,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180394,4,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180395,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180399,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180314,89,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,89,0,0
+1764994180398,7,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180401,4,get pettype list by id,200,,Uncaching 1-4,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180399,6,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180405,4,get pettype list by id,200,,Uncaching 1-7,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180403,7,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180405,6,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180326,88,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,87,0,0
+1764994180411,5,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180410,7,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180323,94,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,94,0,0
+1764994180414,6,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180417,4,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180417,5,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180417,8,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994180420,9,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,9,0,0
+1764994180422,10,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994180425,7,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180429,5,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180339,97,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,97,0,0
+1764994180432,6,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180432,6,get pettype list by id,200,,Uncaching 1-3,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180436,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180434,8,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180438,8,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180442,5,get pettype list by id,200,,Uncaching 1-8,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180441,6,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180447,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180446,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180451,7,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180458,6,get pettype list by id,200,,Uncaching 1-5,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180372,97,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,96,0,0
+1764994180469,5,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180389,90,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,90,0,0
+1764994180475,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180479,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180483,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180484,7,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180403,89,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,89,0,0
+1764994180487,9,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994180492,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180491,6,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180405,93,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,93,0,1
+1764994180496,5,get pettype list by id,200,,Uncaching 1-6,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180421,80,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,80,0,0
+1764994180410,91,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,91,0,0
+1764994180497,6,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180497,6,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180498,5,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180501,5,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180503,3,get pettype list by id,200,,Uncaching 1-9,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994180503,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,2,0,0
+1764994180501,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180503,5,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180506,7,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180506,7,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180506,8,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180508,6,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,6,0,0
+1764994180513,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180513,4,get pettype list by id,200,,Uncaching 1-2,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180514,3,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180514,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180438,82,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,82,0,1
+1764994180517,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180520,4,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180520,4,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180517,7,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180451,77,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,76,0,0
+1764994180524,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180524,4,get pettype list by id,200,,Uncaching 1-10,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180524,6,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180447,83,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,83,0,0
+1764994180528,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180530,3,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180530,3,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180532,7,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180533,6,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180533,6,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180539,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180539,4,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180539,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180464,80,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,80,0,1
+1764994180545,3,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180543,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180543,6,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180549,3,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180549,3,get pettype list by id,200,,Uncaching 1-1,text,true,,427,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180549,7,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180556,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180501,62,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,62,0,1
+1764994180564,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180561,7,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180506,65,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,64,0,1
+1764994180568,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180568,6,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180571,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180517,59,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,59,0,1
+1764994180574,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180576,4,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180576,6,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180578,5,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180580,7,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180524,63,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,62,0,0
+1764994180584,10,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,10,0,0
+1764994180582,13,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,13,0,0
+1764994180528,68,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994180528,68,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,68,0,1
+1764994180587,10,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,10,0,0
+1764994180587,12,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,12,0,0
+1764994180596,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180596,4,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180596,4,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994180600,4,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180600,4,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180597,7,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180600,4,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,4,0,0
+1764994180600,5,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180605,3,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180605,3,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180604,4,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180604,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180608,6,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180608,6,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180608,6,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180614,5,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180614,5,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180614,7,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994180543,85,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,82,0,0
+1764994180628,6,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180552,87,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,86,0,0
+1764994180634,7,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180639,7,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994180641,9,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,8,0,0
+1764994180646,12,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,12,0,0
+1764994180658,5,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180552,111,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,111,0,1
+1764994180650,13,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,13,0,0
+1764994180663,5,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180663,5,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180663,7,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180670,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180668,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180674,6,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180680,7,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180572,118,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,118,0,0
+1764994180687,5,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180690,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180608,100,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,100,0,0
+1764994180604,104,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,104,0,0
+1764994180594,109,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,109,0,0
+1764994180695,5,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180621,95,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,94,0,0
+1764994180619,97,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,96,0,0
+1764994180714,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180714,5,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180714,5,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180714,5,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180716,6,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180716,6,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180619,103,get vet list,200,,Uncaching 1-7,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,103,0,0
+1764994180719,7,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180722,4,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180719,7,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180719,7,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180719,8,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994180722,6,get specialty list,200,,Uncaching 1-4,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180722,7,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180726,4,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180726,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180726,4,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180728,3,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180728,4,get specialty list by id,200,,Uncaching 1-4,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180726,6,get specialty list,200,,Uncaching 1-7,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180729,4,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180730,5,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180668,67,get vet list,200,,Uncaching 1-3,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,67,0,0
+1764994180730,5,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180732,8,get specialty list by id,200,,Uncaching 1-7,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,8,0,0
+1764994180732,8,get pettype list,200,,Uncaching 1-4,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180731,10,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,9,0,0
+1764994180733,8,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180735,7,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994180735,7,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,7,0,0
+1764994180735,7,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994180741,2,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994180741,2,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,2,0,0
+1764994180740,3,get pettype list by id,200,,Uncaching 1-4,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180674,69,get vet list,200,,Uncaching 1-8,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,69,0,0
+1764994180740,5,get pettype list,200,,Uncaching 1-7,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,5,0,0
+1764994180743,4,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180742,5,get specialty list,200,,Uncaching 1-3,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180746,4,get pettype list by id,200,,Uncaching 1-7,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180747,3,get specialty list by id,200,,Uncaching 1-3,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180692,60,get vet list,200,,Uncaching 1-1,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,60,0,0
+1764994180747,5,get specialty list,200,,Uncaching 1-8,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,5,0,0
+1764994180752,4,get specialty list by id,200,,Uncaching 1-8,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,3,0,0
+1764994180752,4,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180751,5,get pettype list,200,,Uncaching 1-3,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,4,0,0
+1764994180756,3,get pettype list by id,200,,Uncaching 1-3,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180756,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180756,6,get pettype list,200,,Uncaching 1-8,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,6,0,0
+1764994180762,4,get pettype list by id,200,,Uncaching 1-8,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180762,4,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180766,8,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180730,46,get vet list,200,,Uncaching 1-5,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,46,0,0
+1764994180774,7,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,7,0,0
+1764994180777,4,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180781,8,get specialty list,200,,Uncaching 1-5,text,true,,30598,475,10,10,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180789,4,get specialty list by id,200,,Uncaching 1-5,text,true,,461,479,10,10,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180793,9,get pettype list,200,,Uncaching 1-5,text,true,,25641,472,10,10,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180742,62,get vet list,200,,Uncaching 1-9,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994180743,61,get vet list,200,,Uncaching 1-2,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,61,0,0
+1764994180742,63,get vet list,200,,Uncaching 1-6,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180743,63,get vet list,200,,Uncaching 1-4,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,63,0,0
+1764994180805,2,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,2,0,0
+1764994180802,5,get pettype list by id,200,,Uncaching 1-5,text,true,,456,476,10,10,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180805,2,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,2,0,0
+1764994180804,3,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,3,0,0
+1764994180743,65,get vet list,200,,Uncaching 1-10,text,true,,4784,468,10,10,http://localhost:9966/petclinic/api/vets,65,0,0
+1764994180806,6,get vet list by id,200,,Uncaching 1-4,text,true,,499,471,10,10,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180807,8,get specialty list,200,,Uncaching 1-6,text,true,,30598,475,9,9,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180807,8,get specialty list,200,,Uncaching 1-9,text,true,,30598,475,9,9,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180809,6,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,9,9,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180807,8,get specialty list,200,,Uncaching 1-2,text,true,,30598,475,9,9,http://localhost:9966/petclinic/api/specialties,8,0,0
+1764994180750,67,get vet list,200,,Uncaching 1-7,text,true,,4784,468,9,9,http://localhost:9966/petclinic/api/vets,67,0,0
+1764994180815,4,get specialty list by id,200,,Uncaching 1-9,text,true,,461,479,9,9,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180815,4,get specialty list by id,200,,Uncaching 1-2,text,true,,461,479,9,9,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180815,4,get specialty list by id,200,,Uncaching 1-6,text,true,,461,479,9,9,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180815,7,get specialty list,200,,Uncaching 1-10,text,true,,30598,475,9,9,http://localhost:9966/petclinic/api/specialties,7,0,0
+1764994180818,6,get vet list by id,200,,Uncaching 1-7,text,true,,499,471,9,9,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180819,8,get pettype list,200,,Uncaching 1-6,text,true,,25641,472,8,8,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180822,5,get specialty list by id,200,,Uncaching 1-10,text,true,,461,479,8,8,http://localhost:9966/petclinic/api/specialties/200,4,0,0
+1764994180819,8,get pettype list,200,,Uncaching 1-2,text,true,,25641,472,8,8,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180819,9,get pettype list,200,,Uncaching 1-9,text,true,,25641,472,8,8,http://localhost:9966/petclinic/api/pettypes,8,0,0
+1764994180828,3,get pettype list by id,200,,Uncaching 1-9,text,true,,456,476,8,8,http://localhost:9966/petclinic/api/pettypes/200,3,0,0
+1764994180827,4,get pettype list by id,200,,Uncaching 1-6,text,true,,456,476,8,8,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180827,4,get pettype list by id,200,,Uncaching 1-2,text,true,,456,476,8,8,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180827,7,get pettype list,200,,Uncaching 1-10,text,true,,25641,472,8,8,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180760,78,get vet list,200,,Uncaching 1-3,text,true,,4784,468,8,8,http://localhost:9966/petclinic/api/vets,78,0,0
+1764994180834,6,get pettype list by id,200,,Uncaching 1-10,text,true,,456,476,8,8,http://localhost:9966/petclinic/api/pettypes/200,5,0,0
+1764994180766,75,get vet list,200,,Uncaching 1-8,text,true,,4784,468,8,8,http://localhost:9966/petclinic/api/vets,75,0,0
+1764994180838,6,get vet list by id,200,,Uncaching 1-3,text,true,,499,471,8,8,http://localhost:9966/petclinic/api/vets/10,6,0,0
+1764994180841,6,get vet list by id,200,,Uncaching 1-8,text,true,,499,471,7,7,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180781,69,get vet list,200,,Uncaching 1-1,text,true,,4784,468,6,6,http://localhost:9966/petclinic/api/vets,68,0,0
+1764994180850,5,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,6,6,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180856,6,get specialty list,200,,Uncaching 1-1,text,true,,30598,475,6,6,http://localhost:9966/petclinic/api/specialties,6,0,0
+1764994180807,55,get vet list,200,,Uncaching 1-5,text,true,,4784,468,6,6,http://localhost:9966/petclinic/api/vets,55,0,0
+1764994180862,5,get vet list by id,200,,Uncaching 1-5,text,true,,499,471,6,6,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180862,5,get specialty list by id,200,,Uncaching 1-1,text,true,,461,479,6,6,http://localhost:9966/petclinic/api/specialties/200,5,0,0
+1764994180867,7,get pettype list,200,,Uncaching 1-1,text,true,,25641,472,5,5,http://localhost:9966/petclinic/api/pettypes,7,0,0
+1764994180831,45,get vet list,200,,Uncaching 1-9,text,true,,4784,468,5,5,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994180831,45,get vet list,200,,Uncaching 1-6,text,true,,4784,468,5,5,http://localhost:9966/petclinic/api/vets,45,0,0
+1764994180831,48,get vet list,200,,Uncaching 1-2,text,true,,4784,468,5,5,http://localhost:9966/petclinic/api/vets,48,0,0
+1764994180875,4,get pettype list by id,200,,Uncaching 1-1,text,true,,456,476,5,5,http://localhost:9966/petclinic/api/pettypes/200,4,0,0
+1764994180876,4,get vet list by id,200,,Uncaching 1-9,text,true,,499,471,5,5,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180876,4,get vet list by id,200,,Uncaching 1-6,text,true,,499,471,5,5,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180879,5,get vet list by id,200,,Uncaching 1-2,text,true,,499,471,3,3,http://localhost:9966/petclinic/api/vets/10,5,0,0
+1764994180840,47,get vet list,200,,Uncaching 1-10,text,true,,4784,468,2,2,http://localhost:9966/petclinic/api/vets,46,0,0
+1764994180887,5,get vet list by id,200,,Uncaching 1-10,text,true,,499,471,2,2,http://localhost:9966/petclinic/api/vets/10,4,0,0
+1764994180879,32,get vet list,200,,Uncaching 1-1,text,true,,4784,468,1,1,http://localhost:9966/petclinic/api/vets,32,0,0
+1764994180911,5,get vet list by id,200,,Uncaching 1-1,text,true,,499,471,1,1,http://localhost:9966/petclinic/api/vets/10,4,0,0

@@ -38,7 +38,7 @@ spring:
                 - Path=/actuator/notifications/**
               filters:
                 - RewritePath=/actuator/notifications/(?<segment>.*), /actuator/${segment}
-                
+
             # Main API (context-path /petclinic)
             - id: modulith-main
               uri: ${BACKEND_URI:http://localhost:8080}
@@ -75,7 +75,8 @@ bucket4j:
             - capacity: 100
               time: 1
               unit: MINUTES
-          cache-key: "#{getRemoteAddress()}"
+          # Lấy IP dạng String
+          cache-key: "getRemoteAddress() != null ? getRemoteAddress().address.hostAddress : 'unknown'"
 
     # /api/owners/** : 100 req/min per IP
     - cache-name: rateLimitOwners
@@ -86,9 +87,9 @@ bucket4j:
             - capacity: 100
               time: 1
               unit: MINUTES
-          cache-key: "#{getRemoteAddress()}"
+          cache-key: "getRemoteAddress() != null ? getRemoteAddress().address.hostAddress : 'unknown'"
 
-    # /api/** : 1000 req/min, prefer principal, fallback to IP
+    # /api/** : 1000 req/min per IP
     - cache-name: rateLimitApi
       url: ^/api(/.*)?$
       filter-method: gateway
@@ -97,7 +98,7 @@ bucket4j:
             - capacity: 1000
               time: 1
               unit: MINUTES
-          cache-key: "#{getPrincipal() != null ? getPrincipal() : getRemoteAddress()}"
+          cache-key: "getRemoteAddress() != null ? getRemoteAddress().address.hostAddress : 'unknown'"
 
 petclinic:
   jwt:
